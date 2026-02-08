@@ -1,0 +1,147 @@
+<resources>
+
+    <string name="backorder_page_title">Σελίδα Εκκρεμών Παραγγελιών</string>
+    <string name="btn_active_backorders">Ενεργές Εκκρεμείς Παραγγελίες</string>
+    <string name="btn_back">ΠΙΣΩ</string>
+    <string name="hint_afm_pharmacy">ΑΦΜ Φαρμακείου για να δείτε τις ενεργές παραγγελίες</string>
+    <string name="btn_search_backorders">Αναζήτηση Εκκρεμών</string>
+
+
+    <string name="title_batch_manager">ΔΙΑΧΕΙΡΙΣΗ ΠΑΡΤΙΔΩΝ</string>
+    <string name="btn_receive_stock">Λήψη Αποθέματος</string>
+    <string name="btn_recall_products">Ανάκληση Προϊόντων</string>
+    <string name="btn_home_page">ΑΡΧΙΚΗ</string>
+
+
+    <string name="title_reset_password">ΕΠΑΝΑΦΟΡΑ ΚΩΔΙΚΟΥ</string>
+    <string name="btn_save_changes">ΑΠΟΘΗΚΕΥΣΗ ΑΛΛΑΓΩΝ</string>
+    <string name="hint_username_email">Όνομα χρήστη (Email)</string>
+    <string name="hint_new_password">Νέος Κωδικός</string>
+    <string name="hint_confirm_new_password">Επιβεβαίωση Νέου Κωδικού</string>
+
+    <string name ="INBOX">ΑΠΕΣΤΑΛΜΕΝΑ</string>
+    <string name ="INBOX2">ΕΙΣΕΡΧΟΜΕΝΑ</string>
+    <string name="title_home_page">Αρχική Σελίδα</string>
+    <string name="btn_show_stock">Διαθέσιμο Απόθεμα</string>
+    <string name="btn_batches_controller">Διαχείριση Παρτίδων</string>
+    <string name="btn_order_manager">Διαχείριση Παραγγελιών</string>
+    <string name="btn_show_stats">Εμφάνιση Στατιστικών</string>
+    <string name="btn_log_out">ΑΠΟΣΥΝΔΕΣΗ</string>
+
+
+    <string name="title_orders_manager">Διαχείριση Παραγγελιών</string>
+    <string name="btn_all_orders">ΟΛΕΣ ΟΙ ΠΑΡΑΓΓΕΛΙΕΣ</string>
+    <string name="btn_backorders">ΕΚΚΡΕΜΕΙΣ ΠΑΡΑΓΓΕΛΙΕΣ</string>
+    <string name="btn2_home_page">ΑΡΧΙΚΗ</string>
+    <string name="all_backorders">ΟΛΕΣ ΟΙ ΕΚΚΡΕΜΕΙΣ ΠΑΡΑΓΓΕΛΙΕΣ</string>
+
+    <string name="btn3_back">ΠΙΣΩ</string>
+    <string name="title_recall_batch">Σελίδα Ανάκλησης Παρτίδας</string>
+    <string name="info_recall_batch">Επιλέξτε μια παρτίδα από τη λίστα (ή πληκτρολογήστε το ID της) και ανακαλέστε την από τα φαρμακεία/πελάτες.</string>
+    <string name="hint_batch_id">ID Παρτίδας</string>
+    <string name="btn_recall_batch">ΠΑΤΗΣΤΕ ΓΙΑ ΑΝΑΚΛΗΣΗ ΤΗΣ ΠΑΡΤΙΔΑΣ</string>
+
+
+    <string name="btn4_back">ΠΙΣΩ</string>
+    <string name="title_receive_batch">Σελίδα Ενημέρωσης Αποθέματος</string>
+    <string name="info_receive_batch">Συμπληρώστε την παρακάτω φόρμα για το προϊόν που θέλετε να ενημερώσετε στο απόθεμά σας</string>
+    <string name="hint_product_name">Πληκτρολογήστε το όνομα του προϊόντος</string>
+    <string name="hint_eof_code">Πληκτρολογήστε τον κωδικό EOF του προϊόντος</string>
+    <string name="hint_price">Τιμή προϊόντος</string>
+    <string name="label_product_category">Κατηγορία Προϊόντος</string>
+    <string name="hint_select_category">Επιλέξτε κατηγορία</string>
+    <string name="hint_number_batches">Αριθμός Παρτίδων</string>
+    <string name="hint_products_in_batch">Αριθμός προϊόντων σε κάθε παρτίδα</string>
+    <string name="btn2_receive_stock">Πατήστε για να παραλάβετε νέο απόθεμα</string>
+
+    <string name="btn5_back">ΠΙΣΩ</string>
+    <string name="title_all_orders">Σελίδα Όλων των Παραγγελιών</string>
+    <string name="btn2_all_orders">ΟΛΕΣ ΟΙ ΠΑΡΑΓΓΕΛΙΕΣ</string>
+    <string name="btn_completed_orders">ΟΛΕΣ ΟΛΟΚΛΗΡΩΜΕΝΕΣ</string>
+    <string name="hint_execute_order">ID παραγγελίας προς εκτέλεση</string>
+    <string name="btn_execute_order">ΕΚΤΕΛΕΣΗ ΠΑΡΑΓΓΕΛΙΑΣ</string>
+    <string name="hint_postpone_order">ID παραγγελίας προς αναβολή</string>
+    <string name="btn_postpone_order">ΑΝΑΒΟΛΗ ΠΑΡΑΓΓΕΛΙΑΣ</string>
+    <string name="hint_cancel_order">ID παραγγελίας προς ακύρωση</string>
+    <string name="btn_cancel_order">ΑΚΥΡΩΣΗ ΠΑΡΑΓΓΕΛΙΑΣ (ΕΠΙΘΥΜΙΑ ΠΕΛΑΤΗ)</string>
+
+
+    <string name="app_name">ViaPharma</string>
+    <string name="btn6_home">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</string>
+    <string name="title_statistics_page">Σελίδα Στατιστικών</string>
+    <string name="info_fill_below">Συμπληρώστε τις πληροφορίες παρακάτω</string>
+    <string name="hint_start_date">ΜΜ/ΜΜ/ΧΧ</string>
+    <string name="hint_end_date">ΜΜ/ΜΜ/ΧΧ</string>
+    <string name="btn_product_sales_timestamp">ΠΩΛΗΣΕΙΣ ΠΡΟΪΟΝΤΩΝ ΚΑΤΑ ΧΡΟΝΙΚΟ ΔΙΑΣΤΗΜΑ</string>
+    <string name="hint2_afm_pharmacy">ΑΦΜ φαρμακείου</string>
+    <string name="btn_show_orders">ΕΜΦΑΝΙΣΗ ΠΑΡΑΓΓΕΛΙΩΝ</string>
+    <string name="btn_show_revenue">ΕΜΦΑΝΙΣΗ ΕΣΟΔΩΝ</string>
+    <string name="btn_total_inventory_revenue">ΣΥΝΟΛΙΚΑ ΕΣΟΔΑ ΑΠΟ ΑΠΟΘΗΚΗ</string>
+
+
+    <string name="app2_name">ViaPharma</string>
+    <string name="btn2_home">ΑΡΧΙΚΗ ΣΕΛΙΔΑ</string>
+    <string name="title_stock_page">ΣΕΛΙΔΑ ΑΠΟΘΗΚΗΣ</string>
+    <string name="hint2_eof_code">Κωδικός EOF προϊόντος</string>
+    <string name="btn_search">Αναζήτηση</string>
+    <string name="btn_full_stock">Ολόκληρη Αποθήκη</string>
+    <string name="text_specific_product_info">Όνομα: Demo\nΠοσότητα: 3\nΤιμή: 10,00 €</string>
+
+
+    <string name="btn7_back">ΠΙΣΩ</string>
+    <string name="title3_reset_password">ΕΠΑΝΑΦΟΡΑ ΚΩΔΙΚΟΥ</string>
+    <string name="hint_username_afm">Όνομα χρήστη (AFM)</string>
+    <string name="hint3_new_password">Νέος Κωδικός</string>
+    <string name="hint3_confirm_new_password">Επιβεβαίωση Νέου Κωδικού</string>
+    <string name="btn3_save_changes">ΑΠΟΘΗΚΕΥΣΗ ΑΛΛΑΓΩΝ</string>
+
+    <string name="question_clerk">Είστε αποθηκάριος;</string>
+    <string name="question_pharmacist">Είστε φαρμακοποιός;</string>
+    <string name="welcome">Καλωσήρθατε</string>
+    <string name="welcome_back">Καλωσήρθατε ξανά</string>
+    <string name="fill_form">Συμπληρώστε την παρακάτω φόρμα</string>
+    <string name="btn_sign_up">ΕΓΓΡΑΦΗ</string>
+    <string name="btn_log_in">ΕΙΣΟΔΟΣ</string>
+    <string name="hint_name">Όνομα</string>
+    <string name="hint_surname">Επώνυμο</string>
+    <string name="hint_phone">Τηλέφωνο</string>
+    <string name="hint_first_name">Όνομα</string>
+    <string name="hint_last_name">Επώνυμο</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Κωδικός</string>
+    <string name="btn_forgot_password">Ξεχάσατε τον κωδικό;</string>
+
+    <string name="title_completed_orders_page">Ολοκληρωμένες Παραγγελίες</string>
+    <string name="btn_cancel_order_simple">Ακύρωση Παραγγελίας</string>
+    <string name="title_pending_orders">Εκκρεμείς Παραγγελίες</string>
+    <string name="btn_submit_order">Υποβολή Παραγγελίας</string>
+    <string name="title_cart">Το Καλάθι σας</string>
+    <string name="btn_save_draft">Αποθήκευση ως πρόχειρο</string>
+    <string name="label_cart_total">Σύνολο Καλαθιού</string>
+    <string name="text_total_is">Το σύνολο είναι: </string>
+    <string name="hint_postal_code">Ταχυδρομικός Κώδικας</string>
+    <string name="hint_region">Περιοχή</string>
+    <string name="hint_street_number">Αριθμός οδού</string>
+    <string name="hint_street_name">Όνομα οδού</string>
+    <string name="hint_afm">ΑΦΜ</string>
+    <string name="title_signup_pharmacy">Εγγραφή Φαρμακείου</string>
+    <string name="title_draft_orders">Πρόχειρες Παραγγελίες</string>
+    <string name="title_signin_pharmacy">Είσοδος Φαρμακείου</string>
+    <string name="btn_click_here">Πατήστε εδώ</string>
+    <string name="question_new_pharmacy">Θέλετε να εγγράψετε νέο φαρμακείο;</string>
+    <string name="btn_forgot_password_short">ΞΕΧΑΣΑ ΤΟΝ ΚΩΔΙΚΟ</string>
+
+    <string name="btn_cart_simple">Καλάθι</string>
+    <string name="btn_products_simple">Προϊόντα</string>
+    <string name="btn_draft_orders_simple">Πρόχειρες</string>
+    <string name="btn_completed_orders_simple">Ολοκληρωμένες</string>
+    <string name="btn_pending_orders_simple">Εκκρεμείς</string>
+    <string name="btn_sign_out">ΑΠΟΣΥΝΔΕΣΗ</string>
+    <string name="btn_sort_by">ταξινόμηση ▼</string>
+    <string name="title_products">Προϊόντα</string>
+    <string name="btn_search_simple">αναζήτηση</string>
+    <string name="hint_search_eof">Αναζήτηση με EOF</string>
+
+    <string name="btn_all_orders_pharm">ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ</string>
+
+</resources>

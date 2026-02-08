@@ -1,0 +1,358 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkShowStatsScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkShowStats</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkShowStatsScreen (gr.softeng.team09.view.ClerkShowStats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkShowStatsScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/101)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkShowStats;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;import android.widget.TextView;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderLine;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.view.ClerkBatches.ClerkBatchesGeneralScreen;
+&nbsp;import gr.softeng.team09.view.ClerkMain.ClerkMainScreen;
+&nbsp;import gr.softeng.team09.view.ClerkOrdersGeneral.ClerkOrdersGeneral;
+&nbsp;import gr.softeng.team09.view.ClerkShowStock.ClerkShowStockScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk show stats screen.
+&nbsp; */
+<b class="nc">&nbsp;public class ClerkShowStatsScreen extends AppCompatActivity implements ClerkShowStatsView {</b>
+&nbsp;
+&nbsp;    private EditText editAfmOrders;
+&nbsp;    private EditText editStartTime;
+&nbsp;    private EditText editEndTime;
+&nbsp;
+&nbsp;    private ListView listViewOrders;
+&nbsp;    private TextView textViewRevenue;
+&nbsp;
+<b class="nc">&nbsp;    private final List&lt;String&gt; listDisplay = new ArrayList&lt;&gt;();</b>
+&nbsp;    private ArrayAdapter&lt;String&gt; adapter;
+&nbsp;
+&nbsp;    private ClerkShowStatsViewModel viewModel;
+&nbsp;    private ClerkShowStatsPresenter presenter;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_clerk_show_stats_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        // -------- ViewModel / Presenter --------
+<b class="nc">&nbsp;        viewModel = new ViewModelProvider(this).get(ClerkShowStatsViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;        // -------- Views --------
+<b class="nc">&nbsp;        Button btnHome = findViewById(R.id.button6homepage);</b>
+<b class="nc">&nbsp;        Button btnShowOrders = findViewById(R.id.buttonOrderPerPharmacy);</b>
+<b class="nc">&nbsp;        Button btnShowRevenue = findViewById(R.id.buttonrevenueByClient);</b>
+<b class="nc">&nbsp;        Button btnShowTotalRevenue = findViewById(R.id.buttontotalRevenue);</b>
+<b class="nc">&nbsp;        Button btnShowSalesTimeStamp = findViewById(R.id.button5timestamp);</b>
+&nbsp;
+<b class="nc">&nbsp;        editAfmOrders = findViewById(R.id.editTextAFM);</b>
+<b class="nc">&nbsp;        editStartTime = findViewById(R.id.inputStartDate);</b>
+<b class="nc">&nbsp;        editEndTime = findViewById(R.id.inputEndDate);</b>
+&nbsp;
+<b class="nc">&nbsp;        listViewOrders = findViewById(R.id.statsList);</b>
+<b class="nc">&nbsp;        textViewRevenue = findViewById(R.id.textViewtotalrevenue2);</b>
+&nbsp;
+&nbsp;        //---- One List adapter (για όλα) --------
+<b class="nc">&nbsp;        adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, listDisplay);</b>
+<b class="nc">&nbsp;        listViewOrders.setAdapter(adapter);</b>
+<b class="nc">&nbsp;        listViewOrders.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;
+&nbsp;        //------------------------------ Buttons---------------------------------------------------
+<b class="nc">&nbsp;        btnShowOrders.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.showOrdersByPharmacy(editAfmOrders.getText().toString());</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnShowRevenue.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.showRevenueByPharmacy(editAfmOrders.getText().toString());</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnShowSalesTimeStamp.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.showSalesBetween(</b>
+<b class="nc">&nbsp;                    editStartTime.getText().toString(),</b>
+<b class="nc">&nbsp;                    editEndTime.getText().toString()</b>
+&nbsp;            );
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnShowTotalRevenue.setOnClickListener(v -&gt; presenter.showTotalRevenue());</b>
+&nbsp;
+&nbsp;        //Buttons little down there---------------------------------------------
+<b class="nc">&nbsp;        ImageView btnToStock = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToStock.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStockScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToBatches = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToBatches.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkOrdersGeneral.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView btnToStats = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToStats.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStatsScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToOrders = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToOrders.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkBatchesGeneralScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //navigation-----------------------------------------------------------------------
+<b class="nc">&nbsp;        btnHome.setOnClickListener(v -&gt; startActivity(new Intent(this, ClerkMainScreen.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        listViewOrders.setOnItemClickListener((parent, view, position, id) -&gt; {</b>
+<b class="nc">&nbsp;            Order o = presenter.getOrderAt(position);</b>
+<b class="nc">&nbsp;            if (o == null) return;</b>
+&nbsp;
+<b class="nc">&nbsp;            showOrderDetailsDialog(o);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    // ================== ClerkShowStatsView ==================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showOrders(List&lt;String&gt; display) {
+<b class="nc">&nbsp;        listDisplay.clear();</b>
+<b class="nc">&nbsp;        listDisplay.addAll(display);</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+<b class="nc">&nbsp;        listViewOrders.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showRevenue(String msg) {
+<b class="nc">&nbsp;        textViewRevenue.setText(msg);</b>
+<b class="nc">&nbsp;        textViewRevenue.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showTotalRevenue(String msg) {
+<b class="nc">&nbsp;        textViewRevenue.setText(msg);</b>
+<b class="nc">&nbsp;        textViewRevenue.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showSalesBetween(List&lt;String&gt; display) {
+<b class="nc">&nbsp;        listDisplay.clear();</b>
+<b class="nc">&nbsp;        listDisplay.addAll(display);</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+<b class="nc">&nbsp;        listViewOrders.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showErrorOnOrdersInput(String msg) {
+<b class="nc">&nbsp;        editAfmOrders.setError(msg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showErrorOnRevenueInput(String msg) {
+<b class="nc">&nbsp;        editAfmOrders.setError(msg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showErrorOnStartDateInput(String msg) {
+<b class="nc">&nbsp;        editStartTime.setError(msg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showErrorOnEndDateInput(String msg) {
+<b class="nc">&nbsp;        editEndTime.setError(msg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clearOrders() {
+<b class="nc">&nbsp;        listDisplay.clear();</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clearSalesBetween() {
+<b class="nc">&nbsp;        listDisplay.clear();</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showOrderDetailsDialog(Order o) {
+&nbsp;
+<b class="nc">&nbsp;        StringBuilder sb = new StringBuilder();</b>
+&nbsp;
+<b class="nc">&nbsp;        sb.append(&quot;Order ID: &quot;).append(o.getId()).append(&quot;\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Pharmacy: &quot;).append(o.getPharmacy().getName()).append(&quot;\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Type: &quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (o.getState() == OrderState.COMPLETEDBACKORDER) {</b>
+<b class="nc">&nbsp;            sb.append(&quot;BACKORDER (shipment)\n&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            sb.append(&quot;ORDER\n&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        sb.append(&quot;State: &quot;).append(o.getState()).append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Products:\n&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        double total = 0.0;</b>
+<b class="nc">&nbsp;        for (OrderLine l : o.getLines()) {</b>
+<b class="nc">&nbsp;            double lineTotal = l.getQuantity() * l.getProduct().getPriceWithVAT();</b>
+<b class="nc">&nbsp;            total += lineTotal;</b>
+&nbsp;
+<b class="nc">&nbsp;            sb.append(&quot;- &quot;)</b>
+<b class="nc">&nbsp;                    .append(l.getProduct().getName())</b>
+<b class="nc">&nbsp;                    .append(&quot; x&quot;)</b>
+<b class="nc">&nbsp;                    .append(l.getQuantity())</b>
+<b class="nc">&nbsp;                    .append(&quot; = &quot;)</b>
+<b class="nc">&nbsp;                    .append(String.format(&quot;%.2f&quot;, lineTotal))</b>
+<b class="nc">&nbsp;                    .append(&quot; €\n&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        sb.append(&quot;\nTotal: &quot;).append(String.format(&quot;%.2f&quot;, total)).append(&quot; €&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        new androidx.appcompat.app.AlertDialog.Builder(this)</b>
+<b class="nc">&nbsp;                .setTitle(&quot;Order Details&quot;)</b>
+<b class="nc">&nbsp;                .setMessage(sb.toString())</b>
+<b class="nc">&nbsp;                .setPositiveButton(&quot;OK&quot;, null)</b>
+<b class="nc">&nbsp;                .show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

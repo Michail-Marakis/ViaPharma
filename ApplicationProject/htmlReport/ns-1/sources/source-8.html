@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BackorderDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.dao</a>
+</div>
+
+<h1>Coverage Summary for Class: BackorderDAO (gr.softeng.team09.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">BackorderDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.dao;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import gr.softeng.team09.domain.Backorder;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Backorder dao.
+&nbsp; */
+&nbsp;public interface BackorderDAO {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Enqueue.
+&nbsp;     *
+&nbsp;     * @param backorder the backorder
+&nbsp;     */
+&nbsp;    void enqueue(Backorder backorder);     // FIFO insert
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Poll backorder.
+&nbsp;     *
+&nbsp;     * @return the backorder
+&nbsp;     */
+&nbsp;    Backorder poll();                      // FIFO remove
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find all list.
+&nbsp;     *
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    List&lt;Backorder&gt; findAll();             // history
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find by state list.
+&nbsp;     *
+&nbsp;     * @param state the state
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    List&lt;Backorder&gt; findByState(OrderState state);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find by pharmacy list.
+&nbsp;     *
+&nbsp;     * @param pharmacy the pharmacy
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    List&lt;Backorder&gt; findByPharmacy(Pharmacy pharmacy);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find backorder.
+&nbsp;     *
+&nbsp;     * @param id the id
+&nbsp;     * @return the backorder
+&nbsp;     */
+&nbsp;    Backorder find(int id);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Save.
+&nbsp;     *
+&nbsp;     * @param backorder the backorder
+&nbsp;     */
+&nbsp;    void save(Backorder backorder);        // upsert/update
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets flag.
+&nbsp;     *
+&nbsp;     * @param flag the flag
+&nbsp;     */
+&nbsp;    void setFlag(boolean flag);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets flag.
+&nbsp;     *
+&nbsp;     * @return the flag
+&nbsp;     */
+&nbsp;    boolean getFlag();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

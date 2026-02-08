@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacySignUpPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.SignUpPharmacist.SignUpPharmacy</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacySignUpPresenter (gr.softeng.team09.view.SignUpPharmacist.SignUpPharmacy)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacySignUpPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (21/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (37/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.SignUpPharmacist.SignUpPharmacy;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.PharmacyDAO;
+&nbsp;import gr.softeng.team09.domain.Address;
+&nbsp;import gr.softeng.team09.domain.Pharmacist;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.memorydao.PharmacyDAOMemory;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy sign up presenter.
+&nbsp; */
+&nbsp;public class PharmacySignUpPresenter {
+&nbsp;
+&nbsp;    private PharmacySignUpView view;
+&nbsp;    private final PharmacyDAO pharmacyDAO;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacy sign up presenter.
+&nbsp;     */
+<b class="fc">&nbsp;    public PharmacySignUpPresenter() {</b>
+<b class="fc">&nbsp;        this.pharmacyDAO = new PharmacyDAOMemory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(PharmacySignUpView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Check pharmacist logged in.
+&nbsp;     */
+&nbsp;    public void checkPharmacistLoggedIn() {
+<b class="pc">&nbsp;        if (view == null) return;</b>
+&nbsp;
+<b class="pc">&nbsp;        if (MemoryStore.getPharmacist() == null) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Session Error. Please log in again as a pharmacist.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On sign up.
+&nbsp;     *
+&nbsp;     * @param name      the name
+&nbsp;     * @param afmStr    the afm str
+&nbsp;     * @param street    the street
+&nbsp;     * @param numberStr the number str
+&nbsp;     * @param region    the region
+&nbsp;     * @param postal    the postal
+&nbsp;     * @param password  the password
+&nbsp;     */
+&nbsp;    public void onSignUp(String name,
+&nbsp;                         String afmStr,
+&nbsp;                         String street,
+&nbsp;                         String numberStr,
+&nbsp;                         String region,
+&nbsp;                         String postal,
+&nbsp;                         String password) {
+&nbsp;
+<b class="pc">&nbsp;        if (view == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        Pharmacist owner = MemoryStore.getPharmacist();</b>
+<b class="fc">&nbsp;        if (owner == null) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;No connected pharmacist.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        name = safeTrim(name);</b>
+<b class="fc">&nbsp;        afmStr = safeTrim(afmStr);</b>
+<b class="fc">&nbsp;        street = safeTrim(street);</b>
+<b class="fc">&nbsp;        numberStr = safeTrim(numberStr);</b>
+<b class="fc">&nbsp;        region = safeTrim(region);</b>
+<b class="fc">&nbsp;        postal = safeTrim(postal);</b>
+<b class="fc">&nbsp;        password = safeTrim(password);</b>
+&nbsp;
+<b class="pc">&nbsp;        if (name.isEmpty() || afmStr.isEmpty() || street.isEmpty() ||</b>
+<b class="pc">&nbsp;                numberStr.isEmpty() || region.isEmpty() || postal.isEmpty() || password.isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Complete all fields.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (pharmacyDAO.contains(afmStr)) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Already a pharmacy with this AFM.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            int afm = Integer.parseInt(afmStr);</b>
+<b class="fc">&nbsp;            int number = Integer.parseInt(numberStr);</b>
+&nbsp;
+<b class="fc">&nbsp;            if (afm &lt;= 0) {</b>
+<b class="fc">&nbsp;                view.showError(&quot;AFM must be a positive number.&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+<b class="fc">&nbsp;            if (number &lt;= 0) {</b>
+<b class="fc">&nbsp;                view.showError(&quot;Street number must be a positive number&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            Address address = new Address(street, number, region, postal);</b>
+&nbsp;
+<b class="fc">&nbsp;            Pharmacy newPharmacy = new Pharmacy(name, afm, owner, address, password);</b>
+&nbsp;
+<b class="fc">&nbsp;            pharmacyDAO.save(newPharmacy);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            MemoryStore.setPharmacy(newPharmacy);</b>
+&nbsp;
+<b class="fc">&nbsp;            view.showSuccess(&quot;Successful pharmacy sign up!&quot;);</b>
+<b class="fc">&nbsp;            view.finishSignUp();</b>
+&nbsp;
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;AFM and street number must be numbers.&quot;);</b>
+&nbsp;        } catch (Exception e) {
+<b class="fc">&nbsp;            view.showError(&quot;Error during sign up: &quot; + e.getMessage());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private String safeTrim(String s) {
+<b class="fc">&nbsp;        return s == null ? &quot;&quot; : s.trim();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

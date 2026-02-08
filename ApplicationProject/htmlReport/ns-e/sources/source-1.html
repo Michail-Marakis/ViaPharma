@@ -1,0 +1,270 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyCartPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyCart</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyCartPresenter (gr.softeng.team09.view.PharmacyCart)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyCartPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (18/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (42/42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyCart;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.BackorderDAO;
+&nbsp;import gr.softeng.team09.dao.BatchDAO;
+&nbsp;import gr.softeng.team09.dao.InventoryLineDAO;
+&nbsp;import gr.softeng.team09.dao.OrderDAO;
+&nbsp;import gr.softeng.team09.dao.ReservationDAO;
+&nbsp;import gr.softeng.team09.domain.Clerk;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderLine;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;import gr.softeng.team09.memorydao.BackorderDAOMemory;
+&nbsp;import gr.softeng.team09.memorydao.BatchDAOMemory;
+&nbsp;import gr.softeng.team09.memorydao.InventoryLineDAOMemory;
+&nbsp;import gr.softeng.team09.memorydao.ReservationDAOMemory;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.memorydao.OrderDAOMemory;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy cart presenter.
+&nbsp; */
+&nbsp;public class PharmacyCartPresenter {
+&nbsp;
+&nbsp;    private PharmacyCartView view;
+&nbsp;    private Pharmacy pharmacy ;
+&nbsp;    private Order currentOrder;
+&nbsp;    private OrderDAO orderDAO ;
+&nbsp;    private Inventory inventory;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacy cart presenter.
+&nbsp;     */
+<b class="fc">&nbsp;    public PharmacyCartPresenter() {</b>
+<b class="fc">&nbsp;        this.orderDAO = new OrderDAOMemory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(PharmacyCartView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load cart.
+&nbsp;     */
+&nbsp;    public void loadCart() {
+<b class="fc">&nbsp;        this.pharmacy = MemoryStore.getPharmacy();</b>
+<b class="fc">&nbsp;        this.inventory = MemoryStore.getInventory();</b>
+&nbsp;
+<b class="fc">&nbsp;        if (pharmacy == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        this.currentOrder = MemoryStore.getActiveOrder();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (currentOrder == null || currentOrder.getLines().isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Cart is empty&quot;);</b>
+<b class="fc">&nbsp;            view.showTotal(0.0);</b>
+<b class="fc">&nbsp;            view.showOrder(null);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        view.showOrder(currentOrder);</b>
+<b class="fc">&nbsp;        view.showTotal(pharmacy.calculateOrderTotal(currentOrder));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On submit clicked.
+&nbsp;     */
+&nbsp;    public void onSubmitClicked() {
+<b class="fc">&nbsp;        currentOrder = MemoryStore.getActiveOrder();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (currentOrder == null || currentOrder.getLines().isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Cart is empty.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        view.showBudgetDialog();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Submit order.
+&nbsp;     *
+&nbsp;     * @param budget          the budget
+&nbsp;     * @param allowBackorders the allow backorders
+&nbsp;     */
+&nbsp;    public void submitOrder(int budget, boolean allowBackorders) {
+<b class="fc">&nbsp;        if (currentOrder == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        this.pharmacy = MemoryStore.getPharmacy();</b>
+<b class="fc">&nbsp;        this.inventory = MemoryStore.getInventory();</b>
+&nbsp;
+<b class="fc">&nbsp;        if (pharmacy.payment(budget, currentOrder)) {</b>
+<b class="fc">&nbsp;            pharmacy.submitOrder(currentOrder, inventory, budget, allowBackorders);</b>
+<b class="fc">&nbsp;            orderDAO.complete(currentOrder);</b>
+<b class="fc">&nbsp;            view.showSuccess(&quot;Order submitted&quot;);</b>
+<b class="fc">&nbsp;            clearActiveSession();</b>
+&nbsp;
+<b class="fc">&nbsp;            view.navigateBack();</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            view.showError(&quot;Balance not enough for the payment.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Save draft.
+&nbsp;     */
+&nbsp;    public void saveDraft() {
+<b class="fc">&nbsp;        if (currentOrder != null) {</b>
+<b class="fc">&nbsp;            orderDAO.saveDraft(currentOrder);</b>
+&nbsp;
+<b class="fc">&nbsp;            clearActiveSession();</b>
+&nbsp;
+<b class="fc">&nbsp;            view.showError(&quot;Saved to Drafts.&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        view.navigateBack();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On back pressed.
+&nbsp;     */
+&nbsp;    public void onBackPressed() {
+<b class="fc">&nbsp;        view.navigateBack();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update line quantity.
+&nbsp;     *
+&nbsp;     * @param line        the line
+&nbsp;     * @param newQuantity the new quantity
+&nbsp;     */
+&nbsp;    public void updateLineQuantity(OrderLine line, int newQuantity) {
+<b class="fc">&nbsp;        if (newQuantity &lt;= 0) {</b>
+<b class="fc">&nbsp;            currentOrder.removeLine(line);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            line.setQuantity(newQuantity);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        view.showOrder(currentOrder);</b>
+<b class="fc">&nbsp;        view.showTotal(pharmacy.calculateOrderTotal(currentOrder));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void clearActiveSession() {
+<b class="fc">&nbsp;        MemoryStore.clearActiveOrder();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (pharmacy != null &amp;&amp; pharmacy.cart != null) {</b>
+<b class="fc">&nbsp;            pharmacy.cart.clear();</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        this.currentOrder = null;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

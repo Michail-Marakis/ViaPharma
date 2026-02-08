@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkReceiveBatchPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkBatches.Receive</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkReceiveBatchPresenter (gr.softeng.team09.view.ClerkBatches.Receive)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkReceiveBatchPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    58.3%
+  </span>
+  <span class="absValue">
+    (7/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkBatches.Receive;
+&nbsp;
+&nbsp;import gr.softeng.team09.domain.ProductCategory;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk receive batch presenter.
+&nbsp; */
+<b class="fc">&nbsp;public class ClerkReceiveBatchPresenter {</b>
+&nbsp;
+&nbsp;    private ClerkReceiveBatchView view;
+<b class="fc">&nbsp;    private int EofInput = -1;</b>
+&nbsp;    private String ProductName;
+<b class="fc">&nbsp;    private int numberOfBatches = -1;</b>
+<b class="fc">&nbsp;    private double priceProduct = -1.0;</b>
+<b class="fc">&nbsp;    private ProductCategory productCategory = null;</b>
+<b class="fc">&nbsp;    private int ProductsEachBatch = -1;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(ClerkReceiveBatchView view){
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set eof input.
+&nbsp;     *
+&nbsp;     * @param eof the eof
+&nbsp;     */
+&nbsp;//calling them on all inputs
+&nbsp;    public void setEofInput(int eof){
+<b class="fc">&nbsp;        EofInput = eof;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set product name.
+&nbsp;     *
+&nbsp;     * @param name the name
+&nbsp;     */
+&nbsp;    public void setProductName(String name){
+<b class="fc">&nbsp;        ProductName = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set number of batches.
+&nbsp;     *
+&nbsp;     * @param numberOfBatchesInput the number of batches input
+&nbsp;     */
+&nbsp;    public void setNumberOfBatches(int numberOfBatchesInput){
+<b class="fc">&nbsp;        numberOfBatches = numberOfBatchesInput;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set price product.
+&nbsp;     *
+&nbsp;     * @param priceInput the price input
+&nbsp;     */
+&nbsp;    public void setPriceProduct(double priceInput){
+<b class="fc">&nbsp;        priceProduct = priceInput;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set product category.
+&nbsp;     *
+&nbsp;     * @param pr the pr
+&nbsp;     */
+&nbsp;    public void setProductCategory(ProductCategory pr){
+<b class="fc">&nbsp;        productCategory = pr;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set product each batch.
+&nbsp;     *
+&nbsp;     * @param numberOfProductsEachBatchInput the number of products each batch input
+&nbsp;     */
+&nbsp;    public void setProductEachBatch(int numberOfProductsEachBatchInput){
+<b class="fc">&nbsp;        ProductsEachBatch = numberOfProductsEachBatchInput;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Ready to receive.
+&nbsp;     */
+&nbsp;    public void ReadyToReceive(){
+<b class="pc">&nbsp;        if(EofInput == -1 || ProductName == null || numberOfBatches == -1 || priceProduct == -1.0 || productCategory == null || ProductsEachBatch == -1){</b>
+<b class="fc">&nbsp;            view.showError(&quot;Fill all fields!&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        view.receiveBatchCall(EofInput, ProductName ,ProductsEachBatch, numberOfBatches, priceProduct,productCategory);</b>
+<b class="fc">&nbsp;        ResetValues();</b>
+<b class="fc">&nbsp;        view.showSuccess(&quot;Stock updated successfully!&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void ResetValues(){
+<b class="fc">&nbsp;        this.EofInput = -1;</b>
+<b class="fc">&nbsp;        this.ProductName = null;</b>
+<b class="fc">&nbsp;        this.numberOfBatches = -1;</b>
+<b class="fc">&nbsp;        this.priceProduct = -1.0;</b>
+<b class="fc">&nbsp;        this.productCategory = null;</b>
+<b class="fc">&nbsp;        this.ProductsEachBatch = -1;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

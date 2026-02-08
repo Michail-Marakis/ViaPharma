@@ -1,0 +1,237 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkBackOrdersPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkBackOrdersPresenter (gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkBackOrdersPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (31/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.domain.Backorder;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk back orders presenter.
+&nbsp; */
+<b class="fc">&nbsp;public class ClerkBackOrdersPresenter {</b>
+&nbsp;
+&nbsp;    private ClerkBackOrdersView view;
+<b class="fc">&nbsp;    private String pharmAFM = null;</b>
+&nbsp;
+<b class="fc">&nbsp;    private final Inventory inventory = MemoryStore.getInventory();</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    private final List&lt;Backorder&gt; lastShownBackorders = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(ClerkBackOrdersView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets pharm afm.
+&nbsp;     *
+&nbsp;     * @param afm the afm
+&nbsp;     */
+&nbsp;    public void setPharmAFM(String afm) {
+<b class="fc">&nbsp;        pharmAFM = afm;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private List&lt;Backorder&gt; freshBackorders() {
+<b class="fc">&nbsp;        return new ArrayList&lt;&gt;(inventory.getBackorders());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets backorder at.
+&nbsp;     *
+&nbsp;     * @param position the position
+&nbsp;     * @return the backorder at
+&nbsp;     */
+&nbsp;    public Backorder getBackorderAt(int position) {
+<b class="fc">&nbsp;        if (position &lt; 0 || position &gt;= lastShownBackorders.size()) return null;</b>
+<b class="fc">&nbsp;        return lastShownBackorders.get(position);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets last shown backorders.
+&nbsp;     *
+&nbsp;     * @return the last shown backorders
+&nbsp;     */
+&nbsp;    public List&lt;Backorder&gt; getLastShownBackorders() {
+<b class="fc">&nbsp;        return new ArrayList&lt;&gt;(lastShownBackorders);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load active backorders.
+&nbsp;     */
+&nbsp;// ---------------- ACTIVE (state BACKORDER) ----------------
+&nbsp;    public void loadActiveBackorders() {
+<b class="fc">&nbsp;        List&lt;Backorder&gt; result = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Backorder b : freshBackorders()) {</b>
+<b class="fc">&nbsp;            if (b.getState() == OrderState.BACKORDER) {</b>
+<b class="fc">&nbsp;                result.add(b);</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        lastShownBackorders.clear();</b>
+<b class="fc">&nbsp;        lastShownBackorders.addAll(result);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load all backorders.
+&nbsp;     */
+&nbsp;// ---------------- ALL ----------------
+&nbsp;    public void loadAllBackorders() {
+<b class="fc">&nbsp;        List&lt;Backorder&gt; result = freshBackorders();</b>
+<b class="fc">&nbsp;        lastShownBackorders.clear();</b>
+<b class="fc">&nbsp;        lastShownBackorders.addAll(result);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find all back orders from pharm.
+&nbsp;     */
+&nbsp;// ---------------- BY PHARMACY AFM ----------------
+&nbsp;    public void findAllBackOrdersFromPharm() {
+<b class="fc">&nbsp;        int afm = parseAfm(pharmAFM);</b>
+<b class="fc">&nbsp;        if (afm == -1) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        List&lt;Backorder&gt; result = inventory.getBackFromOnePharm(afm);</b>
+<b class="fc">&nbsp;        lastShownBackorders.clear();</b>
+<b class="fc">&nbsp;        lastShownBackorders.addAll(result);</b>
+&nbsp;
+<b class="fc">&nbsp;        pharmAFM = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private int parseAfm(String idText) {
+<b class="pc">&nbsp;        if (idText == null || idText.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;AFM required&quot;);</b>
+<b class="fc">&nbsp;            return -1;</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="fc">&nbsp;            return Integer.parseInt(idText.trim());</b>
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;Invalid AFM&quot;);</b>
+<b class="fc">&nbsp;            return -1;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

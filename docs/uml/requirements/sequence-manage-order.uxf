@@ -1,0 +1,49 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLActor</id><coordinates><x>87</x><y>32</y><w>100</w><h>110</h></coordinates><panel_attributes>Φαρμακοποιός</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>317</x><y>42</y><w>180</w><h>60</h></coordinates><panel_attributes>Εφαρμογή</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>127</x><y>132</y><w>30</w><h>550</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;530;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>387</x><y>92</y><w>30</w><h>600</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;580;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>607</x><y>42</y><w>190</w><h>60</h></coordinates><panel_attributes>Database model</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>127</x><y>192</y><w>20</w><h>220</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>387</x><y>192</y><w>20</w><h>450</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>687</x><y>272</y><w>20</w><h>90</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>687</x><y>92</y><w>30</w><h>590</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;570;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>137</x><y>172</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή "Δημιουργία παραγγελίας"
+createDraftOrder()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>397</x><y>252</y><w>320</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ανάκτηση προϊόντων
+searchProductsByEOFCode()</panel_attributes><additional_attributes>300;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>397</x><y>342</y><w>310</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση προϊόντων
+searchProductsByEOFCode()
+</panel_attributes><additional_attributes>10;20;290;20</additional_attributes></element><element><id>Relation</id><coordinates><x>137</x><y>392</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή προϊόντων και ποσότητας
+addProductToOrder()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>67</x><y>442</y><w>660</w><h>200</h></coordinates><panel_attributes>if
+--
+Αν θέλει ο φαρμακοποιός
+-.
+
+
+
+
+else
+-.
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>127</x><y>492</y><w>20</w><h>60</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>137</x><y>502</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+επιλογή "Προσωρινή αποθήκευση"
+saveCurrentStateDraftOrder()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>137</x><y>592</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+επιλογή "υποβολή παραγγελίας"
+submitOrder()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>127</x><y>582</y><w>20</w><h>50</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>397</x><y>592</y><w>320</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+καταχώριση παραγγελίας</panel_attributes><additional_attributes>300;20;10;20</additional_attributes></element><element><id>Text</id><coordinates><x>47</x><y>32</y><w>80</w><h>80</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>237</x><y>22</y><w>80</w><h>80</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>527</x><y>32</y><w>80</w><h>80</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element></diagram>

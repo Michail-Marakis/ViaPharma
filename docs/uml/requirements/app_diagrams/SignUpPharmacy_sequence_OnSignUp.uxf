@@ -1,0 +1,64 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notespharmacy	</help_text><element><id>UMLClass</id><coordinates><x>96</x><y>184</y><w>104</w><h>32</h></coordinates><panel_attributes>signUpPresenter</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>248</x><y>184</y><w>104</w><h>32</h></coordinates><panel_attributes>MemoryStore</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>208</y><w>24</w><h>736</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;900</additional_attributes></element><element><id>Relation</id><coordinates><x>296</x><y>208</y><w>24</w><h>824</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;1010</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1032</x><y>184</y><w>104</w><h>32</h></coordinates><panel_attributes>this.view : View</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>144</x><y>240</y><w>16</w><h>560</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>296</x><y>272</y><w>16</w><h>136</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>224</y><w>160</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+onSignUp()</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>256</y><w>160</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+getPharmacist()</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>280</y><w>160</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+pharmacist</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>584</x><y>184</y><w>128</w><h>32</h></coordinates><panel_attributes>pharmacy : Pharmacy</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>864</x><y>184</y><w>152</w><h>32</h></coordinates><panel_attributes>pharmacyDAO : PharmacyDAO</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>208</y><w>24</w><h>616</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;750</additional_attributes></element><element><id>Relation</id><coordinates><x>936</x><y>208</y><w>24</w><h>736</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;900</additional_attributes></element><element><id>Relation</id><coordinates><x>1072</x><y>208</y><w>24</w><h>736</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;900</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>112</x><y>280</y><w>432</w><h>136</h></coordinates><panel_attributes>alt
+--
+[owner != null]
+
+
+
+
+
+--
+ [owner == null]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>392</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+                          showError()</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>112</x><y>480</y><w>1064</w><h>72</h></coordinates><panel_attributes>alt
+--
+[pharmacyDAO.contains(afmStr) == true]
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>512</y><w>944</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+view.showError("Already
+ a pharmacy with this AFM.")</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>112</x><y>424</y><w>1064</w><h>56</h></coordinates><panel_attributes>alt
+--
+[data.isEmpty()]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>456</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+view.showError</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>736</x><y>184</y><w>104</w><h>32</h></coordinates><panel_attributes>address : Address</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>0</y><w>24</w><h>56</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>784</x><y>208</y><w>24</w><h>616</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;750</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>648</y><w>648</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+new Address(...)</panel_attributes><additional_attributes>790;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>664</y><w>504</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+new Pharmacy(...)</panel_attributes><additional_attributes>610;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>80</x><y>256</y><w>1112</w><h>672</h></coordinates><panel_attributes>alt
+--
+[view != null]
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>696</y><w>312</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+save(newPharmacy)</panel_attributes><additional_attributes>370;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>304</x><y>720</y><w>352</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+MemoryStore.setPharmacy()</panel_attributes><additional_attributes>10;20;420;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>752</y><w>944</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+view.showSuccess()
+view.finishSignUp()</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>112</x><y>648</y><w>1080</w><h>368</h></coordinates><panel_attributes>alt 
+--
+
+
+
+
+
+
+
+
+
+
+
+--
+
+else:  catch (NumberFormatException e)
+
+
+
+--
+else:  catch (Exception e)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>776</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+view.showError()</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>144</x><y>888</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+view.showError()</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>304</y><w>160</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+safeTrim(data)</panel_attributes><additional_attributes>10;60;100;60;100;10;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>640</x><y>680</y><w>16</w><h>32</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>776</x><y>648</y><w>16</w><h>24</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLFrame</id><coordinates><x>104</x><y>552</y><w>1088</w><h>56</h></coordinates><panel_attributes>alt
+--
+[afm &lt;=0]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>584</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+showError("AFM must be a positive number.")</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>616</y><w>944</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+showError("Street numbermust be a positive number.")</panel_attributes><additional_attributes>1160;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>112</x><y>616</y><w>1088</w><h>24</h></coordinates><panel_attributes>alt [number&lt;=0]
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

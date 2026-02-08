@@ -1,0 +1,212 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkShowStockPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkShowStock</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkShowStockPresenter (gr.softeng.team09.view.ClerkShowStock)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkShowStockPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkShowStock;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.InventoryLine;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk show stock presenter.
+&nbsp; */
+<b class="fc">&nbsp;public class ClerkShowStockPresenter {</b>
+&nbsp;
+&nbsp;    private ClerkShowStockView view;
+&nbsp;    /**
+&nbsp;     * The Inventory.
+&nbsp;     */
+<b class="fc">&nbsp;    Inventory inventory = MemoryStore.getInventory();</b>
+<b class="fc">&nbsp;    private int eofToSearch = -1;</b>
+&nbsp;    /**
+&nbsp;     * The Stock.
+&nbsp;     */
+<b class="fc">&nbsp;    List&lt;InventoryLine&gt; stock = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get stock list.
+&nbsp;     *
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    public List&lt;InventoryLine&gt; getStock(){
+<b class="fc">&nbsp;        return stock;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(ClerkShowStockView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set eof to search.
+&nbsp;     *
+&nbsp;     * @param eof the eof
+&nbsp;     */
+&nbsp;    public void setEofToSearch(String eof){
+&nbsp;
+<b class="fc">&nbsp;        this.eofToSearch = parseId(eof);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load full stock.
+&nbsp;     */
+&nbsp;//-----------------helpers--------
+&nbsp;    public void loadFullStock() {
+<b class="fc">&nbsp;        stock.clear();</b>
+<b class="fc">&nbsp;        stock = inventory.getAvailableItems();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load eof stock.
+&nbsp;     */
+&nbsp;    public void loadEofStock(){
+<b class="fc">&nbsp;        List&lt;String&gt; specifiqueStock = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for(InventoryLine line : inventory.getAvailableItems()){</b>
+<b class="pc">&nbsp;            if(line.getProduct() !=null &amp;&amp; line.getProduct().getEofyCode() == eofToSearch){</b>
+<b class="fc">&nbsp;                String info =</b>
+<b class="fc">&nbsp;                        &quot;Name: &quot; + line.getProduct().getName() +</b>
+<b class="fc">&nbsp;                                &quot;\n EOF code: &quot; + line.getProduct().getEofyCode() +</b>
+<b class="fc">&nbsp;                                &quot;\nQuantity: &quot; + line.getQuantity() +</b>
+<b class="fc">&nbsp;                                &quot;\nPrice without VAT: &quot; + line.getProduct().getPrice() + &quot; €&quot;;</b>
+<b class="fc">&nbsp;                specifiqueStock.add(info);</b>
+&nbsp;                break;
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        view.showOrders(specifiqueStock);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private Integer parseId(String eofText) {
+<b class="fc">&nbsp;        if (eofText == null || eofText.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;EOF code required&quot;);</b>
+<b class="fc">&nbsp;            return -1;</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="fc">&nbsp;            return Integer.parseInt(eofText.trim());</b>
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;Invalid EOF code&quot;);</b>
+<b class="fc">&nbsp;            return -1;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

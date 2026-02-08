@@ -1,0 +1,300 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkShowStockScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkShowStock</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkShowStockScreen (gr.softeng.team09.view.ClerkShowStock)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkShowStockScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkShowStock;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;import android.widget.TextView;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.InventoryLine;
+&nbsp;import gr.softeng.team09.view.ClerkBatches.ClerkBatchesGeneralScreen;
+&nbsp;import gr.softeng.team09.view.ClerkMain.ClerkMainScreen;
+&nbsp;import gr.softeng.team09.view.ClerkOrdersGeneral.ClerkOrdersGeneral;
+&nbsp;import gr.softeng.team09.view.ClerkShowStats.ClerkShowStatsScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk show stock screen.
+&nbsp; */
+<b class="nc">&nbsp;public class ClerkShowStockScreen extends AppCompatActivity implements ClerkShowStockView {</b>
+&nbsp;
+&nbsp;    private EditText editEofSearch;
+&nbsp;    private TextView textViewInformationProduct;
+&nbsp;    private ListView listViewStock;
+&nbsp;
+&nbsp;    private ArrayAdapter&lt;String&gt; adapter;
+<b class="nc">&nbsp;    private final List&lt;String&gt; stockList = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    private ClerkShowStockViewModel viewModel;
+&nbsp;    private ClerkShowStockPresenter presenter;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_clerk_show_stock_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //---- ViewModel / Presenter --------
+<b class="nc">&nbsp;        viewModel = new ViewModelProvider(this).get(ClerkShowStockViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;        //----- Views --------
+<b class="nc">&nbsp;        Button stockToHome = findViewById(R.id.button9homepage);</b>
+<b class="nc">&nbsp;        Button searchSpecifique = findViewById(R.id.button2SearchProducts);</b>
+<b class="nc">&nbsp;        Button showFullStock = findViewById(R.id.button2FullStock);</b>
+&nbsp;
+<b class="nc">&nbsp;        listViewStock = findViewById(R.id.StockList);</b>
+<b class="nc">&nbsp;        editEofSearch = findViewById(R.id.SearchProductEOFforStock);</b>
+<b class="nc">&nbsp;        textViewInformationProduct = findViewById(R.id.textViewSpecifueProductInf);</b>
+&nbsp;
+&nbsp;        //----- List adapter --------
+<b class="nc">&nbsp;        adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, stockList);</b>
+<b class="nc">&nbsp;        listViewStock.setAdapter(adapter);</b>
+&nbsp;        //adapter.notifyDataSetChanged();
+&nbsp;
+&nbsp;
+&nbsp;        //----- Load full stock --------
+<b class="nc">&nbsp;        presenter.loadFullStock();</b>
+<b class="nc">&nbsp;        loadInformationToList();</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;        //buttons-------------------------------------------------------------------------
+&nbsp;
+&nbsp;        //navigation----------------------------------
+<b class="nc">&nbsp;        stockToHome.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(ClerkShowStockScreen.this, ClerkMainScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //button full stock----------------------------------
+<b class="nc">&nbsp;        showFullStock.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.loadFullStock();</b>
+<b class="nc">&nbsp;            loadInformationToList();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        searchSpecifique.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            String searched = editEofSearch.getText().toString().trim();</b>
+<b class="nc">&nbsp;            if(!searched.isEmpty()){</b>
+<b class="nc">&nbsp;                presenter.setEofToSearch(searched);</b>
+<b class="nc">&nbsp;                presenter.loadEofStock();</b>
+<b class="nc">&nbsp;                adapter.notifyDataSetChanged();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+&nbsp;
+&nbsp;        //Buttons little down there---------------------------------------------
+<b class="nc">&nbsp;        ImageView btnToStock = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToStock.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStockScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToBatches = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToBatches.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkOrdersGeneral.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView btnToStats = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToStats.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStatsScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToOrders = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToOrders.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkBatchesGeneralScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    //================== ClerkShowStockView methods ==================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void loadInformationToList() {
+<b class="nc">&nbsp;        stockList.clear();</b>
+&nbsp;
+<b class="nc">&nbsp;        List&lt;InventoryLine&gt; inv = presenter.getStock();</b>
+<b class="nc">&nbsp;        for (InventoryLine in : inv) {</b>
+<b class="nc">&nbsp;            stockList.add(buildRow(in));</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String buildRow(InventoryLine i) {
+<b class="nc">&nbsp;        String name = i.getProduct().getName();</b>
+<b class="nc">&nbsp;        int quantity = i.getQuantity();</b>
+<b class="nc">&nbsp;        int eof = i.getProduct().getEofyCode();</b>
+<b class="nc">&nbsp;        double price = i.getProduct().getPrice();</b>
+<b class="nc">&nbsp;        return &quot;Product name: &quot; + name + &quot;\nEOF code: &quot; + eof +&quot;\nQuantity: &quot; + quantity +</b>
+&nbsp;                &quot;\nPrice without VAT: &quot; + price+ &quot; €&quot;;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        editEofSearch.setError(msg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clearOrders(){
+<b class="nc">&nbsp;        stockList.clear();</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showOrders(List&lt;String&gt; display){
+<b class="nc">&nbsp;        stockList.clear();</b>
+<b class="nc">&nbsp;        stockList.addAll(display);</b>
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+<b class="nc">&nbsp;        listViewStock.setVisibility(android.view.View.VISIBLE);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

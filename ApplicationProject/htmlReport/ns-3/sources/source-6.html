@@ -1,0 +1,365 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MemoryStore</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.memorydao</a>
+</div>
+
+<h1>Coverage Summary for Class: MemoryStore (gr.softeng.team09.memorydao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MemoryStore</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.2%
+  </span>
+  <span class="absValue">
+    (20/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.3%
+  </span>
+  <span class="absValue">
+    (36/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.memorydao;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.BackorderDAO;
+&nbsp;import gr.softeng.team09.dao.BatchDAO;
+&nbsp;import gr.softeng.team09.dao.InventoryLineDAO;
+&nbsp;import gr.softeng.team09.dao.ReservationDAO;
+&nbsp;import gr.softeng.team09.domain.Clerk;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.Pharmacist;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Memory store.
+&nbsp; */
+<b class="nc">&nbsp;public class MemoryStore {</b>
+&nbsp;
+&nbsp;    private static Pharmacy activePharmacy;
+&nbsp;    private static Pharmacist loggedInPharmacist;
+&nbsp;
+&nbsp;    private static Clerk loggedInClerk;
+&nbsp;
+&nbsp;    private static Inventory inventory;
+&nbsp;    private static Order activeOrder;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The constant Allpharmacist.
+&nbsp;     */
+<b class="fc">&nbsp;    public static List&lt;Pharmacist&gt; Allpharmacist = new ArrayList&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * The constant Allpharmacy.
+&nbsp;     */
+<b class="fc">&nbsp;    public static List&lt;Pharmacy&gt; Allpharmacy = new ArrayList&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * The constant AllClerk.
+&nbsp;     */
+<b class="fc">&nbsp;    public static List&lt;Clerk&gt; AllClerk = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets pharmacy.
+&nbsp;     *
+&nbsp;     * @param pharmacy the pharmacy
+&nbsp;     */
+&nbsp;// ---------------- Pharmacist / Pharmacy ----------------
+&nbsp;    public static void setPharmacy(Pharmacy pharmacy) {
+<b class="fc">&nbsp;        activePharmacy = pharmacy;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets pharmacy.
+&nbsp;     *
+&nbsp;     * @return the pharmacy
+&nbsp;     */
+&nbsp;    public static Pharmacy getPharmacy() {
+<b class="fc">&nbsp;        return activePharmacy;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add pharmacy.
+&nbsp;     *
+&nbsp;     * @param p the p
+&nbsp;     */
+&nbsp;    public static void addPharmacy(Pharmacy p){
+<b class="fc">&nbsp;        Allpharmacy.add(p);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets pharmacist.
+&nbsp;     *
+&nbsp;     * @param pharmacist the pharmacist
+&nbsp;     */
+&nbsp;    public static void setPharmacist(Pharmacist pharmacist) {
+<b class="fc">&nbsp;        loggedInPharmacist = pharmacist;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets pharmacist.
+&nbsp;     *
+&nbsp;     * @return the pharmacist
+&nbsp;     */
+&nbsp;    public static Pharmacist getPharmacist() {
+<b class="fc">&nbsp;        return loggedInPharmacist;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add pharmacist.
+&nbsp;     *
+&nbsp;     * @param p the p
+&nbsp;     */
+&nbsp;    public static void addPharmacist(Pharmacist p){
+<b class="fc">&nbsp;        Allpharmacist.add(p);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get by email pharmacist.
+&nbsp;     *
+&nbsp;     * @param email the email
+&nbsp;     * @return the pharmacist
+&nbsp;     */
+&nbsp;    public static Pharmacist getByEmail(String email){
+<b class="fc">&nbsp;        for(Pharmacist p: Allpharmacist){</b>
+<b class="fc">&nbsp;            if(p.getEmail().equals(email)){</b>
+<b class="fc">&nbsp;                return p;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get by afm pharmacy.
+&nbsp;     *
+&nbsp;     * @param AFM the afm
+&nbsp;     * @return the pharmacy
+&nbsp;     */
+&nbsp;    public static Pharmacy getByAFM(int AFM){
+<b class="fc">&nbsp;        for(Pharmacy p: Allpharmacy){</b>
+<b class="fc">&nbsp;            if(p.getAfm() == AFM){</b>
+<b class="fc">&nbsp;                return p;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets clerk.
+&nbsp;     *
+&nbsp;     * @param clerk the clerk
+&nbsp;     */
+&nbsp;// ---------------- Clerk ----------------
+&nbsp;    public static void setClerk(Clerk clerk) {
+<b class="fc">&nbsp;        loggedInClerk = clerk;</b>
+&nbsp;
+<b class="pc">&nbsp;        if (inventory != null) {</b>
+<b class="fc">&nbsp;            inventory.setOwner(clerk);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets clerk.
+&nbsp;     *
+&nbsp;     * @return the clerk
+&nbsp;     */
+&nbsp;    public static Clerk getClerk() {
+<b class="fc">&nbsp;        return loggedInClerk;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get by email clerk clerk.
+&nbsp;     *
+&nbsp;     * @param email the email
+&nbsp;     * @return the clerk
+&nbsp;     */
+&nbsp;    public static Clerk getByEmailClerk(String email){
+<b class="fc">&nbsp;        for(Clerk c: AllClerk){</b>
+<b class="fc">&nbsp;            if(c.getEmail().equals(email)){</b>
+<b class="fc">&nbsp;                return c;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add clerk.
+&nbsp;     *
+&nbsp;     * @param c the c
+&nbsp;     */
+&nbsp;    public static void addClerk(Clerk c){
+<b class="fc">&nbsp;        AllClerk.add(c);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Init inventory if needed.
+&nbsp;     *
+&nbsp;     * @param owner            the owner
+&nbsp;     * @param batchDAO         the batch dao
+&nbsp;     * @param inventoryLineDAO the inventory line dao
+&nbsp;     * @param backorderDAO     the backorder dao
+&nbsp;     * @param reservationDAO   the reservation dao
+&nbsp;     */
+&nbsp;// ---------------- Inventory ----------------
+&nbsp;    public static void initInventoryIfNeeded(Clerk owner,
+&nbsp;                                             BatchDAO batchDAO,
+&nbsp;                                             InventoryLineDAO inventoryLineDAO,
+&nbsp;                                             BackorderDAO backorderDAO,
+&nbsp;                                             ReservationDAO reservationDAO) {
+&nbsp;
+<b class="fc">&nbsp;        if (inventory == null) {</b>
+<b class="fc">&nbsp;            inventory = new Inventory(owner, batchDAO, inventoryLineDAO, backorderDAO, reservationDAO);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            inventory.setOwner(owner);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets inventory.
+&nbsp;     *
+&nbsp;     * @return the inventory
+&nbsp;     */
+&nbsp;    public static Inventory getInventory() {
+<b class="fc">&nbsp;        return inventory;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets active order.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     */
+&nbsp;// ----------------order--------------------------------
+&nbsp;    public static void setActiveOrder(Order order) {
+<b class="fc">&nbsp;        activeOrder = order;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets active order.
+&nbsp;     *
+&nbsp;     * @return the active order
+&nbsp;     */
+&nbsp;    public static Order getActiveOrder() {
+<b class="fc">&nbsp;        return activeOrder;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clear active order.
+&nbsp;     */
+&nbsp;    public static void clearActiveOrder() {
+<b class="fc">&nbsp;        activeOrder = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clear session pharma.
+&nbsp;     */
+&nbsp;// ---------------- Logout / clear ----------------
+&nbsp;    public static void clearSessionPharma(){
+<b class="fc">&nbsp;        activePharmacy = null;</b>
+<b class="fc">&nbsp;        loggedInPharmacist = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clear session clerk.
+&nbsp;     */
+&nbsp;    public static void clearSessionClerk(){
+<b class="fc">&nbsp;        loggedInClerk = null;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+package gr.softeng.team09.view.SignUpPharmacist.SignUpPharmacy;
+
+/**
+ * The interface Pharmacy sign up view.
+ */
+public interface PharmacySignUpView {
+    /**
+     * Show success.
+     *
+     * @param message the message
+     */
+    void showSuccess(String message);
+
+    /**
+     * Show error.
+     *
+     * @param message the message
+     */
+    void showError(String message);
+
+    /**
+     * Finish sign up.
+     */
+    void finishSignUp();
+}

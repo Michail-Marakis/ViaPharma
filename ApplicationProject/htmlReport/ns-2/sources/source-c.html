@@ -1,0 +1,431 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Pharmacy</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Pharmacy (gr.softeng.team09.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Pharmacy</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    77.8%
+  </span>
+  <span class="absValue">
+    (14/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44.2%
+  </span>
+  <span class="absValue">
+    (23/52)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    65.9%
+  </span>
+  <span class="absValue">
+    (58/88)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.domain;
+&nbsp;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy.
+&nbsp; */
+&nbsp;public class Pharmacy {
+&nbsp;
+&nbsp;    private String name;
+&nbsp;    private final int afm;
+&nbsp;    private Address address;
+&nbsp;    private String password;
+&nbsp;    private StatisticsService s;
+<b class="fc">&nbsp;    private List&lt;Order&gt; draftOrders = new ArrayList&lt;&gt;();</b>
+&nbsp;    /**
+&nbsp;     * The Personal pending orders.
+&nbsp;     */
+<b class="fc">&nbsp;    public List&lt;Order&gt; personalPendingOrders = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Cart.
+&nbsp;     */
+<b class="fc">&nbsp;    public List&lt;OrderLine&gt; cart = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    // pharmacy has 1 pharmacist
+&nbsp;    private Pharmacist owner;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacy.
+&nbsp;     *
+&nbsp;     * @param name     the name
+&nbsp;     * @param afm      the afm
+&nbsp;     * @param owner    the owner
+&nbsp;     * @param address  the address
+&nbsp;     * @param password the password
+&nbsp;     */
+<b class="fc">&nbsp;    public Pharmacy(String name, int afm, Pharmacist owner, Address address, String password) {</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.afm = afm;</b>
+<b class="fc">&nbsp;        this.setOwner(owner);</b>
+<b class="fc">&nbsp;        this.address = address;</b>
+<b class="fc">&nbsp;        this.password = password;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets name.
+&nbsp;     *
+&nbsp;     * @return the name
+&nbsp;     */
+<b class="fc">&nbsp;    public String getName() { return name; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets address.
+&nbsp;     *
+&nbsp;     * @return the address
+&nbsp;     */
+<b class="nc">&nbsp;    public Address getAddress() { return address; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get password string.
+&nbsp;     *
+&nbsp;     * @return the string
+&nbsp;     */
+&nbsp;    public String getPassword(){
+<b class="fc">&nbsp;        return password;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set password.
+&nbsp;     *
+&nbsp;     * @param pass the pass
+&nbsp;     */
+&nbsp;    public void setPassword(String pass){
+<b class="fc">&nbsp;        this.password = pass;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets owner.
+&nbsp;     *
+&nbsp;     * @return the owner
+&nbsp;     */
+<b class="nc">&nbsp;    public Pharmacist getOwner() { return owner; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets afm.
+&nbsp;     *
+&nbsp;     * @return the afm
+&nbsp;     */
+&nbsp;    public int getAfm() {
+<b class="fc">&nbsp;        return afm;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets owner.
+&nbsp;     *
+&nbsp;     * @param owner the owner
+&nbsp;     */
+&nbsp;    public void setOwner(Pharmacist owner) {
+<b class="fc">&nbsp;        this.owner = owner;</b>
+<b class="fc">&nbsp;        if (owner != null &amp;&amp; !owner.getPharmacies().contains(this)) {</b>
+<b class="fc">&nbsp;            owner.addPharmacy(this);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add to cart.
+&nbsp;     *
+&nbsp;     * @param order     the order
+&nbsp;     * @param orderLine the order line
+&nbsp;     */
+&nbsp;    public void addToCart(Order order, OrderLine orderLine) {
+<b class="fc">&nbsp;        boolean found = false;</b>
+&nbsp;
+<b class="pc">&nbsp;        for (OrderLine ol : order.getLines()) {</b>
+<b class="nc">&nbsp;            if (ol.getProduct().equals(orderLine.getProduct())) {</b>
+<b class="nc">&nbsp;                ol.setQuantity(ol.getQuantity() + orderLine.getQuantity());</b>
+<b class="nc">&nbsp;                found = true;</b>
+&nbsp;                break;
+&nbsp;            }
+&nbsp;        }
+<b class="pc">&nbsp;        if (!found) {</b>
+<b class="fc">&nbsp;            order.addLine(orderLine);</b>
+<b class="fc">&nbsp;            cart.add(orderLine);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get cart list.
+&nbsp;     *
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    public List&lt;OrderLine&gt; getCart(){
+<b class="nc">&nbsp;        return cart;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calculate order total double.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     * @return the double
+&nbsp;     */
+&nbsp;// υπολογισμός συνολικού ποσού παραγγελίας (με βάση priceWithVAT)
+&nbsp;    public double calculateOrderTotal(Order order) {
+<b class="fc">&nbsp;        Objects.requireNonNull(order);</b>
+<b class="fc">&nbsp;        double total = 0.0;</b>
+<b class="fc">&nbsp;        for (OrderLine l : order.getLines()) {</b>
+<b class="fc">&nbsp;            total += l.getQuantity() * l.getProduct().getPriceWithVAT();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return total;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Payment boolean.
+&nbsp;     *
+&nbsp;     * @param budjet the budjet
+&nbsp;     * @param order  the order
+&nbsp;     * @return the boolean
+&nbsp;     */
+&nbsp;    public boolean payment(int budjet, Order order){
+<b class="fc">&nbsp;        return budjet &gt;= calculateOrderTotal(order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Check availability for order map.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     * @param inv   the inv
+&nbsp;     * @return the map
+&nbsp;     */
+&nbsp;    public Map&lt;Product, Integer&gt; checkAvailabilityForOrder(Order order, Inventory inv) {
+&nbsp;
+<b class="fc">&nbsp;        Map&lt;Product, Integer&gt; result = new HashMap&lt;Product, Integer&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        List&lt;OrderLine&gt; lines = order.getLines();</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; lines.size(); i++) {</b>
+<b class="fc">&nbsp;            OrderLine line = lines.get(i);</b>
+&nbsp;
+<b class="fc">&nbsp;            Product product = line.getProduct();</b>
+<b class="fc">&nbsp;            int requested = line.getQuantity();</b>
+&nbsp;
+<b class="fc">&nbsp;            InventoryLine invLine = inv.findLine(product);</b>
+&nbsp;            int available;
+<b class="pc">&nbsp;            if (invLine != null) {</b>
+<b class="fc">&nbsp;                available = invLine.getQuantity();</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                available = 0;</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            int canServe;
+<b class="pc">&nbsp;            if (requested &lt; available) {</b>
+<b class="fc">&nbsp;                canServe = requested;</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                canServe = available;</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            result.put(product, canServe);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return result;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update order with availability.
+&nbsp;     *
+&nbsp;     * @param order        the order
+&nbsp;     * @param availability the availability
+&nbsp;     */
+&nbsp;    public void updateOrderWithAvailability(Order order, Map&lt;Product, Integer&gt; availability) {
+<b class="nc">&nbsp;        List&lt;OrderLine&gt; lines = order.getLines();</b>
+<b class="nc">&nbsp;        List&lt;OrderLine&gt; toRemove = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int i = 0; i &lt; lines.size(); i++) {</b>
+<b class="nc">&nbsp;            OrderLine line = lines.get(i);</b>
+<b class="nc">&nbsp;            Product product = line.getProduct();</b>
+&nbsp;
+<b class="nc">&nbsp;            Integer canServeObj = availability.get(product);</b>
+&nbsp;            int canServe;
+<b class="nc">&nbsp;            if (canServeObj == null) {</b>
+<b class="nc">&nbsp;                canServe = 0;</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                canServe = canServeObj;</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (canServe &lt;= 0) {</b>
+&nbsp;                //δεν μπορώ να εξυπηρετήσω καθόλου αυτό το προϊόν → το βγάζω από την παραγγελία
+<b class="nc">&nbsp;                toRemove.add(line);</b>
+<b class="nc">&nbsp;            } else if (canServe &lt; line.getQuantity()) {</b>
+&nbsp;                //μπορώ λιγότερα από όσα ζήτησε → ενημερωνω την ποσότητα μέσα στο OrderLine
+<b class="nc">&nbsp;                line.setQuantity(canServe);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        //αφαιρώ τις γραμμές που δεν εξυπηρετούνται
+<b class="nc">&nbsp;        for (int i = 0; i &lt; toRemove.size(); i++) {</b>
+<b class="nc">&nbsp;            OrderLine removeLine = toRemove.get(i);</b>
+<b class="nc">&nbsp;            lines.remove(removeLine);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Submit order.
+&nbsp;     *
+&nbsp;     * @param order           the order
+&nbsp;     * @param inv             the inv
+&nbsp;     * @param budget          the budget
+&nbsp;     * @param allowBackorders the allow backorders
+&nbsp;     */
+&nbsp;    public void submitOrder(Order order, Inventory inv, int budget, boolean allowBackorders) {
+<b class="fc">&nbsp;        Objects.requireNonNull(order);</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(inv);</b>
+&nbsp;
+<b class="pc">&nbsp;        if(!allowBackorders) { //αν δεν θελει backorder, αλλαζει η παραγγελια για να πληρωσει λιγότερα</b>
+<b class="nc">&nbsp;            updateOrderWithAvailability(order, checkAvailabilityForOrder(order, inv)); //διαθέσιμα προιόντα για την παραγγελία, ενημερωση</b>
+&nbsp;        }else{
+<b class="fc">&nbsp;            System.out.println(checkAvailabilityForOrder(order, inv)); //ενημερωση για το ποια προιοντα υπάρχουν διαθεσιμα</b>
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (!payment(budget, order)) {</b>
+<b class="nc">&nbsp;            boolean exists = false;</b>
+<b class="nc">&nbsp;            for(Order or : draftOrders){</b>
+<b class="nc">&nbsp;                if(or.getId() == order.getId()){</b>
+<b class="nc">&nbsp;                    exists = true;</b>
+&nbsp;                    break;
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            if(!exists) draftOrders.add(order);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        draftOrders.remove(order);</b>
+<b class="fc">&nbsp;        personalPendingOrders.add(order);</b>
+<b class="fc">&nbsp;        order.setState(OrderState.PENDING);</b>
+<b class="fc">&nbsp;        inv.addToAll(order);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete submitted orders.
+&nbsp;     *
+&nbsp;     * @param orderToCancel the order to cancel
+&nbsp;     * @param inv           the inv
+&nbsp;     */
+&nbsp;    public void deleteSubmittedOrders(Order orderToCancel, Inventory inv){
+<b class="pc">&nbsp;            for(Order or: personalPendingOrders) {</b>
+<b class="pc">&nbsp;                if (or.getId() == orderToCancel.getId()) {</b>
+<b class="fc">&nbsp;                    personalPendingOrders.remove(or);</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;It was succesfully removed&quot;);</b>
+&nbsp;                    break;
+&nbsp;                }
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="fc">&nbsp;        if (this == o) return true;</b>
+<b class="pc">&nbsp;        if (o == null || getClass() != o.getClass()) return false;</b>
+<b class="fc">&nbsp;        Pharmacy pharmacy = (Pharmacy) o;</b>
+<b class="pc">&nbsp;        return afm == pharmacy.afm; // Ταυτοποίηση βάσει ΑΦΜ</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="fc">&nbsp;        return Objects.hash(afm);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

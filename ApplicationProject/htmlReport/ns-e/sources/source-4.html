@@ -1,0 +1,122 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyCartView</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyCart</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyCartView (gr.softeng.team09.view.PharmacyCart)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">PharmacyCartView</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyCart;
+&nbsp;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Pharmacy cart view.
+&nbsp; */
+&nbsp;public interface PharmacyCartView {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show order.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     */
+&nbsp;    void showOrder(Order order);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show total.
+&nbsp;     *
+&nbsp;     * @param total the total
+&nbsp;     */
+&nbsp;    void showTotal(double total);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show budget dialog.
+&nbsp;     */
+&nbsp;    void showBudgetDialog();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show back order dialog.
+&nbsp;     *
+&nbsp;     * @param budget the budget
+&nbsp;     */
+&nbsp;    void showBackOrderDialog(int budget);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show error.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showError(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show success.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showSuccess(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Navigate back.
+&nbsp;     */
+&nbsp;    void navigateBack();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

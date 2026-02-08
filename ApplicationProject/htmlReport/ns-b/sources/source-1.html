@@ -1,0 +1,286 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkShowOrdersPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkOrdersGeneral.ClerkShowOrders</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkShowOrdersPresenter (gr.softeng.team09.view.ClerkOrdersGeneral.ClerkShowOrders)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkShowOrdersPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.7%
+  </span>
+  <span class="absValue">
+    (26/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (53/53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkOrdersGeneral.ClerkShowOrders;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.BackorderDAO;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderLine;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk show orders presenter.
+&nbsp; */
+<b class="fc">&nbsp;public class ClerkShowOrdersPresenter {</b>
+&nbsp;
+&nbsp;    private ClerkShowOrdersView view;
+&nbsp;
+<b class="fc">&nbsp;    private final Inventory inventory = MemoryStore.getInventory();</b>
+<b class="fc">&nbsp;    private final BackorderDAO backorderDAO = inventory.backorderDAO;</b>
+&nbsp;
+<b class="fc">&nbsp;    private List&lt;Order&gt; lastShownOrders = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(ClerkShowOrdersView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load all orders.
+&nbsp;     */
+&nbsp;    public void loadAllOrders() {
+<b class="fc">&nbsp;        lastShownOrders = inventory.getAllOrders();</b>
+<b class="fc">&nbsp;        view.showOrders(toDisplayList(lastShownOrders));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load completed orders.
+&nbsp;     */
+&nbsp;    public void loadCompletedOrders() {
+<b class="fc">&nbsp;        lastShownOrders = inventory.getCompletedOrders();</b>
+<b class="fc">&nbsp;        view.showOrders(toDisplayList(lastShownOrders));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Execute by id.
+&nbsp;     *
+&nbsp;     * @param idText          the id text
+&nbsp;     * @param allowBackorders the allow backorders
+&nbsp;     */
+&nbsp;    public void executeById(String idText, boolean allowBackorders) {
+<b class="fc">&nbsp;        Integer id = parseId(idText);</b>
+<b class="fc">&nbsp;        if (id == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        boolean ok = inventory.executeOrderById(id, allowBackorders);</b>
+<b class="fc">&nbsp;        if (!ok) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Cannot execute order #&quot; + id);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (backorderDAO.getFlag()) {</b>
+<b class="fc">&nbsp;            view.showMessage(&quot;Order #&quot; + id + &quot; executed. BackOrder created.&quot;);</b>
+<b class="fc">&nbsp;            backorderDAO.setFlag(false);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            view.showMessage(&quot;Order #&quot; + id + &quot; executed. NO BackOrder created.&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        loadAllOrders();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Cancel by id.
+&nbsp;     *
+&nbsp;     * @param idText the id text
+&nbsp;     */
+&nbsp;    public void cancelById(String idText) {
+<b class="fc">&nbsp;        Integer id = parseId(idText);</b>
+<b class="fc">&nbsp;        if (id == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        boolean ok = inventory.cancelOrderById(id);</b>
+<b class="fc">&nbsp;        if (!ok) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Cannot cancel order #&quot; + id);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        view.showMessage(&quot;Cancelled order #&quot; + id);</b>
+<b class="fc">&nbsp;        loadAllOrders();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Postpone by id.
+&nbsp;     *
+&nbsp;     * @param idText the id text
+&nbsp;     */
+&nbsp;    public void postponeById(String idText) {
+<b class="fc">&nbsp;        Integer id = parseId(idText);</b>
+<b class="pc">&nbsp;        if (id == null) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        for (Order o : inventory.getAllOrders()) {</b>
+<b class="pc">&nbsp;            if (o.getId() == id &amp;&amp; o.getState() == OrderState.PENDING) {</b>
+<b class="fc">&nbsp;                inventory.postponeOrderOnPurpose(o);</b>
+<b class="fc">&nbsp;                view.showMessage(&quot;Order #&quot; + id + &quot; postponed&quot;);</b>
+<b class="fc">&nbsp;                loadAllOrders();</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        view.showError(&quot;Cannot postpone order #&quot; + id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //-------------- LIST CLICK ----------------
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On order selected.
+&nbsp;     *
+&nbsp;     * @param position the position
+&nbsp;     */
+&nbsp;    public void onOrderSelected(int position) {
+<b class="pc">&nbsp;        if (position &lt; 0 || position &gt;= lastShownOrders.size()) return;</b>
+<b class="fc">&nbsp;        view.showOrderDetails(lastShownOrders.get(position));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //------------ HELPERS ----------------
+&nbsp;
+&nbsp;    private Integer parseId(String idText) {
+<b class="pc">&nbsp;        if (idText == null || idText.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Order ID required&quot;);</b>
+<b class="fc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="fc">&nbsp;            return Integer.parseInt(idText.trim());</b>
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;Invalid Order ID&quot;);</b>
+<b class="fc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;String&gt; toDisplayList(List&lt;Order&gt; orders) {
+<b class="fc">&nbsp;        List&lt;String&gt; display = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Order o : orders) {</b>
+<b class="fc">&nbsp;            display.add(</b>
+<b class="fc">&nbsp;                    &quot;Order #&quot; + o.getId() +</b>
+<b class="fc">&nbsp;                            &quot;\nPharmacy: &quot; + o.getPharmacy().getName() +</b>
+<b class="fc">&nbsp;                            &quot;\nState: &quot; + o.getState()</b>
+&nbsp;            );
+&nbsp;        }
+<b class="fc">&nbsp;        return display;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calculate total double.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     * @return the double
+&nbsp;     */
+&nbsp;    public double calculateTotal(Order order) {
+<b class="fc">&nbsp;        double sum = 0;</b>
+<b class="fc">&nbsp;        for (OrderLine l : order.getLines()) {</b>
+<b class="fc">&nbsp;            sum += l.getProduct().getPriceWithVAT() * l.getQuantity();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return sum;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

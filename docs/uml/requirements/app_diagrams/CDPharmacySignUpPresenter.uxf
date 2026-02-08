@@ -1,0 +1,112 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><element><id>UMLClass</id><coordinates><x>434</x><y>287</y><w>259</w><h>105</h></coordinates><panel_attributes>PharmacySignUpPresenter
+--
+-view : PharmacySignUpView
+-pharmacyDAO : PharmacyDAO
+--
++setView(PharmacySignUpView) : void
++checkPharmacistLoggedIn() : void 
++onSignUp(String,String,String,String,String,String,String) : void
++safeTrim(String) : String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>686</x><y>154</y><w>175</w><h>91</h></coordinates><panel_attributes>PharmacySignUpScreen
+--
+-presenter : PharmacySignUpPresenter
+-viewModel : PharmacySignUpViewModel
+--
++onCreate(Bundle) : void
++showSuccess(String) : void
++showError(String) : void 
++finishSignUp() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>196</x><y>294</y><w>182</w><h>63</h></coordinates><panel_attributes>PharmacySignUpViewModel
+--
+-presenter : PharmacySignUpPresenter
+--
++getPresenter() : PharmacySignUpPresenter</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>287</x><y>147</y><w>126</w><h>77</h></coordinates><panel_attributes>PharmacySignUpView
+--
++showSuccess(String) : void
++ShowError(String) : void
++finishSignUp() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>364</x><y>602</y><w>343</w><h>392</h></coordinates><panel_attributes>Pharmacy
+--
+-name : String
+-afm : int
+-address : Address
+-password : String
+-s : StatisticsService
+-draftOrders : List&lt;Order&gt;
++personalPendingOrders : List&lt;Order&gt;
++cart : List&lt;OrderLine&gt;
+-owner : Pharmacist
+--
++getName() : String 
++getAddress() : Address 
++getPassword() : String 
++setPassword(String) : void 
++getOwner() : Pharmacist 
++getAfm() : int 
++setOwner(Pharmacist) : void 
++addToCart(Order, OrderLine) : void 
++getCart() : List&lt;OrderLine&gt; 
++createDraftOrder(orderId : int) : Order
++saveCurrentStateDraftOrder(Order) : void
++searchProductsByName(String, Inventory) : List&lt;InventoryLine&gt;
++searchProductsByCategory(ProductCategory,Inventory) : List&lt;InventoryLine&gt;
++searchProductByEofCode(int, Inventory) : InventoryLine
++addProductToOrder(Order, Product, int) : void
++removeProductFromOrder(Order, Product, int) : void
++calculateOrderTotal(Order) : double
++payment(int,Order) : boolean
++checkAvailabilityForOrder(Order, Inventory) : Map&lt;Product, Integer&gt;
++updateOrderWithAvailability(Order, Map&lt;Product, Integer&gt;) : void 
++submitOrder(Order, Inventory,int,boolean) : void 
++getDraftOrders() : List&lt;Order&gt; 
++deleteDraftOrders(int) : void 
++getSubmittedOrders() : List&lt;Order&gt; +deleteSubmittedOrders(Order,Inventory) : void
++equals(Object) : boolean
++hashCode() : int
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>483</x><y>455</y><w>154</w><h>91</h></coordinates><panel_attributes>PharmacyDAOMemory
+--
++entitiesPharmacy : List&lt;Pharmacy&gt; 
+--
++save(Pharmacy) : void
++findByAfm(String) : Pharmacy
++findByName(String) : Pharmacy
++contains(String) : boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>98</x><y>427</y><w>196</w><h>182</h></coordinates><panel_attributes>MemoryStore
+--
+-activePharmacy : Pharmacy
+-loggedInPharmacist : Pharmacist
+-loggedInClerk : Clerk
+-inventory : Inventory
+-avtiveOrder : Order
++Allpharmacist : List&lt;Pharmacist&gt; 
++Allpharmacy : List&lt;Pharmacy&gt; 
++AllClerk : List&lt;Clerk&gt; 
+--
++setPharmacy(Pharmacy) : void
++getPharmacy() : Pharmacy
++addPharmacy(Pharmacy) : void
++getByEmail(String) : Pharmacist
++getByAFM(int) : Pharmacy</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>406</x><y>154</y><w>294</w><h>35</h></coordinates><panel_attributes>lt=&lt;&lt;.
+m1=1
+m2=1
+implements
+</panel_attributes><additional_attributes>10;20;400;20</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>385</y><w>112</w><h>84</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+PharmacyDAOMemory</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>287</x><y>483</y><w>210</w><h>35</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>Relation</id><coordinates><x>546</x><y>539</y><w>28</w><h>77</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+m2=1
+</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>406</x><y>189</y><w>133</w><h>112</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=1
+-view
+</panel_attributes><additional_attributes>160;140;160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>686</x><y>238</y><w>126</w><h>98</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+-presenter
+</panel_attributes><additional_attributes>10;110;150;110;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>798</x><y>357</y><w>105</w><h>35</h></coordinates><panel_attributes>AppCompactActivity
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>238</y><w>21</w><h>133</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;170;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>301</y><w>77</w><h>35</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+holds</panel_attributes><additional_attributes>90;20;10;20</additional_attributes></element></diagram>

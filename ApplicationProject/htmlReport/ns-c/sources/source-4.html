@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkShowStatsView</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkShowStats</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkShowStatsView (gr.softeng.team09.view.ClerkShowStats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ClerkShowStatsView</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkShowStats;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Clerk show stats view.
+&nbsp; */
+&nbsp;public interface ClerkShowStatsView {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show orders.
+&nbsp;     *
+&nbsp;     * @param ordersDisplay the orders display
+&nbsp;     */
+&nbsp;//Orders list
+&nbsp;    void showOrders(List&lt;String&gt; ordersDisplay);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show revenue.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;//Revenue outputs
+&nbsp;    void showRevenue(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show total revenue.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showTotalRevenue(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show sales between.
+&nbsp;     *
+&nbsp;     * @param salesDisplay the sales display
+&nbsp;     */
+&nbsp;//Timestamp sales list
+&nbsp;    void showSalesBetween(List&lt;String&gt; salesDisplay);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show error on orders input.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;//Errors / UI feedback
+&nbsp;    void showErrorOnOrdersInput(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show error on revenue input.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showErrorOnRevenueInput(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show error on start date input.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showErrorOnStartDateInput(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show error on end date input.
+&nbsp;     *
+&nbsp;     * @param msg the msg
+&nbsp;     */
+&nbsp;    void showErrorOnEndDateInput(String msg);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clear orders.
+&nbsp;     */
+&nbsp;//clears
+&nbsp;    void clearOrders();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Clear sales between.
+&nbsp;     */
+&nbsp;    void clearSalesBetween();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Show order details dialog.
+&nbsp;     *
+&nbsp;     * @param o the o
+&nbsp;     */
+&nbsp;    void showOrderDetailsDialog(Order o);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

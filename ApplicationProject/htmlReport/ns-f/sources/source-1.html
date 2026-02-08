@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyMainScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyMain</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyMainScreen (gr.softeng.team09.view.PharmacyMain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyMainScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/68)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyMain;
+&nbsp;
+&nbsp;import static gr.softeng.team09.util.LocaleHelper.setLocale;
+&nbsp;
+&nbsp;import android.annotation.SuppressLint;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.Button;
+&nbsp;import android.content.Intent;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.TextView;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.activity.result.ActivityResultLauncher;
+&nbsp;import androidx.activity.result.contract.ActivityResultContracts;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.view.PharmacyCart.PharmacyCartScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyShowProducts.PharmacyShowProductsScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewCompletedOrders.PharmacyViewCompletedOrdersScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewDraftOrders.PharmacyViewDraftOrdersScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewPendingOrders.PharmacyViewPendingOrdersScreen;
+&nbsp;import gr.softeng.team09.view.StartingScreen.StartingScreenScreen;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy main screen.
+&nbsp; */
+<b class="nc">&nbsp;public class PharmacyMainScreen extends AppCompatActivity {</b>
+&nbsp;
+&nbsp;    private ActivityResultLauncher&lt;Intent&gt; launcher;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_pharmacy_main_screen);</b>
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),</b>
+<b class="nc">&nbsp;                result -&gt; {  finish(); });</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView gr= findViewById(R.id.greek_img);</b>
+<b class="nc">&nbsp;        gr.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            setLocale(this, &quot;el&quot;);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView en= findViewById(R.id.english_img);</b>
+<b class="nc">&nbsp;        en.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            setLocale(this, &quot;en&quot;);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView fr= findViewById(R.id.french_img);</b>
+<b class="nc">&nbsp;        fr.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            setLocale(this, &quot;fr&quot;);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        TextView textViewName = findViewById(R.id.textViewname);</b>
+<b class="nc">&nbsp;        TextView textViewAFM = findViewById(R.id.textView10afm);</b>
+<b class="nc">&nbsp;        TextView textViewEmail = findViewById(R.id.textView9email);</b>
+<b class="nc">&nbsp;        TextView textPharmName = findViewById(R.id.textView12namepharm);</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView imageView= findViewById(R.id.pharmacy_account);</b>
+<b class="nc">&nbsp;        imageView.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            if (textViewName.getVisibility()==TextView.VISIBLE){</b>
+<b class="nc">&nbsp;                textViewName.setVisibility(TextView.INVISIBLE);</b>
+<b class="nc">&nbsp;                textViewAFM.setVisibility(TextView.INVISIBLE);</b>
+<b class="nc">&nbsp;                textViewEmail.setVisibility(TextView.INVISIBLE);</b>
+<b class="nc">&nbsp;                textPharmName.setVisibility(TextView.INVISIBLE);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                textViewName.setVisibility(TextView.VISIBLE);</b>
+<b class="nc">&nbsp;                textViewAFM.setVisibility(TextView.VISIBLE);</b>
+<b class="nc">&nbsp;                textViewEmail.setVisibility(TextView.VISIBLE);</b>
+<b class="nc">&nbsp;                textPharmName.setVisibility(TextView.VISIBLE);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        Button cartButton = findViewById(R.id.CartButton);</b>
+<b class="nc">&nbsp;        cartButton.setOnClickListener(v -&gt; goToCart());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button productsButton = findViewById(R.id.ProductsButton);</b>
+<b class="nc">&nbsp;        productsButton.setOnClickListener(v-&gt; goToProducts());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button draftOrdersButton = findViewById(R.id.DraftOrdersButton);</b>
+<b class="nc">&nbsp;        draftOrdersButton.setOnClickListener(v-&gt; goToDraftOrders());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button pendingOrdersButton = findViewById(R.id.pending_button);</b>
+<b class="nc">&nbsp;        pendingOrdersButton.setOnClickListener(v -&gt; goToPendingOrders());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button completedOrdersButton = findViewById(R.id.CompletedOrdersButton);</b>
+<b class="nc">&nbsp;        completedOrdersButton.setOnClickListener(v-&gt; goToCompletedOrders());</b>
+&nbsp;
+<b class="nc">&nbsp;        Button logoutButton = findViewById(R.id.logout_pharmacy_button);</b>
+<b class="nc">&nbsp;        logoutButton.setOnClickListener(v-&gt;{</b>
+<b class="nc">&nbsp;            MemoryStore.clearSessionPharma();</b>
+<b class="nc">&nbsp;            logOut();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        if (MemoryStore.getPharmacist() == null || MemoryStore.getPharmacy() == null) {</b>
+<b class="nc">&nbsp;            Toast.makeText(this, &quot;Session expired. Please login again.&quot;, Toast.LENGTH_LONG).show();</b>
+<b class="nc">&nbsp;            logOut();</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        //logged in information top corner----------------------------------------------------------------------------------
+&nbsp;
+<b class="nc">&nbsp;        String textNamePharmacist = MemoryStore.getPharmacist().getFirstName() + &quot; &quot; + MemoryStore.getPharmacist().getLastName();</b>
+<b class="nc">&nbsp;        textViewName.setText(textNamePharmacist);</b>
+<b class="nc">&nbsp;        textViewEmail.setText(MemoryStore.getPharmacist().getEmail());</b>
+<b class="nc">&nbsp;        textPharmName.setText(MemoryStore.getPharmacy().getName());</b>
+<b class="nc">&nbsp;        textViewAFM.setText(String.valueOf(MemoryStore.getPharmacy().getAfm()));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Log out.
+&nbsp;     */
+&nbsp;    protected void logOut() {
+<b class="nc">&nbsp;        Intent intent1 = new Intent(this, StartingScreenScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Go to cart.
+&nbsp;     */
+&nbsp;    protected void goToCart(){
+<b class="nc">&nbsp;        Intent intent1 = new Intent(this, PharmacyCartScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Go to products.
+&nbsp;     */
+&nbsp;    protected void goToProducts(){
+<b class="nc">&nbsp;        Intent intent2 = new Intent(this, PharmacyShowProductsScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent2);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Go to draft orders.
+&nbsp;     */
+&nbsp;    protected void goToDraftOrders(){
+<b class="nc">&nbsp;        Intent intent3 = new Intent(this, PharmacyViewDraftOrdersScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent3);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void goToPendingOrders() {
+<b class="nc">&nbsp;        Intent intent1 = new Intent(this, PharmacyViewPendingOrdersScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Go to completed orders.
+&nbsp;     */
+&nbsp;    protected void goToCompletedOrders(){
+<b class="nc">&nbsp;        Intent intent4 = new Intent(this, PharmacyViewCompletedOrdersScreen.class);</b>
+<b class="nc">&nbsp;        launcher.launch(intent4);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

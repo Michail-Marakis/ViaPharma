@@ -1,0 +1,82 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLActor</id><coordinates><x>16</x><y>16</y><w>112</w><h>96</h></coordinates><panel_attributes>Φαρμακοαποθηκάριος
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>64</x><y>88</y><w>24</w><h>568</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;690;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>16</y><w>144</w><h>56</h></coordinates><panel_attributes>Εφαρμογή
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>16</y><w>152</w><h>56</h></coordinates><panel_attributes>Database
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>664</x><y>16</y><w>152</w><h>56</h></coordinates><panel_attributes>backorder handler
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>64</y><w>24</w><h>584</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;710;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>512</x><y>64</y><w>24</w><h>584</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;710;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>64</y><w>24</w><h>592</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;720;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>64</x><y>112</y><w>16</w><h>432</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>120</y><w>16</w><h>456</h></coordinates><panel_attributes>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>144</y><w>16</w><h>32</h></coordinates><panel_attributes>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>112</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+getAllOrders()</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>128</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ανάκτηση λίστας
+getAllOrders()</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>160</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση λίστας
+getAllOrders()</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>184</y><w>224</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση λίστας
+getAllOrders()</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>240</y><w>224</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή μιας παραγγελίας
+executeOrder</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>264</y><w>240</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ελεγχος αποθεμάτων
+reserveStockForOrder()
+</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>304</y><w>240</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση αποθεμάτων
+reserveStockForOrder()
+</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>280</y><w>16</w><h>40</h></coordinates><panel_attributes>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>368</y><w>224</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+επιλογή "Εκτέλεση παραγγελίας"
+fulfillOrder()</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>384</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+ανανέωση(μείωση) αποθεμάτων
+reservedStock.remove(order)</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>512</x><y>400</y><w>16</w><h>32</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>416</y><w>240</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+εμφάνιση κατάλληλου μηνύματος</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>432</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+εμφάνιση κατάλληλου μηνύματος</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>480</y><w>240</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα για backorder</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>512</x><y>496</y><w>16</w><h>88</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>496</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα για backorder</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>528</y><w>224</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+προσθήκη στη λίστα με τα backorders
+Backorder bo = new Backorder()</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>544</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ενημέρωση λίστας backorders
+ backorders.add(bo)</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>736</x><y>576</y><w>16</w><h>16</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>560</y><w>232</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;-
+προσθήκη παραγγελίας για τη 
+διαδικασία backorder
+fullfilBackorders()</panel_attributes><additional_attributes>270;20;10;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>32</x><y>336</y><w>760</w><h>272</h></coordinates><panel_attributes>opt
+--
+if stock enough for the order
+-.
+
+
+
+
+
+
+
+
+else
+-.
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>16</y><w>64</w><h>64</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>384</x><y>8</y><w>64</w><h>64</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>152</x><y>8</y><w>64</w><h>64</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>608</x><y>8</y><w>64</w><h>64</h></coordinates><panel_attributes>// Control Element
+	     Control
+	     
+_umletcode=
+// Control Symbol
+drawCircle(50, 50, 20)
+drawLine(44, 31, 54, 21)
+drawLine(44, 31, 54, 41)
+	</panel_attributes><additional_attributes></additional_attributes></element></diagram>

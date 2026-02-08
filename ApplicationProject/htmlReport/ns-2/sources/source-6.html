@@ -1,0 +1,748 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Inventory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Inventory (gr.softeng.team09.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Inventory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    69%
+  </span>
+  <span class="absValue">
+    (20/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    43.5%
+  </span>
+  <span class="absValue">
+    (54/124)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55.1%
+  </span>
+  <span class="absValue">
+    (125/227)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.domain;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.BackorderDAO;
+&nbsp;import gr.softeng.team09.dao.BatchDAO;
+&nbsp;import gr.softeng.team09.dao.InventoryLineDAO;
+&nbsp;import gr.softeng.team09.dao.OrderDAO;
+&nbsp;import gr.softeng.team09.dao.ReservationDAO;
+&nbsp;import gr.softeng.team09.memorydao.OrderDAOMemory;
+&nbsp;//import gr.softeng.team09.view.PharmacyShowProducts.PharmacyShowProductsView;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Inventory.
+&nbsp; */
+&nbsp;public class Inventory {
+&nbsp;
+&nbsp;
+&nbsp;    private final InventoryLineDAO inventoryLineDAO;
+&nbsp;    /**
+&nbsp;     * The Backorder dao.
+&nbsp;     */
+&nbsp;    public final BackorderDAO backorderDAO;
+&nbsp;    private final ReservationDAO reservationDAO;
+<b class="fc">&nbsp;    private int totalbatches = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;    private OrderDAO orderDAO = new OrderDAOMemory();</b>
+&nbsp;
+&nbsp;    private final BatchDAO batchDAO;
+&nbsp;    //private PharmacyShowProductsView view;
+&nbsp;
+<b class="fc">&nbsp;    private final List&lt;Order&gt; completedOrders = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private final List&lt;Order&gt; allOrders = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Orders to choose.
+&nbsp;     */
+<b class="fc">&nbsp;    public List&lt;Order&gt; OrdersToChoose = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    private  Clerk owner;
+<b class="fc">&nbsp;    private int backorderCounter = 1;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Inventory.
+&nbsp;     *
+&nbsp;     * @param clerk            the clerk
+&nbsp;     * @param batchDAO         the batch dao
+&nbsp;     * @param inventoryLineDAO the inventory line dao
+&nbsp;     * @param backorderDAO     the backorder dao
+&nbsp;     * @param reservationDAO   the reservation dao
+&nbsp;     */
+&nbsp;    public Inventory(Clerk clerk,
+&nbsp;                     BatchDAO batchDAO,
+&nbsp;                     InventoryLineDAO inventoryLineDAO,
+&nbsp;                     BackorderDAO backorderDAO,
+<b class="fc">&nbsp;                     ReservationDAO reservationDAO) {</b>
+&nbsp;
+<b class="fc">&nbsp;        this.owner = clerk;</b>
+<b class="fc">&nbsp;        this.batchDAO = Objects.requireNonNull(batchDAO);</b>
+<b class="fc">&nbsp;        this.inventoryLineDAO = Objects.requireNonNull(inventoryLineDAO);</b>
+<b class="fc">&nbsp;        this.backorderDAO = Objects.requireNonNull(backorderDAO);</b>
+<b class="fc">&nbsp;        this.reservationDAO = Objects.requireNonNull(reservationDAO);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set owner.
+&nbsp;     *
+&nbsp;     * @param owner the owner
+&nbsp;     */
+<b class="fc">&nbsp;    public void setOwner(Clerk owner){ this.owner = owner;}</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets all batches.
+&nbsp;     *
+&nbsp;     * @return the all batches
+&nbsp;     */
+&nbsp;    public List&lt;Batch&gt; getAllBatches() {
+<b class="fc">&nbsp;        return batchDAO.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add to all.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     */
+&nbsp;    public void addToAll(Order order){
+<b class="fc">&nbsp;        allOrders.add(order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private int generateBackorderId() {
+<b class="fc">&nbsp;        return backorderCounter++;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get owner clerk.
+&nbsp;     *
+&nbsp;     * @return the clerk
+&nbsp;     */
+&nbsp;    public Clerk getOwner(){
+<b class="nc">&nbsp;        return owner;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find line inventory line.
+&nbsp;     *
+&nbsp;     * @param product the product
+&nbsp;     * @return the inventory line
+&nbsp;     */
+&nbsp;    public InventoryLine findLine(Product product) {
+<b class="fc">&nbsp;        return inventoryLineDAO.findByProduct(product);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets items.
+&nbsp;     *
+&nbsp;     * @return the items
+&nbsp;     */
+&nbsp;    public List&lt;InventoryLine&gt; getItems() {
+<b class="nc">&nbsp;        return inventoryLineDAO.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets available items.
+&nbsp;     *
+&nbsp;     * @return the available items
+&nbsp;     */
+&nbsp;    public List&lt;InventoryLine&gt; getAvailableItems() {
+<b class="fc">&nbsp;        return inventoryLineDAO.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add backorder.
+&nbsp;     *
+&nbsp;     * @param bo the bo
+&nbsp;     */
+&nbsp;    public void addBackorder(Backorder bo) {
+<b class="nc">&nbsp;        if (bo == null) return;</b>
+<b class="nc">&nbsp;        backorderDAO.enqueue(bo);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets back from one pharm.
+&nbsp;     *
+&nbsp;     * @param afm the afm
+&nbsp;     * @return the back from one pharm
+&nbsp;     */
+&nbsp;    public List&lt;Backorder&gt; getBackFromOnePharm(int afm) {
+<b class="pc">&nbsp;        if (afm == -1) return new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        List&lt;Backorder&gt; res = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (Backorder bo : backorderDAO.findAll()) {</b>
+<b class="fc">&nbsp;            if (bo.getPharmacy().getAfm() == afm) {</b>
+<b class="fc">&nbsp;                res.add(bo);</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return res;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private InventoryLine ensureLine(Product product) {
+<b class="fc">&nbsp;        InventoryLine l = inventoryLineDAO.findByProduct(product);</b>
+<b class="pc">&nbsp;        if (l == null) {</b>
+<b class="nc">&nbsp;            l = new InventoryLine(product, 0);</b>
+<b class="nc">&nbsp;            inventoryLineDAO.save(l);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return l;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets backorders.
+&nbsp;     *
+&nbsp;     * @return the backorders
+&nbsp;     */
+&nbsp;    public List&lt;Backorder&gt; getBackorders() {
+<b class="fc">&nbsp;        return backorderDAO.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets completed orders.
+&nbsp;     *
+&nbsp;     * @return the completed orders
+&nbsp;     */
+&nbsp;    public List&lt;Order&gt; getCompletedOrders() {
+<b class="fc">&nbsp;        return new ArrayList&lt;&gt;(completedOrders);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets all orders.
+&nbsp;     *
+&nbsp;     * @return the all orders
+&nbsp;     */
+&nbsp;    public List&lt;Order&gt; getAllOrders() {
+<b class="fc">&nbsp;        return allOrders;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Αποδέσμευση κρατημένων αποθεμάτων για μια παραγγελία.
+&nbsp;     * Επαναφέρουμε τις ποσότητες στο free stock.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     */
+&nbsp;    public void unreserveStockForOrder(Order order) {
+<b class="pc">&nbsp;        if(order == null) return;</b>
+<b class="fc">&nbsp;        Map&lt;Product, Integer&gt; reservedForThisOrder = reservationDAO.get(order.getId());</b>
+<b class="pc">&nbsp;        if (reservedForThisOrder == null) return;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Map.Entry&lt;Product, Integer&gt; e : reservedForThisOrder.entrySet()) {</b>
+<b class="nc">&nbsp;            Product p = e.getKey();</b>
+<b class="nc">&nbsp;            int qty = e.getValue();</b>
+&nbsp;
+<b class="nc">&nbsp;            InventoryLine line = ensureLine(p);</b>
+<b class="nc">&nbsp;            line.increase(qty); // επιστροφή στο free stock</b>
+<b class="nc">&nbsp;            inventoryLineDAO.save(line);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        reservationDAO.remove(order.getId());</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Order &quot; + order.getId() + &quot; reserved stock released.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Βασική ροή εκτέλεσης:
+&nbsp;     * - προσπαθεί να κάνει reserve,
+&nbsp;     * - αν δεν γίνει reserve:
+&nbsp;     *   - αν ΔΕΝ επιτρέπονται backorders -&gt; CANCELED,
+&nbsp;     *   - αν επιτρέπονται -&gt; PENDING (για πιθανό backorder / μελλοντική εκτέλεση),
+&nbsp;     * - αν γίνει reserve, καλεί fulfillOrder.
+&nbsp;     */
+&nbsp;
+&nbsp;    private Order findOrderById(int id) {
+<b class="fc">&nbsp;        for (Order o : allOrders) {</b>
+<b class="fc">&nbsp;            if (o.getId() == id) {</b>
+<b class="fc">&nbsp;                return o;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Cancel order by id boolean.
+&nbsp;     *
+&nbsp;     * @param id the id
+&nbsp;     * @return the boolean
+&nbsp;     */
+&nbsp;    public boolean cancelOrderById(int id) {
+<b class="fc">&nbsp;        Order order = findOrderById(id);</b>
+<b class="fc">&nbsp;        if (order == null) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;This order doesnt exist&quot;);</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        addToAllOrdersIfMissing(order);</b>
+&nbsp;
+&nbsp;
+<b class="pc">&nbsp;        if (order.getState() == OrderState.COMPLETED) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Completed order cannot be canceled&quot;);</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (order.getState() == OrderState.CANCELED) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Order already canceled&quot;);</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if(order.getState() == OrderState.PENDING){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="pc">&nbsp;        if(order.getState() == OrderState.DRAFT){</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="pc">&nbsp;        if(order.getState() == OrderState.BACKORDER){</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (order.getState() == OrderState.TOCANCEL) {</b>
+<b class="fc">&nbsp;            unreserveStockForOrder(order);</b>
+<b class="fc">&nbsp;            order.setState(OrderState.CANCELED);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void addToAllOrdersIfMissing(Order order) {
+<b class="fc">&nbsp;        boolean exists = false;</b>
+<b class="pc">&nbsp;        for (Order o : allOrders) {</b>
+<b class="fc">&nbsp;            if (o.getId() == order.getId()) {</b>
+<b class="fc">&nbsp;                exists = true;</b>
+&nbsp;                break;
+&nbsp;            }
+&nbsp;        }
+<b class="pc">&nbsp;        if (!exists) allOrders.add(order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Execute order.
+&nbsp;     *
+&nbsp;     * @param order           the order
+&nbsp;     * @param allowBackorders the allow backorders
+&nbsp;     */
+&nbsp;    public void executeOrder(Order order, boolean allowBackorders) {
+<b class="fc">&nbsp;        Objects.requireNonNull(order);</b>
+<b class="fc">&nbsp;        addToAllOrdersIfMissing(order);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Map&lt;Product, Integer&gt; toShipMap = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        Map&lt;Product, Integer&gt; toBackorderMap = new HashMap&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        for (OrderLine ol : order.getLines()) {</b>
+<b class="fc">&nbsp;            Product p = ol.getProduct();</b>
+<b class="fc">&nbsp;            int requested = ol.getQuantity();</b>
+&nbsp;
+<b class="fc">&nbsp;            InventoryLine line = ensureLine(p);</b>
+<b class="fc">&nbsp;            int available = line.getQuantity();</b>
+&nbsp;
+<b class="fc">&nbsp;            int shipQty = Math.min(requested, Math.max(0, available));</b>
+<b class="fc">&nbsp;            int backQty = requested - shipQty;</b>
+&nbsp;
+<b class="pc">&nbsp;            if (shipQty &gt; 0) toShipMap.put(p, shipQty);</b>
+<b class="fc">&nbsp;            if (backQty &gt; 0) toBackorderMap.put(p, backQty);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        boolean anyShip = !toShipMap.isEmpty();</b>
+<b class="fc">&nbsp;        boolean anyBack = !toBackorderMap.isEmpty();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (!anyShip) {</b>
+<b class="nc">&nbsp;            if (!allowBackorders) {</b>
+<b class="nc">&nbsp;                order.setState(OrderState.CANCELED);</b>
+<b class="nc">&nbsp;                orderDAO.deletePending(order);</b>
+&nbsp;                return;
+&nbsp;            }
+<b class="nc">&nbsp;            order.setState(OrderState.BACKORDER);</b>
+<b class="nc">&nbsp;            orderDAO.savePending(order);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        for (Map.Entry&lt;Product, Integer&gt; e : toShipMap.entrySet()) {</b>
+<b class="fc">&nbsp;            Product p = e.getKey();</b>
+<b class="fc">&nbsp;            int qty = e.getValue();</b>
+&nbsp;
+<b class="fc">&nbsp;            InventoryLine line = ensureLine(p);</b>
+<b class="fc">&nbsp;            line.decrease(qty);</b>
+<b class="fc">&nbsp;            inventoryLineDAO.save(line);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            allocateFromBatches(p, order.getPharmacy(), qty);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Iterator&lt;OrderLine&gt; it = order.getLines().iterator();</b>
+<b class="fc">&nbsp;        while (it.hasNext()) {</b>
+<b class="fc">&nbsp;            OrderLine ol = it.next();</b>
+<b class="fc">&nbsp;            Product p = ol.getProduct();</b>
+<b class="fc">&nbsp;            int shipQty = toShipMap.getOrDefault(p, 0);</b>
+&nbsp;
+<b class="pc">&nbsp;            if (shipQty &lt;= 0) {</b>
+<b class="nc">&nbsp;                it.remove();</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                ol.setQuantity(shipQty);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        if (anyBack) {</b>
+&nbsp;
+<b class="fc">&nbsp;            int newId = generateBackorderId();</b>
+&nbsp;
+<b class="fc">&nbsp;            Backorder backOrder = new Backorder(newId, order.getPharmacy());</b>
+&nbsp;
+<b class="fc">&nbsp;            for (Map.Entry&lt;Product, Integer&gt; e : toBackorderMap.entrySet()) {</b>
+<b class="fc">&nbsp;                Product p = e.getKey();</b>
+<b class="fc">&nbsp;                int qty = e.getValue();</b>
+<b class="fc">&nbsp;                backOrder.addLine(new BackorderLine(p, qty));</b>
+&nbsp;            }
+<b class="fc">&nbsp;            backorderDAO.enqueue(backOrder);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        order.setState(OrderState.COMPLETED);</b>
+<b class="fc">&nbsp;        orderDAO.deletePending(order);</b>
+<b class="fc">&nbsp;        orderDAO.saveCompleted(order);</b>
+<b class="fc">&nbsp;        completedOrders.add(order);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Execute order by id boolean.
+&nbsp;     *
+&nbsp;     * @param id              the id
+&nbsp;     * @param allowBackorders the allow backorders
+&nbsp;     * @return the boolean
+&nbsp;     */
+&nbsp;    public boolean executeOrderById(int id, boolean allowBackorders) {
+<b class="fc">&nbsp;        Order order = findOrderById(id);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (order == null) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;This order doesnt exist&quot;);</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="pc">&nbsp;        if(order.getState() == OrderState.PENDING) {</b>
+<b class="fc">&nbsp;            executeOrder(order, allowBackorders);</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Ο διαχειριστής αναβάλλει / ακυρώνει την εκτέλεση:
+&nbsp;     * - αποδεσμεύονται τα δεσμευμένα αποθέματα,
+&nbsp;     * - η παραγγελία δεν &quot;πεθαίνει&quot; αλλά μένει PENDING
+&nbsp;     * ώστε ο πελάτης να μπορεί να επιλέξει backorders / νέα εκτέλεση.
+&nbsp;     *
+&nbsp;     * @param order the order
+&nbsp;     */
+&nbsp;    public void postponeOrderOnPurpose(Order order) {
+<b class="pc">&nbsp;        if (order == null) return;</b>
+<b class="pc">&nbsp;        if(order.getState() == OrderState.PENDING) {</b>
+<b class="fc">&nbsp;            unreserveStockForOrder(order);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Order &quot; + order.getId() + &quot; postponed on purpose (set to PENDING).&quot;);</b>
+<b class="fc">&nbsp;            addToAllOrdersIfMissing(order);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    private Map&lt;Integer, Order&gt; shipmentsInCurrentReceive = null;</b>
+&nbsp;
+&nbsp;    private void addOrIncreaseLine(Order order, Product p, int qty) {
+<b class="nc">&nbsp;        for (OrderLine ol : order.getLines()) {</b>
+<b class="nc">&nbsp;            if (ol.getProduct().equals(p)) {</b>
+<b class="nc">&nbsp;                ol.setQuantity(ol.getQuantity() + qty);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        order.addLine(new OrderLine(p, qty));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Receive batch.
+&nbsp;     *
+&nbsp;     * @param batch the batch
+&nbsp;     */
+&nbsp;//receive batch: add to batches map and increase product total, then try backorders
+&nbsp;    public void receiveBatch(Batch batch) {
+<b class="nc">&nbsp;        addToTotalBatches();</b>
+<b class="nc">&nbsp;        batchDAO.save(batch);</b>
+<b class="nc">&nbsp;        batchDAO.BatchesCounter();</b>
+<b class="nc">&nbsp;        Product p = batch.getProduct();</b>
+&nbsp;
+<b class="nc">&nbsp;        InventoryLine line = ensureLine(p);</b>
+<b class="nc">&nbsp;        line.increase(batch.getQuantity());</b>
+<b class="nc">&nbsp;        inventoryLineDAO.save(line);</b>
+&nbsp;
+<b class="nc">&nbsp;        shipmentsInCurrentReceive = new HashMap&lt;&gt;();</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            fulfillBackordersForProduct(p);</b>
+&nbsp;        } finally {
+&nbsp;
+<b class="nc">&nbsp;            shipmentsInCurrentReceive = null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Next batch id int.
+&nbsp;     *
+&nbsp;     * @return the int
+&nbsp;     */
+&nbsp;    public int nextBatchId() {
+<b class="nc">&nbsp;        return batchDAO.nextId();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add to total batches.
+&nbsp;     */
+&nbsp;    public void addToTotalBatches(){
+<b class="nc">&nbsp;        totalbatches++;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void fulfillBackordersForProduct(Product p) {
+<b class="nc">&nbsp;        if (p == null) return;</b>
+&nbsp;
+&nbsp;        // fifo
+<b class="nc">&nbsp;        List&lt;Backorder&gt; stillWaiting = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;        Backorder bo;
+<b class="nc">&nbsp;        while ((bo = backorderDAO.poll()) != null) {</b>
+&nbsp;
+<b class="nc">&nbsp;            boolean touched = false;</b>
+&nbsp;
+&nbsp;            // τι στάλθηκε ΤΩΡΑ από αυτό το backorder σε αυτό το loop pass
+<b class="nc">&nbsp;            Map&lt;Product, Integer&gt; shippedNow = new HashMap&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;            for (BackorderLine bol : bo.getLines()) {</b>
+<b class="nc">&nbsp;                if (bol.isFulfilled()) continue;</b>
+<b class="nc">&nbsp;                if (!p.equals(bol.getProduct())) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;                int pending = bol.getQuantityPending();</b>
+&nbsp;
+<b class="nc">&nbsp;                InventoryLine line = ensureLine(p);</b>
+<b class="nc">&nbsp;                int available = line.getQuantity();</b>
+&nbsp;
+<b class="nc">&nbsp;                int toAllocate = Math.min(pending, available);</b>
+<b class="nc">&nbsp;                if (toAllocate &lt;= 0) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;                int allocated = allocateFromBatches(p, bo.getPharmacy(), toAllocate);</b>
+<b class="nc">&nbsp;                if (allocated &lt;= 0) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;                line.decrease(allocated);</b>
+<b class="nc">&nbsp;                inventoryLineDAO.save(line);</b>
+&nbsp;
+<b class="nc">&nbsp;                bol.decreasePending(allocated);</b>
+<b class="nc">&nbsp;                touched = true;</b>
+&nbsp;
+<b class="nc">&nbsp;                shippedNow.put(p, shippedNow.getOrDefault(p, 0) + allocated);</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (!shippedNow.isEmpty()) {</b>
+&nbsp;
+<b class="nc">&nbsp;                if (shipmentsInCurrentReceive == null) {</b>
+<b class="nc">&nbsp;                    shipmentsInCurrentReceive = new HashMap&lt;&gt;();</b>
+&nbsp;                }
+&nbsp;
+<b class="nc">&nbsp;                int boId = bo.getId();</b>
+<b class="nc">&nbsp;                Order shippedOrder = shipmentsInCurrentReceive.get(boId);</b>
+&nbsp;
+<b class="nc">&nbsp;                if (shippedOrder == null) {</b>
+<b class="nc">&nbsp;                    int shipmentId = orderDAO.nextId();</b>
+<b class="nc">&nbsp;                    shippedOrder = new Order(shipmentId, bo.getPharmacy(), System.currentTimeMillis());</b>
+<b class="nc">&nbsp;                    shippedOrder.setState(OrderState.COMPLETEDBACKORDER);</b>
+&nbsp;
+<b class="nc">&nbsp;                    completedOrders.add(shippedOrder);</b>
+<b class="nc">&nbsp;                    addToAllOrdersIfMissing(shippedOrder);</b>
+<b class="nc">&nbsp;                    orderDAO.saveCompleted(shippedOrder);</b>
+&nbsp;
+<b class="nc">&nbsp;                    shipmentsInCurrentReceive.put(boId, shippedOrder);</b>
+&nbsp;                }
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;                for (Map.Entry&lt;Product, Integer&gt; e : shippedNow.entrySet()) {</b>
+<b class="nc">&nbsp;                    addOrIncreaseLine(shippedOrder, e.getKey(), e.getValue());</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (touched) {</b>
+<b class="nc">&nbsp;                bo.tryMarkCompleted();</b>
+<b class="nc">&nbsp;                backorderDAO.save(bo);</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (bo.getState() != OrderState.COMPLETEDBACKORDER &amp;&amp; bo.getState() != OrderState.CANCELED) {</b>
+<b class="nc">&nbsp;                stillWaiting.add(bo);</b>
+<b class="nc">&nbsp;            } else if (bo.getState() == OrderState.COMPLETEDBACKORDER) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Backorder &quot; + bo.getId() +</b>
+<b class="nc">&nbsp;                        &quot; completed. Notifying &quot; + bo.getPharmacy().getName());</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        for (Backorder w : stillWaiting) {</b>
+<b class="nc">&nbsp;            backorderDAO.enqueue(w);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    private int allocateFromBatches(Product p, Pharmacy destPharmacy, int amountNeeded) {
+<b class="pc">&nbsp;        if (amountNeeded &lt;= 0) return 0;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        List&lt;Batch&gt; list = batchDAO.findActiveByProduct(p);</b>
+<b class="pc">&nbsp;        if (list.isEmpty()) return 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        int remaining = amountNeeded;</b>
+&nbsp;
+&nbsp;        //Αν τελειώσει batch, ενημερώνουμε το DAO με removeFromActiveIfEmpty(b).
+<b class="fc">&nbsp;        for (Batch b : list) {</b>
+<b class="pc">&nbsp;            if (remaining &lt;= 0) break;</b>
+<b class="pc">&nbsp;            if (b.getQuantity() &lt;= 0) continue;</b>
+&nbsp;
+<b class="fc">&nbsp;            int consumed = b.consume(remaining, destPharmacy);</b>
+&nbsp;
+<b class="pc">&nbsp;            if (consumed &gt; 0) {</b>
+<b class="fc">&nbsp;                remaining -= consumed;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;                if (b.getQuantity() == 0) {</b>
+<b class="fc">&nbsp;                    batchDAO.removeFromActiveIfEmpty(b);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return amountNeeded - remaining;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Recall batch.
+&nbsp;     *
+&nbsp;     * @param batchId the batch id
+&nbsp;     */
+&nbsp;    public void recallBatch(int batchId) {
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        Batch b = batchDAO.find(batchId);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (b == null) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;This batch doesnt exist&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        int qtyBefore = b.getQuantity();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Pharmacy ph : b.getDistributedTo()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Recall notice: batch &quot; + batchId +</b>
+<b class="nc">&nbsp;                    &quot; of product &quot; + b.getProduct().getName() +</b>
+<b class="nc">&nbsp;                    &quot; for pharmacy &quot; + ph.getName());</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        b.recall();</b>
+&nbsp;
+<b class="nc">&nbsp;        batchDAO.removeFromActiveIfEmpty(b);</b>
+&nbsp;
+<b class="nc">&nbsp;        InventoryLine line = findLine(b.getProduct());</b>
+<b class="nc">&nbsp;        if (line != null) {</b>
+<b class="nc">&nbsp;            line.decrease(qtyBefore);</b>
+<b class="nc">&nbsp;            inventoryLineDAO.save(line);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

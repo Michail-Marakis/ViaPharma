@@ -1,0 +1,143 @@
+<resources>
+
+    <string name="backorder_page_title">PAGE DES COMMANDES EN ATTENTE</string>
+    <string name="btn_active_backorders">Commandes en attente actives</string>
+    <string name="btn_back">RETOUR</string>
+    <string name="hint_afm_pharmacy">Numéro fiscal de la pharmacie pour voir les commandes en attente</string>
+    <string name="btn_search_backorders">Rechercher des commandes</string>
+
+
+    <string name="title_batch_manager">GESTION DES LOTS</string>
+    <string name="btn_receive_stock">Réception du Stock</string>
+    <string name="btn_recall_products">Rappel des Produits</string>
+    <string name="btn_home_page">ACCUEIL</string>
+
+
+    <string name="title_reset_password">RÉINITIALISER LE MOT DE PASSE</string>
+    <string name="btn_save_changes">ENREGISTRER LES MODIFICATIONS</string>
+    <string name="hint_username_email">Nom d\'utilisateur (Email)</string>
+    <string name="hint_new_password">Nouveau mot de passe</string>
+    <string name="hint_confirm_new_password">Confirmer le nouveau mot de passe</string>
+    <string name ="INBOX">BOITE DE RECEPTION</string>
+    <string name ="INBOX2">ENTRANT MESSAGES</string>
+    <string name="title_home_page">Page d\'accueil</string>
+    <string name="btn_show_stock">Stock disponible</string>
+    <string name="btn_batches_controller">Contrôle des lots</string>
+    <string name="btn_order_manager">Gestion des commandes</string>
+    <string name="btn_show_stats">Afficher les statistiques</string>
+    <string name="btn_log_out">DÉCONNEXION</string>
+
+
+    <string name="title_orders_manager">GESTION DES COMMANDES</string>
+    <string name="btn_all_orders">TOUTES LES COMMANDES</string>
+    <string name="btn_backorders">COMMANDES EN ATTENTE</string>
+    <string name="all_backorders">TOUS LES COMMANDES EN ATTENTE</string>
+    <string name="btn2_home_page">ACCUEIL</string>
+
+
+
+    <string name="btn3_back">RETOUR</string>
+    <string name="title_recall_batch">Page de Rappel de Lot</string>
+    <string name="info_recall_batch">Sélectionnez un lot dans la liste (ou tapez son ID) et rappelez-le depuis les pharmacies/clients.</string>
+    <string name="hint_batch_id">ID du Lot</string>
+    <string name="btn_recall_batch">APPUYEZ POUR RAPPELER LE LOT</string>
+
+    <string name="btn4_back">RETOUR</string>
+    <string name="title_receive_batch">Page de Mise à Jour du Stock</string>
+    <string name="info_receive_batch">Remplissez le formulaire ci-dessous pour le produit que vous souhaitez mettre à jour dans votre stock</string>
+    <string name="hint_product_name">Tapez le nom du produit</string>
+    <string name="hint_eof_code">Tapez le code EOF du produit</string>
+    <string name="hint_price">Prix du produit</string>
+    <string name="label_product_category">Catégorie du Produit</string>
+    <string name="hint_select_category">Sélectionnez une catégorie</string>
+    <string name="hint_number_batches">Nombre de lots</string>
+    <string name="hint_products_in_batch">Nombre de produits dans chaque lot</string>
+    <string name="btn2_receive_stock">Appuyez pour recevoir le nouveau stock</string>
+
+    <string name="btn5_back">RETOUR</string>
+    <string name="title_all_orders">Page de Toutes les Commandes</string>
+    <string name="btn2_all_orders">TOUTES LES COMMANDES</string>
+    <string name="btn_completed_orders">COMMANDES TERMINÉES</string>
+    <string name="hint_execute_order">ID de la commande à exécuter</string>
+    <string name="btn_execute_order">EXÉCUTER LA COMMANDE</string>
+    <string name="hint_postpone_order">ID de la commande à reporter</string>
+    <string name="btn_postpone_order">REPORTER LA COMMANDE</string>
+    <string name="hint_cancel_order">ID de la commande à annuler</string>
+    <string name="btn_cancel_order">ANNULER LA COMMANDE (VOULOIR CLIENT)</string>
+
+    <string name="app_name">PharmacyApp</string>
+    <string name="btn6_home">PAGE D\'ACCUEIL</string>
+    <string name="title_statistics_page">Page des Statistiques</string>
+    <string name="info_fill_below">Remplissez les informations ci-dessous</string>
+    <string name="hint_start_date">JJ/MM/AA</string>
+    <string name="hint_end_date">JJ/MM/AA</string>
+    <string name="btn_product_sales_timestamp">VENTES DE PRODUITS PENDANT UNE PÉRIODE SPÉCIFIQUE</string>
+    <string name="hint2_afm_pharmacy">Numéro de TVA d\'une pharmacie</string>
+    <string name="btn_show_orders">AFFICHER LES COMMANDES</string>
+    <string name="btn_show_revenue">AFFICHER LES REVENUS</string>
+    <string name="btn_total_inventory_revenue">REVENUS TOTAUX DU STOCK</string>
+
+    <string name="app2_name">PharmacyApp</string>
+    <string name="btn2_home">PAGE D\'ACCUEIL</string>
+    <string name="title_stock_page">PAGE DU STOCK</string>
+    <string name="hint2_eof_code">Code EOF d\'un produit</string>
+    <string name="btn_search">Rechercher</string>
+    <string name="btn_full_stock">Stock Complet</string>
+    <string name="text_specific_product_info">Nom: Demo\nQuantité: 3\nPrix: 10,00 €</string>
+
+    <string name="btn7_back">RETOUR</string>
+    <string name="title3_reset_password">RÉINITIALISER LE MOT DE PASSE</string>
+    <string name="hint_username_afm">Nom d\'utilisateur (AFM)</string>
+    <string name="hint3_new_password">Nouveau mot de passe</string>
+    <string name="hint3_confirm_new_password">Confirmer le nouveau mot de passe</string>
+    <string name="btn3_save_changes">ENREGISTRER LES MODIFICATIONS</string>
+
+    <string name="question_clerk">Êtes-vous un magasinier?</string>
+    <string name="question_pharmacist">Êtes-vous pharmacien?</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="welcome_back">Bon retour</string>
+    <string name="fill_form">Remplissez le formulaire ci-dessous</string>
+    <string name="btn_sign_up">S\'INSCRIRE</string>
+    <string name="btn_log_in">CONNEXION</string>
+    <string name="hint_name">Nom</string>
+    <string name="hint_surname">Prénom</string>
+    <string name="hint_phone">Numéro de téléphone</string>
+    <string name="hint_first_name">Prénom</string>
+    <string name="hint_last_name">Nom</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="btn_forgot_password">Mot de passe oublié?</string>
+
+    <string name="title_completed_orders_page">Commandes Terminées</string>
+    <string name="btn_cancel_order_simple">Annuler la commande</string>
+    <string name="title_pending_orders">Commandes en attente</string>
+    <string name="btn_submit_order">Soumettre la commande</string>
+    <string name="title_cart">Votre Panier</string>
+    <string name="btn_save_draft">Enregistrer en brouillon</string>
+    <string name="label_cart_total">Total du Panier</string>
+    <string name="text_total_is">Votre total est: </string>
+    <string name="hint_postal_code">Code Postal</string>
+    <string name="hint_region">Région</string>
+    <string name="hint_street_number">Numéro de rue</string>
+    <string name="hint_street_name">Nom de rue</string>
+    <string name="hint_afm">Numéro fiscal (AFM)</string>
+    <string name="title_signup_pharmacy">Inscription Pharmacie</string>
+    <string name="title_draft_orders">Commandes Brouillon</string>
+    <string name="title_signin_pharmacy">Connexion Pharmacie</string>
+    <string name="btn_click_here">Cliquez ici</string>
+    <string name="question_new_pharmacy">Voulez-vous inscrire une nouvelle pharmacie?</string>
+    <string name="btn_forgot_password_short">MOT DE PASSE OUBLIÉ</string>
+
+    <string name="btn_cart_simple">Panier</string>
+    <string name="btn_products_simple">Produits</string>
+    <string name="btn_draft_orders_simple">Brouillons</string>
+    <string name="btn_completed_orders_simple">Terminées</string>
+    <string name="btn_pending_orders_simple">En Attente</string>
+    <string name="btn_sign_out">DÉCONNEXION</string>
+    <string name="btn_sort_by">trier par ▼</string>
+    <string name="title_products">Produits</string>
+    <string name="btn_search_simple">rechercher</string>
+    <string name="hint_search_eof">Recherche par EOF</string>
+
+    <string name="btn_all_orders_pharm">TOUS LES PRODUITS</string>
+</resources>

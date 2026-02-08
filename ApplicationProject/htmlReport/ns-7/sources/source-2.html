@@ -1,0 +1,348 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkReceiveBatchScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkBatches.Receive</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkReceiveBatchScreen (gr.softeng.team09.view.ClerkBatches.Receive)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkReceiveBatchScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/86)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkBatches.Receive;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.Batch;
+&nbsp;import gr.softeng.team09.domain.Product;
+&nbsp;import gr.softeng.team09.domain.ProductCategory;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.view.ClerkBatches.ClerkBatchesGeneralScreen;
+&nbsp;import gr.softeng.team09.view.ClerkOrdersGeneral.ClerkOrdersGeneral;
+&nbsp;import gr.softeng.team09.view.ClerkShowStats.ClerkShowStatsScreen;
+&nbsp;import gr.softeng.team09.view.ClerkShowStock.ClerkShowStockScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk receive batch screen.
+&nbsp; */
+<b class="nc">&nbsp;public class ClerkReceiveBatchScreen extends AppCompatActivity implements ClerkReceiveBatchView { // Άνοιγμα Κλάσης</b>
+&nbsp;
+&nbsp;    private EditText editEOFCode;
+&nbsp;    private EditText editNameProduct;
+&nbsp;    private EditText editNumberOfBatches;
+&nbsp;    private EditText editNumberOfProducts;
+&nbsp;    private EditText editPriceProduct;
+&nbsp;
+&nbsp;    private MaterialAutoCompleteTextView editProductCategory;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Inventory.
+&nbsp;     */
+<b class="nc">&nbsp;    Inventory inventory = MemoryStore.getInventory();</b>
+&nbsp;
+&nbsp;    private ClerkReceiveBatchPresenter presenter;
+<b class="nc">&nbsp;    private static int batchNumberCounter = 0;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_clerk_receive_batch);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ClerkReceiveBatchViewModel ViewModel = new ViewModelProvider(this).get(ClerkReceiveBatchViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = ViewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;        //--------Views-------------------------------------------
+<b class="nc">&nbsp;        Button ReceiveToBatchesGeneral = findViewById(R.id.buttonBackReceive);</b>
+<b class="nc">&nbsp;        Button PressToReceive = findViewById(R.id.button4PressToreceive);</b>
+&nbsp;
+<b class="nc">&nbsp;        editEOFCode = findViewById(R.id.eofinputReceive);</b>
+<b class="nc">&nbsp;        editNameProduct = findViewById(R.id.nameInputReceive);</b>
+<b class="nc">&nbsp;        editNumberOfBatches = findViewById(R.id.NumberOfBatches);</b>
+<b class="nc">&nbsp;        editNumberOfProducts = findViewById(R.id.ProductsInBatches);</b>
+<b class="nc">&nbsp;        editPriceProduct = findViewById(R.id.priceOfProduct);</b>
+<b class="nc">&nbsp;        editProductCategory = findViewById(R.id.categoryDropdown); // Initialization</b>
+&nbsp;
+&nbsp;        //--------Navigation---------------------------------------
+<b class="nc">&nbsp;        ReceiveToBatchesGeneral.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(ClerkReceiveBatchScreen.this, ClerkBatchesGeneralScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //--------Input Listeners----------------------------------
+<b class="nc">&nbsp;        editEOFCode.setOnFocusChangeListener((v, hasFocus) -&gt; {</b>
+<b class="nc">&nbsp;            if (!hasFocus) {</b>
+<b class="nc">&nbsp;                String code = editEOFCode.getText().toString().trim();</b>
+<b class="nc">&nbsp;                if (!code.isEmpty()) {</b>
+&nbsp;                    try {
+<b class="nc">&nbsp;                        presenter.setEofInput(Integer.parseInt(code));</b>
+&nbsp;                    } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                        editEOFCode.setError(&quot;Invalid EOF code&quot;);</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editPriceProduct.setOnFocusChangeListener((v, hasFocus) -&gt; {</b>
+<b class="nc">&nbsp;            if (!hasFocus) {</b>
+<b class="nc">&nbsp;                String price = editPriceProduct.getText().toString();</b>
+<b class="nc">&nbsp;                if (!price.isEmpty()) {</b>
+<b class="nc">&nbsp;                    presenter.setPriceProduct(Double.parseDouble(price));</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editNameProduct.setOnFocusChangeListener((v, hasFocus) -&gt; {</b>
+<b class="nc">&nbsp;            if (!hasFocus) {</b>
+<b class="nc">&nbsp;                String name = editNameProduct.getText().toString().trim();</b>
+<b class="nc">&nbsp;                if (!name.isEmpty()) {</b>
+<b class="nc">&nbsp;                    presenter.setProductName(name);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editNumberOfBatches.setOnFocusChangeListener((v, hasFocus) -&gt; {</b>
+<b class="nc">&nbsp;            if (!hasFocus) {</b>
+<b class="nc">&nbsp;                String nBatches = editNumberOfBatches.getText().toString().trim();</b>
+<b class="nc">&nbsp;                if (!nBatches.isEmpty()) {</b>
+&nbsp;                    try {
+<b class="nc">&nbsp;                        presenter.setNumberOfBatches(Integer.parseInt(nBatches));</b>
+&nbsp;                    } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                        editNumberOfBatches.setError(&quot;Invalid number&quot;);</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        editNumberOfProducts.setOnFocusChangeListener((v, hasFocus) -&gt; {</b>
+<b class="nc">&nbsp;            if (!hasFocus) {</b>
+<b class="nc">&nbsp;                String nProducts = editNumberOfProducts.getText().toString().trim();</b>
+<b class="nc">&nbsp;                if (!nProducts.isEmpty()) {</b>
+&nbsp;                    try {
+<b class="nc">&nbsp;                        presenter.setProductEachBatch(Integer.parseInt(nProducts));</b>
+&nbsp;                    } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                        editNumberOfProducts.setError(&quot;Invalid number&quot;);</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+&nbsp;        //--------Dropdown Logic----------------------------------
+<b class="nc">&nbsp;        android.widget.ArrayAdapter&lt;ProductCategory&gt; adapter = new android.widget.ArrayAdapter&lt;&gt;(</b>
+&nbsp;                this,
+&nbsp;                android.R.layout.simple_dropdown_item_1line,
+<b class="nc">&nbsp;                ProductCategory.values()</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        editProductCategory.setAdapter(adapter);</b>
+&nbsp;
+<b class="nc">&nbsp;        editProductCategory.setOnItemClickListener((parent, view, position, id) -&gt; {</b>
+<b class="nc">&nbsp;            ProductCategory selectedCategory = (ProductCategory) parent.getItemAtPosition(position);</b>
+<b class="nc">&nbsp;            presenter.setProductCategory(selectedCategory);</b>
+<b class="nc">&nbsp;            editProductCategory.clearFocus();</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //--------Submit Button------------------------------------
+<b class="nc">&nbsp;        PressToReceive.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.ReadyToReceive();</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //Buttons little down there---------------------------------------------
+<b class="nc">&nbsp;        ImageView btnToStock = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToStock.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStockScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToBatches = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToBatches.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkOrdersGeneral.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView btnToStats = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToStats.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkShowStatsScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToOrders = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToOrders.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, ClerkBatchesGeneralScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    //======================= view interface===========================
+&nbsp;    @Override
+&nbsp;    public synchronized int generateBatchNumber() {
+<b class="nc">&nbsp;        return ++batchNumberCounter;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showSuccess(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public void receiveBatchCall(int eof, String productName, int nProducts,
+&nbsp;                                 int nBatches, double price, ProductCategory productCategory) {
+&nbsp;
+<b class="nc">&nbsp;        for (int i = 0; i &lt; nBatches; i++) {</b>
+&nbsp;
+<b class="nc">&nbsp;            int batchId = inventory.nextBatchId();</b>
+<b class="nc">&nbsp;            int batchNumber = generateBatchNumber();</b>
+&nbsp;
+<b class="nc">&nbsp;            Product product = new Product(productName, productCategory, eof, price);</b>
+&nbsp;
+<b class="nc">&nbsp;            Batch batch = new Batch(</b>
+&nbsp;                    batchId,
+&nbsp;                    product,
+&nbsp;                    batchNumber,
+&nbsp;                    nProducts
+&nbsp;            );
+&nbsp;
+<b class="nc">&nbsp;            inventory.receiveBatch(batch);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

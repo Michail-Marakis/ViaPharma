@@ -1,0 +1,305 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkRecallBatchScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkBatches.Recall</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkRecallBatchScreen (gr.softeng.team09.view.ClerkBatches.Recall)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkRecallBatchScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/70)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkBatches.Recall;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.view.View;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Batch;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.view.ClerkBatches.ClerkBatchesGeneralScreen;
+&nbsp;import gr.softeng.team09.view.ClerkOrdersGeneral.ClerkOrdersGeneral;
+&nbsp;import gr.softeng.team09.view.ClerkShowStats.ClerkShowStatsScreen;
+&nbsp;import gr.softeng.team09.view.ClerkShowStock.ClerkShowStockScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk recall batch screen.
+&nbsp; */
+<b class="nc">&nbsp;public class ClerkRecallBatchScreen extends AppCompatActivity implements ClerkRecallBatchView {</b>
+&nbsp;
+&nbsp;    private EditText editIdToRecall;
+&nbsp;    private ListView listViewRecall;
+&nbsp;
+&nbsp;    private ClerkRecallBatchPresenter presenter;
+&nbsp;
+&nbsp;    private ArrayAdapter&lt;String&gt; adapter;
+<b class="nc">&nbsp;    private final List&lt;String&gt; rows = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Inventory.
+&nbsp;     */
+<b class="nc">&nbsp;    Inventory inventory = MemoryStore.getInventory();</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_clerk_recall_batch);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ClerkRecallBatchViewModel viewModel =</b>
+<b class="nc">&nbsp;                new ViewModelProvider(this).get(ClerkRecallBatchViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;        // Views
+<b class="nc">&nbsp;        Button backBtn = findViewById(R.id.buttonBackRecall);</b>
+<b class="nc">&nbsp;        Button recallBtn = findViewById(R.id.buttonRecallNow);</b>
+&nbsp;
+<b class="nc">&nbsp;        editIdToRecall = findViewById(R.id.editBatchId);</b>
+<b class="nc">&nbsp;        listViewRecall = findViewById(R.id.listViewBatches);</b>
+&nbsp;
+<b class="nc">&nbsp;        adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, rows);</b>
+<b class="nc">&nbsp;        listViewRecall.setAdapter(adapter);</b>
+&nbsp;
+<b class="nc">&nbsp;        loadBatchesToList();</b>
+&nbsp;
+<b class="nc">&nbsp;        backBtn.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(ClerkRecallBatchScreen.this, ClerkBatchesGeneralScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        recallBtn.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            String txt = editIdToRecall.getText().toString().trim();</b>
+<b class="nc">&nbsp;            if (txt.isEmpty()) {</b>
+<b class="nc">&nbsp;                showError(&quot;Give batch id&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+&nbsp;            int id;
+&nbsp;            try {
+<b class="nc">&nbsp;                id = Integer.parseInt(txt);</b>
+&nbsp;            } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                showError(&quot;Invalid batch id&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            presenter.setIdToRecall(id);</b>
+<b class="nc">&nbsp;            presenter.readyToRecall();</b>
+&nbsp;
+&nbsp;            // refresh list
+<b class="nc">&nbsp;            loadBatchesToList();</b>
+<b class="nc">&nbsp;            listViewRecall.setVisibility(View.VISIBLE);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        // bottom navigation
+<b class="nc">&nbsp;        ImageView btnToStock = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToStock.setOnClickListener(v -&gt; startActivity(new Intent(this, ClerkShowStockScreen.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToBatches = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToBatches.setOnClickListener(v -&gt; startActivity(new Intent(this, ClerkOrdersGeneral.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToStats = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToStats.setOnClickListener(v -&gt; startActivity(new Intent(this, ClerkShowStatsScreen.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToOrders = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToOrders.setOnClickListener(v -&gt; startActivity(new Intent(this, ClerkBatchesGeneralScreen.class)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ======================== view interface ========================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void loadBatchesToList() {
+<b class="nc">&nbsp;        rows.clear();</b>
+&nbsp;
+<b class="nc">&nbsp;        List&lt;Batch&gt; batches = inventory.getAllBatches();</b>
+<b class="nc">&nbsp;        for (Batch b : batches) {</b>
+<b class="nc">&nbsp;            if (b == null) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;            rows.add(buildRow(b));</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String buildRow(Batch b) {
+<b class="nc">&nbsp;        String productName = &quot;Unknown&quot;;</b>
+<b class="nc">&nbsp;        if (b.getProduct() != null &amp;&amp; b.getProduct().getName() != null) {</b>
+<b class="nc">&nbsp;            productName = b.getProduct().getName();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        int distributedTotal = b.getDistributedTotal();</b>
+&nbsp;
+<b class="nc">&nbsp;        Map&lt;Pharmacy, Integer&gt; distMap = b.getDistributedQty();</b>
+&nbsp;
+<b class="nc">&nbsp;        int count = 0;</b>
+<b class="nc">&nbsp;        String pharmaciesText = &quot;none&quot;;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (distMap != null &amp;&amp; !distMap.isEmpty()) {</b>
+<b class="nc">&nbsp;            StringBuilder sb = new StringBuilder();</b>
+<b class="nc">&nbsp;            for (Map.Entry&lt;Pharmacy, Integer&gt; e : distMap.entrySet()) {</b>
+<b class="nc">&nbsp;                Pharmacy ph = e.getKey();</b>
+<b class="nc">&nbsp;                Integer qty = e.getValue();</b>
+<b class="nc">&nbsp;                if (ph == null) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;                if (sb.length() &gt; 0) sb.append(&quot;, &quot;);</b>
+<b class="nc">&nbsp;                sb.append(ph.getName()).append(&quot;: &quot;).append(qty == null ? 0 : qty);</b>
+<b class="nc">&nbsp;                count++;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            pharmaciesText = sb.toString();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return &quot;Batch ID: &quot; + b.getId()</b>
+&nbsp;                + &quot;\nProduct: &quot; + productName
+<b class="nc">&nbsp;                + &quot;\nRemaining: &quot; + b.getQuantity()</b>
+&nbsp;                + &quot;\nDistributed total: &quot; + distributedTotal
+&nbsp;                + &quot;\nDistributed to (&quot; + count + &quot;): &quot; + pharmaciesText;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showSuccess(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void recallBatchCall(int id) {
+<b class="nc">&nbsp;        inventory.recallBatch(id);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

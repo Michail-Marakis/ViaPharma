@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Address</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Address (gr.softeng.team09.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Address</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11.1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38.5%
+  </span>
+  <span class="absValue">
+    (5/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.domain;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Address.
+&nbsp; */
+&nbsp;public class Address {
+&nbsp;
+&nbsp;    private String street;
+&nbsp;    private int streetNo;
+&nbsp;    private String region;
+&nbsp;    private String postalCode;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Address.
+&nbsp;     *
+&nbsp;     * @param street     the street
+&nbsp;     * @param streetNo   the street no
+&nbsp;     * @param region     the region
+&nbsp;     * @param postalCode the postal code
+&nbsp;     */
+<b class="fc">&nbsp;    public Address(String street, int streetNo, String region, String postalCode) {</b>
+<b class="fc">&nbsp;        this.street = street;</b>
+<b class="fc">&nbsp;        this.streetNo = streetNo;</b>
+<b class="fc">&nbsp;        this.region = region;</b>
+<b class="fc">&nbsp;        this.postalCode = postalCode;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets street.
+&nbsp;     *
+&nbsp;     * @return the street
+&nbsp;     */
+<b class="nc">&nbsp;    public String getStreet() { return street; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets street.
+&nbsp;     *
+&nbsp;     * @param street the street
+&nbsp;     */
+<b class="nc">&nbsp;    public void setStreet(String street) { this.street = street; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets street no.
+&nbsp;     *
+&nbsp;     * @return the street no
+&nbsp;     */
+<b class="nc">&nbsp;    public int getStreetNo() { return streetNo; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets street no.
+&nbsp;     *
+&nbsp;     * @param streetNo the street no
+&nbsp;     */
+<b class="nc">&nbsp;    public void setStreetNo(int streetNo) { this.streetNo = streetNo; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets region.
+&nbsp;     *
+&nbsp;     * @return the region
+&nbsp;     */
+<b class="nc">&nbsp;    public String getRegion() { return region; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets region.
+&nbsp;     *
+&nbsp;     * @param region the region
+&nbsp;     */
+<b class="nc">&nbsp;    public void setRegion(String region) { this.region = region; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets postal code.
+&nbsp;     *
+&nbsp;     * @return the postal code
+&nbsp;     */
+<b class="nc">&nbsp;    public String getPostalCode() { return postalCode; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets postal code.
+&nbsp;     *
+&nbsp;     * @param postalCode the postal code
+&nbsp;     */
+<b class="nc">&nbsp;    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

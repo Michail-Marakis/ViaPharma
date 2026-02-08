@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyViewDraftOrdersPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyViewDraftOrders</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyViewDraftOrdersPresenter (gr.softeng.team09.view.PharmacyViewDraftOrders)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyViewDraftOrdersPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyViewDraftOrders;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.OrderDAO;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;import gr.softeng.team09.memorydao.OrderDAOMemory;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy view draft orders presenter.
+&nbsp; */
+&nbsp;public class PharmacyViewDraftOrdersPresenter {
+&nbsp;
+&nbsp;    private PharmacyViewDraftOrdersView view;
+&nbsp;    private Pharmacy pharmacy;
+&nbsp;    private OrderDAO orderDAO;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacy view draft orders presenter.
+&nbsp;     */
+<b class="fc">&nbsp;    public PharmacyViewDraftOrdersPresenter() {</b>
+<b class="fc">&nbsp;        this.orderDAO = new OrderDAOMemory();</b>
+<b class="fc">&nbsp;        this.pharmacy = MemoryStore.getPharmacy();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(PharmacyViewDraftOrdersView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load draft orders.
+&nbsp;     */
+&nbsp;    public void loadDraftOrders() {
+<b class="fc">&nbsp;        if (pharmacy == null) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;No pharmacy found&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        List&lt;Order&gt; drafts = orderDAO.findByPharmacyAndState(pharmacy, OrderState.DRAFT);</b>
+<b class="fc">&nbsp;        view.showDraftOrders(drafts);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On draft order selected.
+&nbsp;     *
+&nbsp;     * @param selectedDraft the selected draft
+&nbsp;     */
+&nbsp;    public void onDraftOrderSelected(Order selectedDraft) {
+<b class="fc">&nbsp;        Order activeOrder = MemoryStore.getActiveOrder();</b>
+<b class="pc">&nbsp;        if (activeOrder != null &amp;&amp; !activeOrder.equals(selectedDraft)) {</b>
+<b class="fc">&nbsp;            orderDAO.saveDraft(activeOrder);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        MemoryStore.setActiveOrder(selectedDraft);</b>
+&nbsp;
+<b class="fc">&nbsp;        Pharmacy ph = MemoryStore.getPharmacy();</b>
+<b class="pc">&nbsp;        if (ph != null) {</b>
+<b class="fc">&nbsp;            ph.cart.clear();</b>
+<b class="fc">&nbsp;            ph.cart.addAll(selectedDraft.getLines());</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        view.navigateToCart();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

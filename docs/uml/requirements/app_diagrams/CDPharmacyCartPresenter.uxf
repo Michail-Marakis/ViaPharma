@@ -1,0 +1,142 @@
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>119</x><y>56</y><w>147</w><h>91</h></coordinates><panel_attributes>PharmacyCartView
+--
++ showOrder(Order) : void 
++ showTotal(double)  : void
++ showBudgetDialog() : void
++ showBackOrderDialog(int) : void
++ showError(String) : void
++ navigateBack() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>84</x><y>217</y><w>175</w><h>56</h></coordinates><panel_attributes>PharmacyCartViewModel
+--
+-presenter : PharmacyCartPresenter
+--
++getPresenter() : PharmacyCartPresenter
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>532</x><y>56</y><w>161</w><h>161</h></coordinates><panel_attributes>PharmacyCartScreen
+--
+-list : ListView
+-adapter : ArrayAdapter&lt;OrderLine&gt;
+-presenter : PharmacyCartPresenter
+-viewModel : PharmacyCartViewModel
+--
++onCreate(Bundle) : void
++showOrder(Order) : void 
++showTotal(double) : void
++showBudgetDialog() : void 
++showBackOrderDialog(int) : void
++showError(String) : void 
++showSuccess(String) : void
++navigateBack() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>336</x><y>217</y><w>154</w><h>154</h></coordinates><panel_attributes>PharmacyCartPresenter
+--
+-view : PharmacyCartView
+-pharmacy : Pharmacy
+-currentOrder : Order
+-orderDAO : OrderDAO
+-inventory : Inventory
+--
++setView(PharmacyCartView) : void
++loadCart() : void
++onSubmitClicked() : void 
++submitOrder(int, boolean) : void 
++saveDraft() : void 
++onBackPressed() : void
+-clearActiveSession()  : void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>756</x><y>301</y><w>343</w><h>399</h></coordinates><panel_attributes>Pharmacy
+--
+-name : String
+-afm : int
+-address : Address
+-password : String
+-s : StatisticsService
+-draftOrders : List&lt;Order&gt;
++personalPendingOrders : List&lt;Order&gt;
++cart : List&lt;OrderLine&gt;
+-owner : Pharmacist
+--
++getName() : String 
++getAddress() : Address 
++getPassword() : String 
++setPassword(String) : void 
++getOwner() : Pharmacist 
++getAfm() : int 
++setOwner(Pharmacist) : void 
++addToCart(Order, OrderLine) : void 
++getCart() : List&lt;OrderLine&gt; 
++createDraftOrder(orderId : int) : Order
++saveCurrentStateDraftOrder(Order) : void
++searchProductsByName(String, Inventory) : List&lt;InventoryLine&gt;
++searchProductsByCategory(ProductCategory,Inventory) : List&lt;InventoryLine&gt;
++searchProductByEofCode(int, Inventory) : InventoryLine
++addProductToOrder(Order, Product, int) : void
++removeProductFromOrder(Order, Product, int) : void
++calculateOrderTotal(Order) : double
++payment(int,Order) : boolean
++checkAvailabilityForOrder(Order, Inventory) : Map&lt;Product, Integer&gt;
++updateOrderWithAvailability(Order, Map&lt;Product, Integer&gt;) : void 
++submitOrder(Order, Inventory,int,boolean) : void 
++getDraftOrders() : List&lt;Order&gt; 
++deleteDraftOrders(int) : void 
++getSubmittedOrders() : List&lt;Order&gt; +deleteSubmittedOrders(Order,Inventory) : void
++equals(Object) : boolean
++hashCode() : int
+
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>259</x><y>637</y><w>210</w><h>105</h></coordinates><panel_attributes>Inventory
+--
+-inventoryLineDAO : InventoryLineDAO
+-backorderDAO : BackorderDAO
+-orderDAO : OrderDAO
+- ...
+--
++getItems() : List&lt;InventoryLine&gt;
++CancelOrderFromClientWish(List&lt;Order&gt;) : void
++ ...</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>539</x><y>455</y><w>147</w><h>105</h></coordinates><panel_attributes>Order
+--
+-pharmacy : Pharmacy
+-state : OrderState
+- ...
+--
++getPharmacist() : Pharmacist
++setState(OrderState) : void
++ ...
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>119</x><y>434</y><w>259</w><h>63</h></coordinates><panel_attributes>OrderDAO
+--
++findByPharmacyAndState(Pharmacy,OrderState) : List&lt;Order&gt; 
++saveDraft(Order) : void 
++ ...</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>532</y><w>203</w><h>119</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=*</panel_attributes><additional_attributes>10;150;10;10;270;10</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>462</y><w>182</w><h>28</h></coordinates><panel_attributes>lt=&lt;-
+m1=*
+m2=1</panel_attributes><additional_attributes>240;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>259</x><y>63</y><w>287</w><h>35</h></coordinates><panel_attributes>lt=.&gt;&gt;
+m1=1
+m2=1
+implements</panel_attributes><additional_attributes>390;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>259</x><y>98</y><w>133</w><h>133</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=1
+-view</panel_attributes><additional_attributes>140;170;140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>546</x><y>651</y><w>147</w><h>84</h></coordinates><panel_attributes>OrderLine
+--
+-product : Product
+-quantity : int 
+--
++getProduct() : Product
++setProduct(Product) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>609</x><y>553</y><w>28</w><h>112</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=1*
+</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>119</y><w>126</w><h>112</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+-presenter
+</panel_attributes><additional_attributes>20;140;20;20;160;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>777</x><y>133</y><w>105</w><h>35</h></coordinates><panel_attributes>AppCompactActivity
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>252</x><y>238</y><w>98</w><h>35</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+m2=1
+holds</panel_attributes><additional_attributes>120;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>217</x><y>329</y><w>133</w><h>119</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=1
+orderDAO
+</panel_attributes><additional_attributes>170;20;20;20;20;150</additional_attributes></element><element><id>Relation</id><coordinates><x>609</x><y>378</y><w>161</w><h>91</h></coordinates><panel_attributes>lt=-&gt;
+m1=*
+m2=1
+</panel_attributes><additional_attributes>10;110;10;20;210;20</additional_attributes></element><element><id>Relation</id><coordinates><x>686</x><y>147</y><w>105</w><h>21</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>130;10;10;10</additional_attributes></element></diagram>

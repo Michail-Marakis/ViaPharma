@@ -1,0 +1,200 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SignInClerkScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.SignInClerk</a>
+</div>
+
+<h1>Coverage Summary for Class: SignInClerkScreen (gr.softeng.team09.view.SignInClerk)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SignInClerkScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.SignInClerk;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.view.ClerkMain.ClerkMainScreen;
+&nbsp;import gr.softeng.team09.view.SignInClerk.ClerkForget.ClerkForgetScreen;
+&nbsp;import gr.softeng.team09.view.StartingScreen.StartingScreenScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Sign in clerk screen.
+&nbsp; */
+<b class="nc">&nbsp;public class SignInClerkScreen extends AppCompatActivity implements SignInClerkView {</b>
+&nbsp;
+&nbsp;    private EditText editUsername;
+&nbsp;    private EditText editPassword;
+&nbsp;
+&nbsp;    private SignInClerkPresenter presenter;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_sign_in_clerk_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        SignInClerkViewModel vm =</b>
+<b class="nc">&nbsp;                new ViewModelProvider(this).get(SignInClerkViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = vm.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;        //views--------------------------------------------------
+&nbsp;
+<b class="nc">&nbsp;        editUsername = findViewById(R.id.PhoneClerk);</b>
+<b class="nc">&nbsp;        editPassword = findViewById(R.id.EmailClerk);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button btnSignIn = findViewById(R.id.signupComplete);</b>
+<b class="nc">&nbsp;        Button btnForgot = findViewById(R.id.buttonForgot);</b>
+<b class="nc">&nbsp;        Button btnBack = findViewById(R.id.buttonToStart);</b>
+&nbsp;
+&nbsp;        //button implementation---------------------------------
+<b class="nc">&nbsp;        btnSignIn.setOnClickListener(v -&gt; presenter.onSignIn(</b>
+<b class="nc">&nbsp;                editUsername.getText().toString(),</b>
+<b class="nc">&nbsp;                editPassword.getText().toString()</b>
+&nbsp;        ));
+&nbsp;
+<b class="nc">&nbsp;        btnForgot.setOnClickListener(v -&gt; presenter.onForgotClicked());</b>
+&nbsp;
+<b class="nc">&nbsp;        btnBack.setOnClickListener(v -&gt; presenter.onBackClicked());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //helpers--------------------------------------------------------------------------
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showSuccess(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void goToClerkMain() {
+<b class="nc">&nbsp;        startActivity(new Intent(this, ClerkMainScreen.class));</b>
+<b class="nc">&nbsp;        finish();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void goToForgot() {
+<b class="nc">&nbsp;        startActivity(new Intent(this, ClerkForgetScreen.class));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void goToStart() {
+<b class="nc">&nbsp;        startActivity(new Intent(this, StartingScreenScreen.class));</b>
+<b class="nc">&nbsp;        finish();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

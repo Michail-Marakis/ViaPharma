@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacySignInScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.SignInPharmacist.SignInPharmacy</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacySignInScreen (gr.softeng.team09.view.SignInPharmacist.SignInPharmacy)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacySignInScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.SignInPharmacist.SignInPharmacy;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.view.PharmacyMain.PharmacyMainScreen;
+&nbsp;import gr.softeng.team09.view.SignInPharmacist.PharmacistSignInScreen;
+&nbsp;import gr.softeng.team09.view.SignInPharmacist.SignInPharmacy.PharmacyForget.PharmacyForgetScreen;
+&nbsp;import gr.softeng.team09.view.SignUpPharmacist.SignUpPharmacy.PharmacySignUpScreen;
+&nbsp;import gr.softeng.team09.view.StartingScreen.StartingScreenScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy sign in screen.
+&nbsp; */
+<b class="nc">&nbsp;public class PharmacySignInScreen extends AppCompatActivity implements PharmacySignInView {</b>
+&nbsp;
+&nbsp;    private PharmacySignInPresenter presenter;
+&nbsp;    private PharmacySignInViewModel viewModel;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_pharmacy_sign_in_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        viewModel = new ViewModelProvider(this).get(PharmacySignInViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+<b class="nc">&nbsp;        EditText nametxt = findViewById(R.id.name_pharmacy_sign_in);</b>
+<b class="nc">&nbsp;        EditText afmtxt = findViewById(R.id.afm_edit_text);</b>
+<b class="nc">&nbsp;        EditText passwordtxt = findViewById(R.id.editTextTextPassword);</b>
+<b class="nc">&nbsp;        Button signbtn = findViewById(R.id.prosignin_button);</b>
+<b class="nc">&nbsp;        Button gotosignupbtn = findViewById(R.id.go_to_signup_button);</b>
+<b class="nc">&nbsp;        Button btnToBackpharma = findViewById(R.id.buttonTopharma);</b>
+<b class="nc">&nbsp;        Button forgBtn = findViewById(R.id.button2ForgetPharmacyPass);</b>
+&nbsp;
+<b class="nc">&nbsp;        signbtn.setOnClickListener(v -&gt; presenter.onSignIn(</b>
+<b class="nc">&nbsp;                nametxt.getText().toString(),</b>
+<b class="nc">&nbsp;                afmtxt.getText().toString(),</b>
+<b class="nc">&nbsp;                passwordtxt.getText().toString()</b>
+&nbsp;        ));
+&nbsp;
+<b class="nc">&nbsp;        gotosignupbtn.setOnClickListener(v -&gt; presenter.onSignUpClicked());</b>
+&nbsp;
+<b class="nc">&nbsp;        btnToBackpharma.setOnClickListener(v-&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(PharmacySignInScreen.this, PharmacistSignInScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        forgBtn.setOnClickListener(v-&gt; {</b>
+<b class="nc">&nbsp;            startActivity(new Intent(this, PharmacyForgetScreen.class));</b>
+&nbsp;        });
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String message) {
+<b class="nc">&nbsp;        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void navigateToMainScreen() {
+<b class="nc">&nbsp;        Intent intent = new Intent(this, PharmacyMainScreen.class);</b>
+<b class="nc">&nbsp;        startActivity(intent);</b>
+<b class="nc">&nbsp;        finish();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void navigateToSignUp() {
+<b class="nc">&nbsp;        Intent intent = new Intent(this, PharmacySignUpScreen.class);</b>
+<b class="nc">&nbsp;        startActivity(intent);</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLActor</id><coordinates><x>48</x><y>21</y><w>80</w><h>96</h></coordinates><panel_attributes>Φαρμακοποιός
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>21</y><w>120</w><h>56</h></coordinates><panel_attributes>Εφαρμογή</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>21</y><w>128</w><h>56</h></coordinates><panel_attributes>Database</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>101</y><w>24</w><h>592</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;720;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>272</x><y>69</y><w>24</w><h>624</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;760;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>69</y><w>24</w><h>624</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;760;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>80</x><y>117</y><w>16</w><h>224</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>272</x><y>117</y><w>16</w><h>264</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>488</x><y>165</y><w>16</w><h>40</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>125</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+cancelOrder()</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>253</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+or.getId()</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>149</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+showSubmittedOrders()</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>213</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+showSubmittedOrders()s</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>189</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+showSubmittedOrders()</panel_attributes><additional_attributes>10;20;260;20</additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>317</y><w>200</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα επιτχυμένης ακύρωσης</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>UMLActor</id><coordinates><x>664</x><y>13</y><w>112</w><h>88</h></coordinates><panel_attributes>Φαρμακοαποθηκάριος</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>712</x><y>93</y><w>24</w><h>592</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;720;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>357</y><w>448</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;.
+CancelOrderFromClientWish()</panel_attributes><additional_attributes>540;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>293</y><w>224</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ personalPendingOrders.remove(or)</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>488</x><y>309</y><w>16</w><h>24</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>712</x><y>373</y><w>16</w><h>24</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>13</y><w>72</w><h>64</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>160</x><y>13</y><w>64</w><h>64</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>368</x><y>13</y><w>72</w><h>64</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>640</x><y>13</y><w>72</w><h>64</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element></diagram>

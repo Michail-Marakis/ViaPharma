@@ -1,0 +1,55 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLActor</id><coordinates><x>27</x><y>25</y><w>126</w><h>108</h></coordinates><panel_attributes>Φαρμακοαποθηκάριος
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>243</x><y>34</y><w>135</w><h>63</h></coordinates><panel_attributes>Εφαρμογή</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>477</x><y>34</y><w>144</w><h>63</h></coordinates><panel_attributes>Database</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>34</y><w>162</w><h>63</h></coordinates><panel_attributes>Cancelation handler</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>81</x><y>115</y><w>27</w><h>666</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;720;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>297</x><y>88</y><w>27</w><h>693</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;750;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>88</y><w>27</w><h>693</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;750;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>756</x><y>88</y><w>27</w><h>693</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;750;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>81</x><y>133</y><w>18</w><h>198</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>297</x><y>133</y><w>18</w><h>351</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>540</x><y>124</y><w>18</w><h>414</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>142</y><w>225</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή "απόσυρση παρτίδας"
+recallBatch()</panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>196</y><w>225</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+φόρμα επιλογής προϊόντος
+ και παρτίδας</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>250</y><w>225</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+συμπλήρωση φόρμας και ενημέρωση </panel_attributes><additional_attributes>230;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>277</y><w>468</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;-
+αναζήτηση φαρμακείων που έχουν
+παραλάβει την παρτίδα(ιχναλισιμότητα)
+ b.getDistributedTo()</panel_attributes><additional_attributes>500;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>331</y><w>468</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιστροφή όλων των φαρμακείων
+ph.getName()</panel_attributes><additional_attributes>10;20;500;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>756</x><y>295</y><w>18</w><h>216</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>549</x><y>385</y><w>225</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+αναζήτηση στοιχείων πληροφορίας
+ των φαρμακείων</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>549</x><y>439</y><w>495</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα άμεσης απόσυρσης
+</panel_attributes><additional_attributes>530;20;10;20</additional_attributes></element><element><id>UMLActor</id><coordinates><x>972</x><y>25</y><w>90</w><h>99</h></coordinates><panel_attributes>Φαρμακοποιοί</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1017</x><y>106</y><w>36</w><h>684</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>20;740;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>1026</x><y>457</y><w>18</w><h>54</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>549</x><y>493</y><w>495</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+
+επιβεβαίωση λήψης του μηνύματος απόσυρσης</panel_attributes><additional_attributes>10;20;530;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>34</y><w>72</w><h>72</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>621</x><y>34</y><w>72</w><h>72</h></coordinates><panel_attributes>// Control Element
+	     Control
+	     
+_umletcode=
+// Control Symbol
+drawCircle(50, 50, 20)
+drawLine(44, 31, 54, 21)
+drawLine(44, 31, 54, 41)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>180</x><y>25</y><w>72</w><h>72</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>414</x><y>25</y><w>72</w><h>72</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>927</x><y>34</y><w>72</w><h>72</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element></diagram>

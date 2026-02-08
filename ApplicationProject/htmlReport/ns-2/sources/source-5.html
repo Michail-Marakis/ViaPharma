@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Clerk</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Clerk (gr.softeng.team09.domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Clerk</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38.5%
+  </span>
+  <span class="absValue">
+    (5/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    47.6%
+  </span>
+  <span class="absValue">
+    (10/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.domain;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk.
+&nbsp; */
+&nbsp;public class Clerk {
+&nbsp;
+&nbsp;    private String name;
+&nbsp;    private String surname;
+&nbsp;    private String phone;
+&nbsp;    private String email;
+&nbsp;    private String password;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Clerk.
+&nbsp;     *
+&nbsp;     * @param name     the name
+&nbsp;     * @param surname  the surname
+&nbsp;     * @param phone    the phone
+&nbsp;     * @param email    the email
+&nbsp;     * @param password the password
+&nbsp;     */
+<b class="fc">&nbsp;    public Clerk(String name, String surname, String phone, String email, String password) {</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.surname = surname;</b>
+<b class="fc">&nbsp;        this.phone = phone;</b>
+<b class="fc">&nbsp;        this.email = email;</b>
+<b class="fc">&nbsp;        this.password = password;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets name.
+&nbsp;     *
+&nbsp;     * @return the name
+&nbsp;     */
+<b class="nc">&nbsp;    public String getName() { return name; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets name.
+&nbsp;     *
+&nbsp;     * @param name the name
+&nbsp;     */
+<b class="nc">&nbsp;    public void setName(String name) { this.name = name; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets surname.
+&nbsp;     *
+&nbsp;     * @return the surname
+&nbsp;     */
+<b class="nc">&nbsp;    public String getSurname() { return surname; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets surname.
+&nbsp;     *
+&nbsp;     * @param surname the surname
+&nbsp;     */
+<b class="nc">&nbsp;    public void setSurname(String surname) { this.surname = surname; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets phone.
+&nbsp;     *
+&nbsp;     * @return the phone
+&nbsp;     */
+<b class="nc">&nbsp;    public String getPhone() { return phone; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets phone.
+&nbsp;     *
+&nbsp;     * @param phone the phone
+&nbsp;     */
+<b class="nc">&nbsp;    public void setPhone(String phone) { this.phone = phone; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets email.
+&nbsp;     *
+&nbsp;     * @return the email
+&nbsp;     */
+<b class="fc">&nbsp;    public String getEmail() { return email; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets email.
+&nbsp;     *
+&nbsp;     * @param email the email
+&nbsp;     */
+<b class="nc">&nbsp;    public void setEmail(String email) { this.email = email; }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Gets password.
+&nbsp;     *
+&nbsp;     * @return the password
+&nbsp;     */
+&nbsp;    public String getPassword() {
+<b class="fc">&nbsp;        return password;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set password.
+&nbsp;     *
+&nbsp;     * @param pass the pass
+&nbsp;     */
+&nbsp;    public void setPassword(String pass){
+<b class="fc">&nbsp;        this.password = pass;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="pc">&nbsp;        if (this == o) return true;</b>
+<b class="nc">&nbsp;        if (!(o instanceof Clerk)) return false;</b>
+<b class="nc">&nbsp;        Clerk clerk = (Clerk) o;</b>
+<b class="nc">&nbsp;        return Objects.equals(email, clerk.email);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        return Objects.hash(email);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

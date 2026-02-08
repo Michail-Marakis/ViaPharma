@@ -1,0 +1,315 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ClerkBackOrdersScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders</a>
+</div>
+
+<h1>Coverage Summary for Class: ClerkBackOrdersScreen (gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClerkBackOrdersScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/95)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.ClerkOrdersGeneral.ClerkBackOrders;
+&nbsp;
+&nbsp;import android.app.AlertDialog;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.core.graphics.Insets;
+&nbsp;import androidx.core.view.ViewCompat;
+&nbsp;import androidx.core.view.WindowInsetsCompat;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Backorder;
+&nbsp;import gr.softeng.team09.domain.BackorderLine;
+&nbsp;import gr.softeng.team09.domain.OrderState;
+&nbsp;import gr.softeng.team09.view.ClerkBatches.ClerkBatchesGeneralScreen;
+&nbsp;import gr.softeng.team09.view.ClerkOrdersGeneral.ClerkOrdersGeneral;
+&nbsp;import gr.softeng.team09.view.ClerkShowStats.ClerkShowStatsScreen;
+&nbsp;import gr.softeng.team09.view.ClerkShowStock.ClerkShowStockScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Clerk back orders screen.
+&nbsp; */
+<b class="nc">&nbsp;public class ClerkBackOrdersScreen extends AppCompatActivity implements ClerkBackOrdersView {</b>
+&nbsp;
+&nbsp;    private EditText editInputInforationBackOrder;
+&nbsp;    private ListView listViewPersonalBackOrders;
+&nbsp;
+&nbsp;    private ArrayAdapter&lt;String&gt; adapter;
+<b class="nc">&nbsp;    private final List&lt;String&gt; rows = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    private ClerkBackOrdersPresenter presenter;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        EdgeToEdge.enable(this);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_clerk_back_orders_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {</b>
+<b class="nc">&nbsp;            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());</b>
+<b class="nc">&nbsp;            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</b>
+<b class="nc">&nbsp;            return insets;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ClerkBackOrdersViewModel viewModel =</b>
+<b class="nc">&nbsp;                new ViewModelProvider(this).get(ClerkBackOrdersViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+<b class="nc">&nbsp;        Button btnBack = findViewById(R.id.buttonbackBACKORDER);</b>
+<b class="nc">&nbsp;        Button btnActive = findViewById(R.id.button2Back);</b>
+<b class="nc">&nbsp;        Button btnAll = findViewById(R.id.Allbackorders);</b>
+<b class="nc">&nbsp;        Button btnSearch = findViewById(R.id.button2PressToSeeBackOrder);</b>
+&nbsp;
+<b class="nc">&nbsp;        editInputInforationBackOrder = findViewById(R.id.inputForBackOrderInformation);</b>
+<b class="nc">&nbsp;        listViewPersonalBackOrders = findViewById(R.id.personalbackorders);</b>
+&nbsp;
+<b class="nc">&nbsp;        adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, rows);</b>
+<b class="nc">&nbsp;        listViewPersonalBackOrders.setAdapter(adapter);</b>
+&nbsp;
+&nbsp;        // ✅ αρχικό load (ACTIVE) όπως στα stats “refresh and show”
+<b class="nc">&nbsp;        presenter.loadActiveBackorders();</b>
+<b class="nc">&nbsp;        renderListFromPresenter();</b>
+&nbsp;
+&nbsp;        // ✅ click -&gt; details (πάντα από lastShownBackorders)
+<b class="nc">&nbsp;        listViewPersonalBackOrders.setOnItemClickListener((parent, view, position, id) -&gt; {</b>
+<b class="nc">&nbsp;            Backorder selected = presenter.getBackorderAt(position);</b>
+<b class="nc">&nbsp;            if (selected == null) return;</b>
+<b class="nc">&nbsp;            showBackorderDetailsDialog(selected);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnBack.setOnClickListener(v -&gt;</b>
+<b class="nc">&nbsp;                startActivity(new Intent(this, ClerkOrdersGeneral.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        btnActive.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.loadActiveBackorders();</b>
+<b class="nc">&nbsp;            renderListFromPresenter();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnAll.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            presenter.loadAllBackorders();</b>
+<b class="nc">&nbsp;            renderListFromPresenter();</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnSearch.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            String afm = editInputInforationBackOrder.getText().toString().trim();</b>
+<b class="nc">&nbsp;            if (afm.isEmpty()) {</b>
+<b class="nc">&nbsp;                showError(&quot;AFM required&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+<b class="nc">&nbsp;            presenter.setPharmAFM(afm);</b>
+<b class="nc">&nbsp;            presenter.findAllBackOrdersFromPharm();</b>
+<b class="nc">&nbsp;            renderListFromPresenter();</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        // navigation
+<b class="nc">&nbsp;        ImageView btnToStock = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToStock.setOnClickListener(v -&gt;</b>
+<b class="nc">&nbsp;                startActivity(new Intent(this, ClerkShowStockScreen.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToOrders = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToOrders.setOnClickListener(v -&gt;</b>
+<b class="nc">&nbsp;                startActivity(new Intent(this, ClerkOrdersGeneral.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToStats = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToStats.setOnClickListener(v -&gt;</b>
+<b class="nc">&nbsp;                startActivity(new Intent(this, ClerkShowStatsScreen.class)));</b>
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToBatches = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToBatches.setOnClickListener(v -&gt;</b>
+<b class="nc">&nbsp;                startActivity(new Intent(this, ClerkBatchesGeneralScreen.class)));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ ίδιο pattern με stats: παίρνω “τελευταία λίστα” και τη δείχνω
+&nbsp;    private void renderListFromPresenter() {
+<b class="nc">&nbsp;        rows.clear();</b>
+<b class="nc">&nbsp;        List&lt;Backorder&gt; list = presenter.getLastShownBackorders();</b>
+<b class="nc">&nbsp;        for (Backorder b : list) {</b>
+<b class="nc">&nbsp;            rows.add(buildRow(b));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ---------------- DIALOG ----------------
+&nbsp;    private void showBackorderDetailsDialog(Backorder b) {
+<b class="nc">&nbsp;        StringBuilder sb = new StringBuilder();</b>
+&nbsp;
+<b class="nc">&nbsp;        sb.append(&quot;Type: BACKORDER\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Backorder ID: &quot;).append(b.getId()).append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Pharmacy: &quot;).append(b.getPharmacy().getName()).append(&quot;\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;AFM: &quot;).append(b.getPharmacy().getAfm()).append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Pharmacist: &quot;)</b>
+<b class="nc">&nbsp;                .append(b.getPharmacist().getFirstName())</b>
+<b class="nc">&nbsp;                .append(&quot; &quot;)</b>
+<b class="nc">&nbsp;                .append(b.getPharmacist().getLastName())</b>
+<b class="nc">&nbsp;                .append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;State: &quot;).append(b.getState()).append(&quot;\n\n&quot;);</b>
+<b class="nc">&nbsp;        sb.append(&quot;Order Lines:\n&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        for (BackorderLine ol : b.getLines()) {</b>
+<b class="nc">&nbsp;            sb.append(&quot;- &quot;)</b>
+<b class="nc">&nbsp;                    .append(ol.getProduct().getName())</b>
+<b class="nc">&nbsp;                    .append(&quot; | requested: &quot;)</b>
+<b class="nc">&nbsp;                    .append(ol.getQuantityRequested())</b>
+<b class="nc">&nbsp;                    .append(&quot; | fulfilled: &quot;)</b>
+<b class="nc">&nbsp;                    .append(ol.getQuantityFulfilled())</b>
+<b class="nc">&nbsp;                    .append(&quot; | pending: &quot;)</b>
+<b class="nc">&nbsp;                    .append(ol.getQuantityPending())</b>
+<b class="nc">&nbsp;                    .append(&quot;\n&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        new AlertDialog.Builder(this)</b>
+<b class="nc">&nbsp;                .setTitle(&quot;Backorder details&quot;)</b>
+<b class="nc">&nbsp;                .setMessage(sb.toString())</b>
+<b class="nc">&nbsp;                .setPositiveButton(&quot;OK&quot;, null)</b>
+<b class="nc">&nbsp;                .show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ---------------- View methods ----------------
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String buildRow(Backorder back) {
+&nbsp;        String status;
+<b class="nc">&nbsp;        if (back.getState() == OrderState.BACKORDER) {</b>
+<b class="nc">&nbsp;            status = &quot;ACTIVE&quot;;</b>
+<b class="nc">&nbsp;        } else if (back.getState() == OrderState.COMPLETEDBACKORDER) {</b>
+<b class="nc">&nbsp;            status = &quot;COMPLETED&quot;;</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            status = back.getState().toString();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return &quot;Pharmacy: &quot; + back.getPharmacy().getName()</b>
+<b class="nc">&nbsp;                + &quot;\nBackorder ID: &quot; + back.getId()</b>
+&nbsp;                + &quot;\nStatus: &quot; + status;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showMessage(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

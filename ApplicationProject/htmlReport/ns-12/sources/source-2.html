@@ -1,0 +1,251 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyViewDraftOrdersScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyViewDraftOrders</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyViewDraftOrdersScreen (gr.softeng.team09.view.PharmacyViewDraftOrders)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyViewDraftOrdersScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyViewDraftOrders;
+&nbsp;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.os.Parcelable;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;
+&nbsp;import androidx.activity.EdgeToEdge;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.view.PharmacyCart.PharmacyCartScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyMain.PharmacyMainScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyShowProducts.PharmacyShowProductsScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewCompletedOrders.PharmacyViewCompletedOrdersScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewPendingOrders.PharmacyViewPendingOrdersScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy view draft orders screen.
+&nbsp; */
+<b class="nc">&nbsp;public class PharmacyViewDraftOrdersScreen extends AppCompatActivity implements PharmacyViewDraftOrdersView {</b>
+&nbsp;
+&nbsp;    private ListView list;
+&nbsp;    private ArrayAdapter&lt;String&gt; adapter;
+&nbsp;    private PharmacyViewDraftOrdersPresenter presenter;
+&nbsp;    private PharmacyViewDraftOrdersViewModel viewModel;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_pharmacy_view_draft_orders_screen);</b>
+&nbsp;
+<b class="nc">&nbsp;        list = findViewById(R.id.draft_orders_list);</b>
+<b class="nc">&nbsp;        viewModel = new ViewModelProvider(this).get(PharmacyViewDraftOrdersViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+<b class="nc">&nbsp;        presenter.loadDraftOrders();</b>
+&nbsp;
+<b class="nc">&nbsp;        Button backButton = findViewById(R.id.BackButton);</b>
+<b class="nc">&nbsp;        backButton.setOnClickListener(v -&gt; goBack());</b>
+&nbsp;
+&nbsp;        //Buttons little down there---------------------------------------------
+<b class="nc">&nbsp;        ImageView btnToProducts = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToProducts.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyShowProductsScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToCart = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToCart.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyCartScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView btnToDraft = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToDraft.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewDraftOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToPending = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToPending.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewPendingOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToCompleted = findViewById(R.id.imageViewStock5);</b>
+<b class="nc">&nbsp;        btnToCompleted.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewCompletedOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    private void goBack() {
+<b class="nc">&nbsp;        Intent intent = new Intent(this, PharmacyMainScreen.class);</b>
+<b class="nc">&nbsp;        startActivity(intent);</b>
+<b class="nc">&nbsp;        finish();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showDraftOrders(List&lt;Order&gt; draftOrders) {
+&nbsp;
+<b class="nc">&nbsp;        List&lt;String&gt; l = builderString(draftOrders);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (adapter == null) {</b>
+<b class="nc">&nbsp;            adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, l);</b>
+<b class="nc">&nbsp;            list.setAdapter(adapter);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            adapter.clear();</b>
+<b class="nc">&nbsp;            adapter.addAll(l);</b>
+<b class="nc">&nbsp;            adapter.notifyDataSetChanged();</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        list.setOnItemClickListener((parent, view, position, id) -&gt; {</b>
+<b class="nc">&nbsp;            if (position &gt;= 0 &amp;&amp; position &lt; draftOrders.size()) {</b>
+<b class="nc">&nbsp;                Order selected = draftOrders.get(position);</b>
+<b class="nc">&nbsp;                presenter.onDraftOrderSelected(selected);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Builder string list.
+&nbsp;     *
+&nbsp;     * @param draftOrders the draft orders
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    public List&lt;String&gt; builderString(List&lt;Order&gt; draftOrders){
+<b class="nc">&nbsp;        List&lt;String&gt; list = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        for (Order o : draftOrders){</b>
+<b class="nc">&nbsp;            String x = &quot;Order ID: &quot; + o.getId() + &quot; - State: &quot; + o.getState();</b>
+<b class="nc">&nbsp;            list.add(x);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return list;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void navigateToCart() {
+<b class="nc">&nbsp;        Intent intent = new Intent(this, PharmacyCartScreen.class);</b>
+<b class="nc">&nbsp;        startActivity(intent);</b>
+<b class="nc">&nbsp;        finish();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+<b class="nc">&nbsp;    public void showError(String msg) { }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

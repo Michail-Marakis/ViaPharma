@@ -1,0 +1,329 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyCartScreen</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyCart</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyCartScreen (gr.softeng.team09.view.PharmacyCart)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyCartScreen</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/94)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyCart;
+&nbsp;
+&nbsp;import android.app.AlertDialog;
+&nbsp;import android.content.Intent;
+&nbsp;import android.os.Bundle;
+&nbsp;import android.text.InputType;
+&nbsp;import android.widget.ArrayAdapter;
+&nbsp;import android.widget.Button;
+&nbsp;import android.widget.EditText;
+&nbsp;import android.widget.ImageView;
+&nbsp;import android.widget.ListView;
+&nbsp;import android.widget.TextView;
+&nbsp;import android.widget.Toast;
+&nbsp;
+&nbsp;import androidx.appcompat.app.AppCompatActivity;
+&nbsp;import androidx.lifecycle.ViewModelProvider;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;import gr.softeng.team09.R;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderLine;
+&nbsp;import gr.softeng.team09.view.PharmacyMain.PharmacyMainScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyShowProducts.PharmacyShowProductsScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewCompletedOrders.PharmacyViewCompletedOrdersScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewDraftOrders.PharmacyViewDraftOrdersScreen;
+&nbsp;import gr.softeng.team09.view.PharmacyViewPendingOrders.PharmacyViewPendingOrdersScreen;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy cart screen.
+&nbsp; */
+<b class="nc">&nbsp;public class PharmacyCartScreen extends AppCompatActivity implements PharmacyCartView {</b>
+&nbsp;
+&nbsp;    private ListView list;
+&nbsp;    private ArrayAdapter&lt;OrderLine&gt; adapter;
+<b class="nc">&nbsp;    private final ArrayList&lt;OrderLine&gt; cartLines = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    private PharmacyCartPresenter presenter;
+&nbsp;    private PharmacyCartViewModel viewModel;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_pharmacy_view_cart_screen);</b>
+&nbsp;
+&nbsp;        //adapater
+<b class="nc">&nbsp;        list = findViewById(R.id.cart_list);</b>
+<b class="nc">&nbsp;        adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_list_item_1, cartLines);</b>
+<b class="nc">&nbsp;        list.setAdapter(adapter);</b>
+&nbsp;
+<b class="nc">&nbsp;        list.setOnItemClickListener((parent, view, position, id) -&gt; {</b>
+<b class="nc">&nbsp;            OrderLine selectedLine = cartLines.get(position);</b>
+<b class="nc">&nbsp;            showUpdateQuantityDialog(selectedLine);</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        //presenter
+<b class="nc">&nbsp;        viewModel = new ViewModelProvider(this).get(PharmacyCartViewModel.class);</b>
+<b class="nc">&nbsp;        presenter = viewModel.getPresenter();</b>
+<b class="nc">&nbsp;        presenter.setView(this);</b>
+&nbsp;
+&nbsp;        // load from DAO memory
+<b class="nc">&nbsp;        presenter.loadCart();</b>
+&nbsp;
+&nbsp;        // Buttons
+<b class="nc">&nbsp;        Button backButton = findViewById(R.id.BackButton);</b>
+<b class="nc">&nbsp;        Button submitButton = findViewById(R.id.SubmitOrderButton);</b>
+<b class="nc">&nbsp;        Button saveButton = findViewById(R.id.SaveDraftButton);</b>
+&nbsp;
+<b class="nc">&nbsp;        backButton.setOnClickListener(v -&gt; presenter.onBackPressed());</b>
+<b class="nc">&nbsp;        submitButton.setOnClickListener(v -&gt; presenter.onSubmitClicked());</b>
+<b class="nc">&nbsp;        saveButton.setOnClickListener(v -&gt; presenter.saveDraft());</b>
+&nbsp;
+&nbsp;        //Buttons little down there---------------------------------------------
+<b class="nc">&nbsp;        ImageView btnToProducts = findViewById(R.id.imageViewStats);</b>
+<b class="nc">&nbsp;        btnToProducts.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyShowProductsScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToCart = findViewById(R.id.imageViewBatches);</b>
+<b class="nc">&nbsp;        btnToCart.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyCartScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+<b class="nc">&nbsp;        ImageView btnToDraft = findViewById(R.id.imageViewOrders);</b>
+<b class="nc">&nbsp;        btnToDraft.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewDraftOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToPending = findViewById(R.id.imageViewStock1);</b>
+<b class="nc">&nbsp;        btnToPending.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewPendingOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        ImageView btnToCompleted = findViewById(R.id.imageViewStock5);</b>
+<b class="nc">&nbsp;        btnToCompleted.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            Intent intent = new Intent(this, PharmacyViewCompletedOrdersScreen.class);</b>
+<b class="nc">&nbsp;            startActivity(intent);</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showOrder(Order order) {
+<b class="nc">&nbsp;        cartLines.clear();</b>
+<b class="nc">&nbsp;        if (order != null &amp;&amp; order.getLines() != null) {</b>
+<b class="nc">&nbsp;            cartLines.addAll(order.getLines());</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        adapter.notifyDataSetChanged();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showTotal(double total) {
+<b class="nc">&nbsp;        TextView totalView = findViewById(R.id.TotalCartView);</b>
+<b class="nc">&nbsp;        if (totalView != null) {</b>
+<b class="nc">&nbsp;            totalView.setText(String.format(&quot;Total: %.2f €&quot;, total));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showBudgetDialog() {
+<b class="nc">&nbsp;        EditText input = new EditText(this);</b>
+<b class="nc">&nbsp;        input.setInputType(InputType.TYPE_CLASS_NUMBER);</b>
+&nbsp;
+<b class="nc">&nbsp;        new AlertDialog.Builder(this)</b>
+<b class="nc">&nbsp;                .setTitle(&quot;Step 1/2: Insert Budget&quot;)</b>
+<b class="nc">&nbsp;                .setMessage(&quot;Available amount:&quot;)</b>
+<b class="nc">&nbsp;                .setView(input)</b>
+<b class="nc">&nbsp;                .setPositiveButton(&quot;Continue&quot;, (d, w) -&gt; {</b>
+<b class="nc">&nbsp;                    String text = input.getText().toString();</b>
+<b class="nc">&nbsp;                    if (!text.isEmpty()) {</b>
+&nbsp;                        try {
+<b class="nc">&nbsp;                            int budget = Integer.parseInt(text);</b>
+<b class="nc">&nbsp;                            showBackOrderDialog(budget);</b>
+&nbsp;                        } catch (NumberFormatException e) {
+<b class="nc">&nbsp;                            showError(&quot;Wrong number&quot;);</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                })
+<b class="nc">&nbsp;                .setNegativeButton(&quot;Cancel&quot;, null)</b>
+<b class="nc">&nbsp;                .show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showBackOrderDialog(int budget) {
+<b class="nc">&nbsp;        new AlertDialog.Builder(this)</b>
+<b class="nc">&nbsp;                .setTitle(&quot;Step 2/2: Backorder&quot;)</b>
+<b class="nc">&nbsp;                .setMessage(&quot;In a case of shortage, do you want backorder?&quot;)</b>
+<b class="nc">&nbsp;                .setPositiveButton(&quot;YES&quot;, (d, w) -&gt; {</b>
+<b class="nc">&nbsp;                    presenter.submitOrder(budget, true);</b>
+&nbsp;                })
+<b class="nc">&nbsp;                .setNegativeButton(&quot;NO&quot;, (d, w) -&gt; {</b>
+<b class="nc">&nbsp;                    presenter.submitOrder(budget, false);</b>
+&nbsp;                })
+<b class="nc">&nbsp;                .show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void showUpdateQuantityDialog(OrderLine line) {
+<b class="nc">&nbsp;        AlertDialog.Builder builder = new AlertDialog.Builder(this);</b>
+&nbsp;
+<b class="nc">&nbsp;        android.view.View dialogView = getLayoutInflater().inflate(R.layout.dialog_cart_update, null);</b>
+<b class="nc">&nbsp;        builder.setView(dialogView);</b>
+&nbsp;
+<b class="nc">&nbsp;        TextView nameView = dialogView.findViewById(R.id.dialogProductName);</b>
+<b class="nc">&nbsp;        TextView quantityView = dialogView.findViewById(R.id.dialogQuantity);</b>
+<b class="nc">&nbsp;        ImageView btnMinus = dialogView.findViewById(R.id.btnMinus);</b>
+<b class="nc">&nbsp;        ImageView btnPlus = dialogView.findViewById(R.id.btnPlus);</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        nameView.setText(line.getProduct().getName());</b>
+<b class="nc">&nbsp;        final int[] currentQty = {line.getQuantity()};</b>
+<b class="nc">&nbsp;        quantityView.setText(String.valueOf(currentQty[0]));</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        btnPlus.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            currentQty[0]++;</b>
+<b class="nc">&nbsp;            quantityView.setText(String.valueOf(currentQty[0]));</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        btnMinus.setOnClickListener(v -&gt; {</b>
+<b class="nc">&nbsp;            if (currentQty[0] &gt; 0) {</b>
+<b class="nc">&nbsp;                currentQty[0]--;</b>
+<b class="nc">&nbsp;                quantityView.setText(String.valueOf(currentQty[0]));</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        builder.setPositiveButton(&quot;Update&quot;, (dialog, which) -&gt; {</b>
+<b class="nc">&nbsp;            presenter.updateLineQuantity(line, currentQty[0]);</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        builder.setNegativeButton(&quot;Cancel&quot;, null);</b>
+&nbsp;
+<b class="nc">&nbsp;        builder.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showError(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void showSuccess(String msg) {
+<b class="nc">&nbsp;        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void navigateBack() {
+<b class="nc">&nbsp;        Intent intent = new Intent(this, PharmacyMainScreen.class);</b>
+<b class="nc">&nbsp;        startActivity(intent);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

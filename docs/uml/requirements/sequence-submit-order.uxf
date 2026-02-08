@@ -1,0 +1,78 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>
+
+
+
+
+</help_text><element><id>UMLActor</id><coordinates><x>45</x><y>9</y><w>90</w><h>99</h></coordinates><panel_attributes>Φαρμακοποιός</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>252</x><y>18</y><w>162</w><h>54</h></coordinates><panel_attributes>Εφαρμογή</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>81</x><y>99</y><w>27</w><h>675</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;730;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>63</y><w>27</w><h>711</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;770;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>18</y><w>171</w><h>54</h></coordinates><panel_attributes>Database</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>81</x><y>108</y><w>18</w><h>603</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>315</x><y>108</y><w>18</w><h>612</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>585</x><y>135</y><w>18</w><h>27</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>585</x><y>63</y><w>27</w><h>711</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;770;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>99</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+προβολή καλαθιού
+getDraftOrders()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>117</y><w>279</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ανάκτηση προϊόντων
+getDraftOrders()</panel_attributes><additional_attributes>290;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>144</y><w>279</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση καλαθιού
+getDraftOrders()</panel_attributes><additional_attributes>10;20;290;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>171</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+αλλαγή προϊόντων και ποσότητας
+add/removeProductFromOrder()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>504</y><w>243</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση φόρμας πληρωμής</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>Relation</id><coordinates><x>81</x><y>531</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+συμπλήρωση φόρμας πληρωμής
+</panel_attributes><additional_attributes>257;20;17;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>630</y><w>279</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ενημέρωση κατάστασης</panel_attributes><additional_attributes>290;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>612</y><w>243</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα επιτυχίας κάρτας</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>684</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα αποτυχίας κάρτας 
+και επαναπροσπάθειας</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>63</x><y>567</y><w>603</w><h>162</h></coordinates><panel_attributes>opt
+--
+if card is ok / payment()
+-.
+
+
+
+
+else
+-.</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>189</y><w>279</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ενημέρωση παραγγελίας</panel_attributes><additional_attributes>290;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>216</y><w>279</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση νέου καλαθιού
+getDraftOrders()</panel_attributes><additional_attributes>10;20;290;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>585</x><y>207</y><w>18</w><h>315</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>585</x><y>648</y><w>18</w><h>18</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>18</y><w>72</w><h>72</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>441</x><y>0</y><w>72</w><h>72</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>180</x><y>0</y><w>72</w><h>72</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>297</y><w>513</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα επιθυμίας backorder</panel_attributes><additional_attributes>10;20;550;20</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>54</x><y>333</y><w>945</w><h>162</h></coordinates><panel_attributes>opt
+--
+επιλέγει backorder
+-.
+
+
+
+
+else
+-.</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>369</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή backorder
+</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>387</y><w>612</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+δημιουργία backorder</panel_attributes><additional_attributes>660;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>855</x><y>18</y><w>144</w><h>54</h></coordinates><panel_attributes>Backorder handler</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>918</x><y>63</y><w>27</w><h>720</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;780;10;10</additional_attributes></element><element><id>UMLFrame</id><coordinates><x>27</x><y>261</y><w>990</w><h>243</h></coordinates><panel_attributes>opt
+--
+Περίπτωση έλλειψης αποθεμάτων
+-.
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>918</x><y>405</y><w>18</w><h>27</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>441</y><w>243</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μη επιλογή backorder
+</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>468</y><w>279</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επαναϋπολογισμός συνόλου πληρωμής</panel_attributes><additional_attributes>10;20;290;20</additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>108</y><w>27</w><h>675</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;730;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>450</y><w>279</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ενημέρωση παραγγελίας
+</panel_attributes><additional_attributes>10;20;290;20</additional_attributes></element></diagram>

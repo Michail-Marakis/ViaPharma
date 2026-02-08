@@ -1,0 +1,148 @@
+<resources>
+
+    <string name="backorder_page_title">BACKORDER PAGE</string>
+    <string name="btn_active_backorders">Active Backorders</string>
+    <string name="btn_back">BACK</string>
+    <string name="hint_afm_pharmacy">AFM of a Pharmacy to see it\'s active backorders</string>
+    <string name="btn_search_backorders">Search Backorders</string>
+
+
+    <string name="title_batch_manager">BATCH MANAGER</string>
+    <string name="btn_receive_stock">Receive Stock</string>
+    <string name="btn_recall_products">Recall Products</string>
+    <string name="btn_home_page">HOME PAGE</string>
+
+
+    <string name="title_reset_password">RESET PASSWORD</string>
+    <string name="btn_save_changes">SAVE CHANGES</string>
+    <string name="hint_username_email">Username(Email)</string>
+    <string name="hint_new_password">New Password</string>
+    <string name="hint_confirm_new_password">Confirm New Password</string>
+
+    <string name ="INBOX">INBOX</string>
+    <string name ="INBOX2">INBOX</string>
+    <string name="title_home_page">Home Page</string>
+    <string name="btn_show_stock">Show Available Stock</string>
+    <string name="btn_batches_controller">Batches Controller</string>
+    <string name="btn_order_manager">Order Manager</string>
+    <string name="btn_show_stats">Show Stats</string>
+    <string name="btn_log_out">LOG OUT</string>
+
+
+    <string name="title_orders_manager">ORDERS MANAGER</string>
+    <string name="btn_all_orders">ALL ORDERS</string>
+    <string name="btn_backorders">BACKORDERS</string>
+    <string name="all_backorders">ALL BACKORDERS</string>
+    <string name="btn2_home_page">HOME PAGE</string>
+
+
+    <string name="btn3_back">BACK</string>
+    <string name="title_recall_batch">Recall Batch Page</string>
+    <string name="info_recall_batch">Select a batch from the list (or type its ID) and recall it from pharmacies/clients.</string>
+    <string name="hint_batch_id">Batch ID</string>
+    <string name="btn_recall_batch">PRESS TO RECALL THE BATCH</string>
+
+
+    <string name="btn4_back">BACK</string>
+    <string name="title_receive_batch">Update Stock Page</string>
+    <string name="info_receive_batch">Fill the form below about the product you want to update in your stock</string>
+    <string name="hint_product_name">Type the name of the product</string>
+    <string name="hint_eof_code">Type the EOF code of the product</string>
+    <string name="hint_price">Price of the product</string>
+    <string name="label_product_category">Product Category</string>
+    <string name="hint_select_category">Select category</string>
+    <string name="hint_number_batches">Number of Batches</string>
+    <string name="hint_products_in_batch">Number of Products in each batch</string>
+    <string name="btn2_receive_stock">Press to receive new stock</string>
+
+    <string name="btn5_back">BACK</string>
+    <string name="title_all_orders">All Orders Page</string>
+    <string name="btn2_all_orders">ALL ORDERS</string>
+    <string name="btn_completed_orders">COMPLETED ORDERS</string>
+    <string name="hint_execute_order">Order ID to execute</string>
+    <string name="btn_execute_order">EXECUTE ORDER</string>
+    <string name="hint_postpone_order">Order ID to postpone</string>
+    <string name="btn_postpone_order">POSTPONE ORDER</string>
+    <string name="hint_cancel_order">Order ID to cancel</string>
+    <string name="btn_cancel_order">CANCEL ORDER (CLIENT WISH)</string>
+
+
+    <string name="app_name">ViaPharma</string>
+    <string name="btn6_home">HOME PAGE</string>
+    <string name="title_statistics_page">Statistics Page</string>
+    <string name="info_fill_below">Fill with information below</string>
+    <string name="hint_start_date">DD/MM/YY</string>
+    <string name="hint_end_date">DD/MM/YY</string>
+    <string name="btn_product_sales_timestamp">PRODUCT SALES DURING SPECIFIC TIMESTAMP</string>
+    <string name="hint2_afm_pharmacy">Afm of a pharmacy</string>
+    <string name="btn_show_orders">SHOW ORDERS</string>
+    <string name="btn_show_revenue">SHOW REVENUE</string>
+    <string name="btn_total_inventory_revenue">TOTAL INVENTORY REVENUE</string>
+
+
+
+    <string name="app2_name">ViaPharma</string>
+    <string name="btn2_home">HOME PAGE</string>
+    <string name="title_stock_page">STOCK PAGE</string>
+    <string name="hint2_eof_code">EOF code of a product</string>
+    <string name="btn_search">Search</string>
+    <string name="btn_full_stock">Full Stock</string>
+    <string name="text_specific_product_info">Name: Demo\nQuantity: 3\nPrice: 10.00 $</string>
+
+    <string name="btn7_back">BACK</string>
+    <string name="title3_reset_password">RESET PASSWORD</string>
+    <string name="hint_username_afm">Username (AFM)</string>
+    <string name="hint3_new_password">New Password</string>
+    <string name="hint3_confirm_new_password">Confirm Password</string>
+    <string name="btn3_save_changes">SAVE CHANGES</string>
+
+    <string name="question_clerk">Are you a clerk?</string>
+    <string name="question_pharmacist">Are you a pharmacist?</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="fill_form">Fill in the form below</string>
+    <string name="btn_sign_up">SIGN UP</string>
+    <string name="btn_log_in">LOG IN</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_phone">Phone Number</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_forgot_password">Forgot password?</string>
+
+    <string name="title_completed_orders_page">Completed Orders</string>
+    <string name="btn_cancel_order_simple">Cancel Order</string>
+    <string name="title_pending_orders">Pending Orders</string>
+    <string name="btn_submit_order">Submit Order</string>
+    <string name="title_cart">Your Cart</string>
+    <string name="btn_save_draft">Save to draft</string>
+    <string name="label_cart_total">Cart Total</string>
+    <string name="text_total_is">Your total is: </string>
+    <string name="hint_postal_code">Postal code</string>
+    <string name="hint_region">Region</string>
+    <string name="hint_street_number">Street number</string>
+    <string name="hint_street_name">Street name</string>
+    <string name="hint_afm">AFM</string>
+    <string name="title_signup_pharmacy">Sign up for a pharmacy</string>
+    <string name="title_draft_orders">Draft Orders</string>
+    <string name="title_signin_pharmacy">Sign in for a Pharmacy</string>
+    <string name="btn_click_here">Click here</string>
+    <string name="question_new_pharmacy">Want to sign for a new pharmacy?</string>
+    <string name="btn_forgot_password_short">FORGOT PASSWORD</string>
+
+    <string name="btn_cart_simple">Cart</string>
+    <string name="btn_products_simple">Products</string>
+    <string name="btn_draft_orders_simple">Draft Orders</string>
+    <string name="btn_completed_orders_simple">Completed Orders</string>
+    <string name="btn_pending_orders_simple">Pending Orders</string>
+    <string name="btn_sign_out">LOG OUT</string>
+    <string name="btn_sort_by">sort by ▼</string>
+    <string name="title_products">Products</string>
+    <string name="btn_search_simple">search</string>
+    <string name="hint_search_eof">Search by EOF</string>
+
+    <string name="btn_all_orders_pharm">ALL PRODUCTS</string>
+
+</resources>

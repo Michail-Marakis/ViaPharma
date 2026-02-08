@@ -1,0 +1,43 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLActor</id><coordinates><x>30</x><y>52</y><w>140</w><h>110</h></coordinates><panel_attributes>Φαρμακοαποθηκάριος</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>142</y><w>30</w><h>620</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;600;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>62</y><w>180</w><h>70</h></coordinates><panel_attributes>Database</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>860</x><y>62</y><w>160</w><h>70</h></coordinates><panel_attributes>Backorder Handler</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>122</y><w>30</w><h>640</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;620;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>182</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+επιλογή "Restocking"
+receiveBatch()</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>90</x><y>182</y><w>20</w><h>270</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>350</x><y>172</y><w>20</w><h>430</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>62</y><w>170</w><h>70</h></coordinates><panel_attributes>Εφαρμογή</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>122</y><w>30</w><h>650</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;630;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>232</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+εμφάνιση φόρμας προς συμπλήρωση
+ batchesByProduct.get(p)</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>292</y><w>270</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+συμπλήρωση προϊόντων και ποσοτήτων
+batchesByProduct.put(p, list);</panel_attributes><additional_attributes>250;20;10;20</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>640</x><y>342</y><w>20</w><h>70</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>322</y><w>300</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+ενημέρωση αποθεμάτων
+list.add(batch);</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>392</y><w>300</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα επιτυχής ενημέρωσης</panel_attributes><additional_attributes>10;20;280;20</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>432</y><w>270</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+μήνυμα επιτυχής ενημέρωσης</panel_attributes><additional_attributes>10;20;250;20</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>122</y><w>30</w><h>630</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;610;10;10</additional_attributes></element><element><id>UMLGeneric</id><coordinates><x>930</x><y>522</y><w>20</w><h>40</h></coordinates><panel_attributes></panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>502</y><w>590</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-
+backorder handler()
+fulfillBackordersForProduct()</panel_attributes><additional_attributes>570;20;10;20</additional_attributes></element><element><id>Text</id><coordinates><x>0</x><y>52</y><w>80</w><h>80</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>210</x><y>52</y><w>80</w><h>80</h></coordinates><panel_attributes>// Boundary Element
+	  Boundary
+	  
+_umletcode=
+// Boundary Symbol
+drawCircle(50, 50, 20)
+drawLine(20, 50, 30, 50)
+drawLine(20, 30, 20, 70)	 
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>490</x><y>52</y><w>80</w><h>80</h></coordinates><panel_attributes>// Entity Element
+	      Entity
+	      
+_umletcode=
+// Entity Symbol
+drawCircle(50, 50, 20)
+drawLine(30, 70, 70, 70)
+	</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>790</x><y>62</y><w>80</w><h>80</h></coordinates><panel_attributes>// Control Element
+	     Control
+	     
+_umletcode=
+// Control Symbol
+drawCircle(50, 50, 20)
+drawLine(44, 31, 54, 21)
+drawLine(44, 31, 54, 41)
+	</panel_attributes><additional_attributes></additional_attributes></element></diagram>

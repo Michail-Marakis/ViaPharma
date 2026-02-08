@@ -1,0 +1,344 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacyShowProductsPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.PharmacyShowProducts</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacyShowProductsPresenter (gr.softeng.team09.view.PharmacyShowProducts)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacyShowProductsPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.1%
+  </span>
+  <span class="absValue">
+    (23/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (43/43)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PharmacyShowProductsPresenter$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PharmacyShowProductsPresenter$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.1%
+  </span>
+  <span class="absValue">
+    (23/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (47/47)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.PharmacyShowProducts;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Collections;
+&nbsp;import java.util.Comparator;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.OrderDAO;
+&nbsp;import gr.softeng.team09.domain.Address;
+&nbsp;import gr.softeng.team09.domain.Inventory;
+&nbsp;import gr.softeng.team09.domain.InventoryLine;
+&nbsp;import gr.softeng.team09.domain.Order;
+&nbsp;import gr.softeng.team09.domain.OrderLine;
+&nbsp;import gr.softeng.team09.domain.Pharmacist;
+&nbsp;import gr.softeng.team09.domain.Pharmacy;
+&nbsp;import gr.softeng.team09.domain.Product;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.memorydao.OrderDAOMemory;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacy show products presenter.
+&nbsp; */
+&nbsp;public class PharmacyShowProductsPresenter {
+&nbsp;
+&nbsp;    private PharmacyShowProductsView view;
+&nbsp;    private Inventory inventory;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The Ph.
+&nbsp;     */
+&nbsp;    public Pharmacy ph;
+&nbsp;    private List&lt;InventoryLine&gt; allItems;
+&nbsp;    private List&lt;InventoryLine&gt; displayedItems;
+&nbsp;
+&nbsp;
+&nbsp;    private Order currentOrder;
+&nbsp;    private OrderDAO orderDAO ;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacy show products presenter.
+&nbsp;     */
+<b class="fc">&nbsp;    public PharmacyShowProductsPresenter() {</b>
+<b class="fc">&nbsp;        this.orderDAO = new OrderDAOMemory();</b>
+<b class="fc">&nbsp;        ph = MemoryStore.getPharmacy();</b>
+<b class="fc">&nbsp;        this.inventory = MemoryStore.getInventory();</b>
+<b class="fc">&nbsp;        currentOrder = MemoryStore.getActiveOrder();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(PharmacyShowProductsView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add product to cart.
+&nbsp;     *
+&nbsp;     * @param product  the product
+&nbsp;     * @param quantity the quantity
+&nbsp;     */
+&nbsp;    public void addProductToCart(Product product, int quantity) {
+<b class="fc">&nbsp;        if (ph == null) {</b>
+<b class="fc">&nbsp;            ph = MemoryStore.getPharmacy();</b>
+<b class="fc">&nbsp;            if (ph == null) {</b>
+<b class="fc">&nbsp;                view.showError(&quot;Error: No connected pharmacy. Please login again.&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (currentOrder == null) {</b>
+<b class="fc">&nbsp;            currentOrder = MemoryStore.getActiveOrder();</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (currentOrder == null) {</b>
+<b class="fc">&nbsp;            currentOrder = new Order(orderDAO.nextId(), ph);</b>
+<b class="fc">&nbsp;            orderDAO.saveDraft(currentOrder);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        MemoryStore.setActiveOrder(currentOrder);</b>
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            OrderLine ol = new OrderLine(product, quantity);</b>
+<b class="fc">&nbsp;            ph.addToCart(currentOrder, ol);</b>
+&nbsp;
+<b class="fc">&nbsp;            view.showError(&quot;Added: &quot; + product.getName());</b>
+&nbsp;        } catch (Exception e) {
+<b class="fc">&nbsp;            view.showError(&quot;Error during addition: &quot; + e.getMessage());</b>
+<b class="fc">&nbsp;            e.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Load current items.
+&nbsp;     */
+&nbsp;    public void loadCurrentItems(){
+<b class="pc">&nbsp;        if (MemoryStore.getInventory() != null) {</b>
+<b class="fc">&nbsp;            this.allItems = MemoryStore.getInventory().getAvailableItems();</b>
+<b class="fc">&nbsp;            displayedItems = new ArrayList&lt;&gt;(allItems);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sort products.
+&nbsp;     *
+&nbsp;     * @param criteria the criteria
+&nbsp;     */
+&nbsp;    public void sortProducts(String criteria) {
+<b class="pc">&nbsp;        if (displayedItems == null || displayedItems.isEmpty()) return;</b>
+&nbsp;
+<b class="fc">&nbsp;        switch (criteria) {</b>
+&nbsp;            case &quot;NAME&quot;:
+<b class="fc">&nbsp;                Collections.sort(displayedItems, new Comparator&lt;InventoryLine&gt;() {</b>
+&nbsp;                    @Override
+&nbsp;                    public int compare(InventoryLine o1, InventoryLine o2) {
+<b class="fc">&nbsp;                        return o1.getProduct().getName().compareToIgnoreCase(o2.getProduct().getName());</b>
+&nbsp;                    }
+&nbsp;                });
+&nbsp;                break;
+&nbsp;            case &quot;EOF&quot;:
+<b class="fc">&nbsp;                Collections.sort(displayedItems, new Comparator&lt;InventoryLine&gt;() {</b>
+&nbsp;                    @Override
+&nbsp;                    public int compare(InventoryLine o1, InventoryLine o2) {
+<b class="fc">&nbsp;                        return Integer.compare(o1.getProduct().getEofyCode(), o2.getProduct().getEofyCode());</b>
+&nbsp;                    }
+&nbsp;                });
+&nbsp;                break;
+&nbsp;        }
+<b class="fc">&nbsp;        view.showProducts(displayedItems);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Search by eof.
+&nbsp;     *
+&nbsp;     * @param eof the eof
+&nbsp;     */
+&nbsp;    public void searchByEof(String eof) {
+<b class="pc">&nbsp;        if (allItems == null || allItems.isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;No more products&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="pc">&nbsp;        if (eof == null || eof.trim().isEmpty()) {</b>
+<b class="fc">&nbsp;            this.displayedItems = new ArrayList&lt;&gt;(this.allItems);</b>
+<b class="fc">&nbsp;            view.showProducts(displayedItems);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        List&lt;InventoryLine&gt; results = new ArrayList&lt;&gt;();</b>
+&nbsp;        int eofCode;
+&nbsp;        try {
+<b class="fc">&nbsp;            eofCode = Integer.parseInt(eof.trim());</b>
+<b class="fc">&nbsp;            for (InventoryLine line : allItems) {</b>
+<b class="fc">&nbsp;                if (line.getProduct().getEofyCode() == eofCode) {</b>
+<b class="fc">&nbsp;                    results.add(line);</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            this.displayedItems = results;</b>
+<b class="fc">&nbsp;            view.showProducts(displayedItems);</b>
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;EOF code must be a number&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get all items list.
+&nbsp;     *
+&nbsp;     * @return the list
+&nbsp;     */
+&nbsp;    public List&lt;InventoryLine&gt; getAllItems(){
+<b class="fc">&nbsp;        return allItems;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

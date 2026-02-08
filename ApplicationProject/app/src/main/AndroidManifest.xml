@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MedicineClerk">
+
+        <!-- LAUNCHER ACTIVITY -->
+        <activity
+            android:name=".view.StartingScreen.StartingScreenScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.PharmacyViewPendingOrders.PharmacyViewPendingOrdersScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInPharmacist.SignInPharmacy.PharmacyForget.PharmacyForgetScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInPharmacist.PharmacistForget.PharmacistForgetScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInClerk.ClerkForget.ClerkForgetScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInClerk.SignInClerkScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignUpClerk.SignUpClerkScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkOrdersGeneral.ClerkOrdersGeneral"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkShowStats.ClerkShowStatsScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkShowStock.ClerkShowStockScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkOrdersGeneral.ClerkShowOrders.ClerkShowOrdersScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkOrdersGeneral.ClerkBackOrders.ClerkBackOrdersScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkBatches.Receive.ClerkReceiveBatchScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkBatches.Recall.ClerkRecallBatchScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkBatches.ClerkBatchesGeneralScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.ClerkMain.ClerkMainScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacyShowProducts.PharmacyShowProductsScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacyCart.PharmacyCartScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacyViewCompletedOrders.PharmacyViewCompletedOrdersScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacyViewDraftOrders.PharmacyViewDraftOrdersScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInPharmacist.PharmacistSignInScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignUpPharmacist.PharmacistSignUpScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignInPharmacist.SignInPharmacy.PharmacySignInScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.SignUpPharmacist.SignUpPharmacy.PharmacySignUpScreen"
+            android:exported="false" />
+        <activity
+            android:name=".view.ClerkEmails.ClerkEmailScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacistEmails.PharmacistEmailsScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.PharmacyMain.PharmacyMainScreen"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PharmacistSignUpPresenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.view.SignUpPharmacist</a>
+</div>
+
+<h1>Coverage Summary for Class: PharmacistSignUpPresenter (gr.softeng.team09.view.SignUpPharmacist)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PharmacistSignUpPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    68.2%
+  </span>
+  <span class="absValue">
+    (15/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.view.SignUpPharmacist;
+&nbsp;
+&nbsp;import gr.softeng.team09.dao.PharmacistDAO;
+&nbsp;import gr.softeng.team09.domain.Pharmacist;
+&nbsp;import gr.softeng.team09.memorydao.MemoryStore;
+&nbsp;import gr.softeng.team09.memorydao.PharmacistDAOMemory;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Pharmacist sign up presenter.
+&nbsp; */
+&nbsp;public class PharmacistSignUpPresenter {
+&nbsp;
+&nbsp;    private PharmacistSignUpView view;
+&nbsp;    private final PharmacistDAO dao;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Pharmacist sign up presenter.
+&nbsp;     */
+<b class="fc">&nbsp;    public PharmacistSignUpPresenter() {</b>
+<b class="fc">&nbsp;        this.dao = new PharmacistDAOMemory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets view.
+&nbsp;     *
+&nbsp;     * @param view the view
+&nbsp;     */
+&nbsp;    public void setView(PharmacistSignUpView view) {
+<b class="fc">&nbsp;        this.view = view;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * On sign up.
+&nbsp;     *
+&nbsp;     * @param firstName the first name
+&nbsp;     * @param lastName  the last name
+&nbsp;     * @param email     the email
+&nbsp;     * @param phoneStr  the phone str
+&nbsp;     * @param password  the password
+&nbsp;     */
+&nbsp;    public void onSignUp(String firstName,
+&nbsp;                         String lastName,
+&nbsp;                         String email,
+&nbsp;                         String phoneStr,
+&nbsp;                         String password) {
+&nbsp;
+<b class="pc">&nbsp;        if (view == null) return;</b>
+&nbsp;
+&nbsp;        // trim + null safe
+<b class="fc">&nbsp;        firstName = safeTrim(firstName);</b>
+<b class="fc">&nbsp;        lastName = safeTrim(lastName);</b>
+<b class="fc">&nbsp;        email = safeTrim(email);</b>
+<b class="fc">&nbsp;        phoneStr = safeTrim(phoneStr);</b>
+<b class="fc">&nbsp;        password = safeTrim(password);</b>
+&nbsp;
+<b class="pc">&nbsp;        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()</b>
+<b class="pc">&nbsp;                || phoneStr.isEmpty() || password.isEmpty()) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Fill the form.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="pc">&nbsp;        if (!email.contains(&quot;@&quot;) || !email.contains(&quot;.&quot;)) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Invalid email.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (dao.exists(email)) {</b>
+<b class="fc">&nbsp;            view.showError(&quot;Email used already.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+<b class="fc">&nbsp;            int phone = Integer.parseInt(phoneStr);</b>
+<b class="fc">&nbsp;            if (phone &lt;= 0) {</b>
+<b class="fc">&nbsp;                view.showError(&quot;Phone number is not valid.&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            Pharmacist newPharmacist = new Pharmacist(firstName, lastName, email, phone, password);</b>
+&nbsp;
+<b class="fc">&nbsp;            dao.save(newPharmacist);</b>
+&nbsp;
+<b class="fc">&nbsp;            MemoryStore.setPharmacist(newPharmacist);</b>
+&nbsp;
+<b class="fc">&nbsp;            view.showSuccess(&quot;Sign up succeeded!&quot;);</b>
+<b class="fc">&nbsp;            view.finishSignUp();</b>
+&nbsp;
+&nbsp;        } catch (NumberFormatException e) {
+<b class="fc">&nbsp;            view.showError(&quot;Phone number must contain only numbers.&quot;);</b>
+&nbsp;        } catch (Exception e) {
+<b class="fc">&nbsp;            view.showError(&quot;Sign up error: &quot; + e.getMessage());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private String safeTrim(String s) {
+<b class="pc">&nbsp;        return s == null ? &quot;&quot; : s.trim();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>

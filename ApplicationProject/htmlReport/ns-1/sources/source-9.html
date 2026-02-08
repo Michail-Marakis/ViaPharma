@@ -1,0 +1,108 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReservationDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gr.softeng.team09.dao</a>
+</div>
+
+<h1>Coverage Summary for Class: ReservationDAO (gr.softeng.team09.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ReservationDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package gr.softeng.team09.dao;
+&nbsp;
+&nbsp;import java.util.Map;
+&nbsp;import gr.softeng.team09.domain.Product;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Reservation dao.
+&nbsp; */
+&nbsp;public interface ReservationDAO {
+&nbsp;    /**
+&nbsp;     * Put.
+&nbsp;     *
+&nbsp;     * @param orderId  the order id
+&nbsp;     * @param reserved the reserved
+&nbsp;     */
+&nbsp;    void put(int orderId, Map&lt;Product, Integer&gt; reserved);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get map.
+&nbsp;     *
+&nbsp;     * @param orderId the order id
+&nbsp;     * @return the map
+&nbsp;     */
+&nbsp;    Map&lt;Product, Integer&gt; get(int orderId);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Remove.
+&nbsp;     *
+&nbsp;     * @param orderId the order id
+&nbsp;     */
+&nbsp;    void remove(int orderId);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Contains boolean.
+&nbsp;     *
+&nbsp;     * @param orderId the order id
+&nbsp;     * @return the boolean
+&nbsp;     */
+&nbsp;    boolean contains(int orderId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-07 01:50</div>
+</div>
+</body>
+</html>
