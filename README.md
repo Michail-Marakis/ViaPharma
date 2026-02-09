@@ -1,133 +1,72 @@
-#  Εφαρμογή Διαχείρισης Φαρμακαποθήκης
+# Pharmacy Warehouse Management Application
 
-#  Μάθημα
-**Τεχνολογία Λογισμικού**
+## Course
+**Software Engineering**
 
-#  Ομάδα
-**Τύπος Β - Ομάδα 9**  
-- Μαράκης Μιχαήλ  
-- Μακαρούνας Πρόδρομος-Άρης  
-- Σερδάρης Μιχαήλ  
+## Team
+- Michail Marakis  
+- Prodromos-Aris Makarounas  
 
 ---
 
-##  Εισαγωγή
+## Introduction
 
-Η συγκεκριμένη εφαρμογή απλοποιεί τη διαδικασία αγοράς φαρμάκου από την πλευρά των φαρμακοποιών που την χρησιμοποιούν και έχουν εγγραφεί σε αυτήν.  
-Από την άλλη πλευρά, διευκολύνει σημαντικά τους φαρμακοαποθηκάριους, καθώς τους επιτρέπει να εξυπηρετούν τους πελάτες τους (φαρμακοποιούς) εύκολα και γρήγορα, προσφέροντας πλούσιες λειτουργίες μέσα από την εφαρμογή.
+This application simplifies the medicine ordering process from the perspective of pharmacists who are registered and use the platform.  
+At the same time, it significantly supports pharmacy warehouse administrators by allowing them to serve their clients (pharmacists) efficiently and quickly, offering rich functionality through a centralized system.
+
+The goal of the application is to automate ordering, inventory management, and backorder handling in a reliable and structured way.
+
+---
 
 ## Stakeholders
-- Οι πελάτες (φαρμακοποιοί)
-- Ο διοικητής της φαρμακαποθήκης
+- Customers (Pharmacists)
+- Pharmacy Warehouse Administrator
 
 ---
 
-## Λειτουργίες Φαρμακαποθήκης
+## Pharmacy Warehouse Features
 
-- Ο διαχειριστής της φαρμακαποθήκης μπορεί να προβάλει τη λίστα των εκκρεμών παραγγελιών.  
-- Έχει τη δυνατότητα να επιλέγει οποιαδήποτε παραγγελία προς εκτέλεση, αλλάζοντας αυτόματα την κατάστασή της από **«Εκκρεμής»** σε **«Ολοκληρωμένη»** και ενημερώνοντας τα αποθέματα της αποθήκης.
-- Μετά την ολοκλήρωση, γίνεται το **πακετάρισμα** και η **αποστολή** των παραγγελιών στο αντίστοιχο φαρμακείο.
-- Ο φαρμακοαποθηκάριος μπορεί να **ακυρώσει παραγγελία** αν κάποιο προϊόν δεν είναι διαθέσιμο, ώστε να αποδεσμευτούν τα προϊόντα και να εξυπηρετηθούν αυτόματα **backorders** (αναδρομικές παραγγελίες).
-- Όταν γίνεται **παραλαβή νέων παρτίδων**, ο διαχειριστής ενημερώνει τα αποθέματα και ενεργοποιούνται αυτόματα τα αντίστοιχα backorders.
-- Μπορεί να **αποσύρει δυσλειτουργικά ή επικίνδυνα φάρμακα** από την αγορά με αυτοματοποιημένο μήνυμα προς όλα τα φαρμακεία που τα έλαβαν (**ιχνηλασιμότητα**).
-- Τέλος, μπορεί να προβάλει **στατιστικά πωλήσεων**, όπως:
-  - Ιστορικό παραγγελιών  
-  - Έσοδα ανά πελάτη  
-  - Πωλήσεις προϊόντων ανά χρονική περίοδο  
+- The warehouse administrator can view a list of **pending orders**.
+- Any order can be selected for execution, automatically changing its status from **“Pending”** to **“Completed”**, while updating warehouse inventory.
+- After completion, orders are **packed and shipped** to the corresponding pharmacy.
+- Orders can be **cancelled** if a product is unavailable, freeing reserved items and automatically serving existing **backorders**.
+- When **new product batches** are received, the administrator updates inventory and relevant backorders are activated automatically.
+- The administrator can **withdraw defective or dangerous medicines** from the market and notify all pharmacies that received them (**traceability support**).
+- The system provides **sales statistics**, including:
+  - Order history  
+  - Revenue per customer  
+  - Product sales per time period  
 
 ---
 
-##  Λειτουργίες Φαρμακοποιού
+## Pharmacist Features
 
-- Ο φαρμακοποιός **εγγράφεται** στην εφαρμογή εισάγοντας:
-  - Όνομα και επώνυμο  
-  - Τηλέφωνο  
+- Pharmacists can **register** by providing:
+  - First and last name  
+  - Phone number  
   - Email  
-  - Κωδικό και επαλήθευση κωδικού  
-  - Διεύθυνση, περιφέρεια, ταχυδρομικό κώδικα  
-  - ΑΦΜ της επωνυμίας του
-- Μπορεί να **πλοηγηθεί στα προϊόντα**, τα οποία διαθέτουν:
-  - Ονομασία  
-  - Τιμή χωρίς και με ΦΠΑ  
-  - Απόθεμα  
-  - Κατηγορία φαρμάκου  
-  - Κωδικό ΕΟΦ
-- Προσθέτει προϊόντα στο **καλάθι** και μπορεί να:
-  - Υποβάλει την παραγγελία  
-  - Την αποθηκεύσει προσωρινά για μεταγενέστερη υποβολή
-- Αν κάποιο προϊόν έχει **μηδενικό απόθεμα**, εμφανίζεται σχετική ειδοποίηση πριν την υποβολή.
-- Αν υποβληθεί παραγγελία με προϊόντα εκτός αποθέματος:
-  - Αποστέλλονται μόνο όσα είναι διαθέσιμα  
-  - Τα υπόλοιπα τοποθετούνται σε **backorder**
-- Οι **αναδρομικές παραγγελίες (backorders)** παραμένουν σε αναμονή, δεσμεύοντας τα προϊόντα για αποστολή όταν υπάρχει νέο απόθεμα.
-- Η εξυπηρέτηση backorders γίνεται **με σειρά προτεραιότητας (First-Come First-Serve)**.
-- Όταν η αποθήκη προμηθευτεί ξανά κάποιο προϊόν, ο φαρμακοποιός **ειδοποιείται με email** για την ενεργοποίηση του backorder.
-
-**Συνοψίζοντας:** Η εφαρμογή βελτιώνει τη διαδικασία παραγγελίας και εξυπηρέτησης φαρμακείων με ευκολία, ταχύτητα και αυτοματοποίηση.
+  - Password and confirmation  
+  - Address, region, postal code  
+  - Tax Identification Number (VAT)
+- They can **browse products**, which include:
+  - Product name  
+  - Price (without and with VAT)  
+  - Stock availability  
+  - Medicine category  
+  - EOF product code
+- Products can be added to a **shopping cart**, allowing:
+  - Immediate order submission  
+  - Temporary saving for later submission
+- If a product is **out of stock**, a warning is shown before order submission.
+- When an order includes unavailable products:
+  - Available items are shipped  
+  - Unavailable items are placed in **backorder**
+- **Backorders** remain pending and reserve products until stock is replenished.
+- Backorders are processed using **First-Come First-Serve (FCFS)** priority.
+- When stock becomes available again, pharmacists are **notified via email**.
 
 ---
 
-## Περιπτώσεις Χρήσης
-| **Use case diagram** |
-|----------------------|
-|[Cancel Order Markdown](docs/markdown/uc-cancel-order.md)|
-|[Execute Order Markdown](docs/markdown/uc-execute-order.md)|
-|[Manage Order Markdown](docs/markdown/uc-manage-order.md)|
-|[Order Withdrawal Markdown](docs/markdown/uc-order-withdrawal.md)|
-|[Update Stock Markdown](docs/markdown/uc-update-stock.md)|
-|[Submit Order Markdown](docs/markdown/uc-submit-order.md)|
-|![alt text](docs/markdown/uml/requirements/use-cases.png)|
+## Summary
 
----
-
-## Διαγράμματα Δραστηριότητας
-| **Activity Diagrams** | 
-|-----------------------|
-|      Cancel Order     | 
-|![alt text](docs/markdown/uml/requirements/activity-cancel-order.png)|
-|     Execute Order     | 
-|![alt text](docs/markdown/uml/requirements/activity-execute-order.png)|
-|      Manage Order     | 
-|![alt text](docs/markdown/uml/requirements/activity-manage-order.png)|
-|    Order Withdrawal   | 
-|![alt text](docs/markdown/uml/requirements/activity-order-withdrawal.png)|
-|      Update Stock     | 
-|![alt text](docs/markdown/uml/requirements/activity-update-stock.png)|
-|      Submit Order     | 
-|![alt text](docs/markdown/uml/requirements/activity-submit-order.png)|
-
-
-
----
-
-## Διαγράμματα ακολουθίας
-| **Sequence Diagrams** |  
-|-----------------------|
-|      Cancel Order     |  
-|![alt text](docs/markdown/uml/requirements/sequence-cancel-order.png)|
-|     Execute Order     | 
-|![alt text](docs/markdown/uml/requirements/sequence-execute-order.png)|
-|      Manage Order     |  
-|![alt text](docs/markdown/uml/requirements/sequence-manage-order.png)|
-|    Order Withdrawal   |  
-|![alt text](docs/markdown/uml/requirements/sequence-order-withdrawal.png)|
-|      Update Stock     |  
-|![alt text](docs/markdown/uml/requirements/sequence-update-stock.png)|
-|      Submit Order     |  
-|![alt text](docs/markdown/uml/requirements/sequence-submit-order.png)|
-
-
----
-## Μοντελοποίηση Πεδίου
-| **Domain Model**                                             |
-|--------------------------------------------------------------|
-| ![alt text](docs/markdown/uml/requirements/domain-model.png) |
-
-
----
-## Διάγραμμα Κλάσεων
-| **Class Diagram**                                              |
-|----------------------------------------------------------------|
-| ![alt text](docs/markdown/uml/requirements/class-diagram.png)  |
-
-
+The application improves the ordering and fulfillment process between pharmacies and pharmacy warehouses by offering automation, transparency, and efficient inventory management.
