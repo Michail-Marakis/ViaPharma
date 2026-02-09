@@ -69,6 +69,11 @@ The goal of the application is to automate ordering, inventory management, and b
 
 ---
 
+## JUNIT TESTS
+There is 100% lines and branch coverage through out the project in order to verify correct logic
+
+---
+
 ## Summary
 
 The application improves the ordering and fulfillment process between pharmacies and pharmacy warehouses by offering automation, transparency, and efficient inventory management.
