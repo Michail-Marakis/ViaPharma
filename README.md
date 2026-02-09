@@ -74,6 +74,10 @@ There is 100% lines and branch coverage through out the project in order to veri
 
 ---
 
+## FILE STRUCTURE
+- In file docs there are sequence, class, activity and use case diagrams about the project
+- In file ApplicationProject both code and JUNIT tests are included
+
 ## Summary
 
 The application improves the ordering and fulfillment process between pharmacies and pharmacy warehouses by offering automation, transparency, and efficient inventory management.
