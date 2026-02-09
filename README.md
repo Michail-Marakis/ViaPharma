@@ -29,7 +29,7 @@ The goal of the application is to automate ordering, inventory management, and b
 - The warehouse administrator can view a list of **pending orders**.
 - Any order can be selected for execution, automatically changing its status from **“Pending”** to **“Completed”**, while updating warehouse inventory.
 - After completion, orders are **packed and shipped** to the corresponding pharmacy.
-- Orders can be **cancelled** if a product is unavailable, freeing reserved items and automatically serving existing **backorders**.
+- Orders can be **cancelled** if a product is it is client's wish to be cancelled.
 - When **new product batches** are received, the administrator updates inventory and relevant backorders are activated automatically.
 - The administrator can **withdraw defective or dangerous medicines** from the market and notify all pharmacies that received them (**traceability support**).
 - The system provides **sales statistics**, including:
@@ -45,9 +45,9 @@ The goal of the application is to automate ordering, inventory management, and b
   - First and last name  
   - Phone number  
   - Email  
-  - Password and confirmation  
-  - Address, region, postal code  
-  - Tax Identification Number (VAT)
+  - Password  
+  - Address, region, postal code
+  - Pharmacists can **register** multiple pharmacies under their name  
 - They can **browse products**, which include:
   - Product name  
   - Price (without and with VAT)  
@@ -57,13 +57,15 @@ The goal of the application is to automate ordering, inventory management, and b
 - Products can be added to a **shopping cart**, allowing:
   - Immediate order submission  
   - Temporary saving for later submission
-- If a product is **out of stock**, a warning is shown before order submission.
 - When an order includes unavailable products:
   - Available items are shipped  
   - Unavailable items are placed in **backorder**
 - **Backorders** remain pending and reserve products until stock is replenished.
 - Backorders are processed using **First-Come First-Serve (FCFS)** priority.
 - When stock becomes available again, pharmacists are **notified via email**.
+- Emails received can be seen.
+- Loging info can be seen.
+- Pending, Draft, Completed orders can be seen.
 
 ---
 
