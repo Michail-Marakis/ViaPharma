@@ -77,6 +77,9 @@ There is 100% lines and branch coverage through out the project in order to veri
 ## FILE STRUCTURE
 - In file docs there are sequence, class, activity and use case diagrams about the project
 - In file ApplicationProject report coverage, code and JUNIT tests are included
+  - ApplicationProject/app/src/main/java/gr/softeng/team09 is the code of the project
+  - ApplicationProject/app/src/test/java/gr/softeng/team09 are the tests of the project
+  - ApplicationProject/htmlreport is the test coverage report
 
 ## Summary
 
