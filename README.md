@@ -15,8 +15,8 @@ This android application simplifies the medicine ordering process from the persp
 At the same time, it significantly supports pharmacy warehouse administrators by allowing them to serve their clients (pharmacists) efficiently and quickly, offering rich functionality through a centralized system.
 
 The goal of the application is to automate ordering, inventory management, and backorder handling in a reliable and structured way.
-
 It is also **translated** in Greek, English and French.
+
 ---
 
 ## Stakeholders
