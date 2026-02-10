@@ -16,6 +16,7 @@ At the same time, it significantly supports pharmacy warehouse administrators by
 
 The goal of the application is to automate ordering, inventory management, and backorder handling in a reliable and structured way.
 
+It is also **translated** in Greek, English and French.
 ---
 
 ## Stakeholders
@@ -29,7 +30,7 @@ The goal of the application is to automate ordering, inventory management, and b
 - The warehouse administrator can view a list of **pending orders**.
 - Any order can be selected for execution, automatically changing its status from **“Pending”** to **“Completed”**, while updating warehouse inventory.
 - After completion, orders are **packed and shipped** to the corresponding pharmacy.
-- Orders can be **cancelled** if a product is it is client's wish to be cancelled.
+- Orders can be **cancelled** if it is client's wish to be cancelled.
 - When **new product batches** are received, the administrator updates inventory and relevant backorders are activated automatically.
 - The administrator can **withdraw defective or dangerous medicines** from the market and notify all pharmacies that received them (**traceability support**).
 - The system provides **sales statistics**, including:
