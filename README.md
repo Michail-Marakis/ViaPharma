@@ -75,12 +75,60 @@ There is 100% lines and branch coverage through out the project in order to veri
 
 ---
 
-## FILE STRUCTURE
-- In file docs there are sequence, class, activity and use case diagrams about the project
-- In file ApplicationProject report coverage, code and JUNIT tests are included
-  - ApplicationProject/app/src/main/java/gr/softeng/team09 is the code of the project
-  - ApplicationProject/app/src/test/java/gr/softeng/team09 are the tests of the project
-  - ApplicationProject/htmlreport is the test coverage report
+# Project Structure
+
+This repository is organized into the following directories:
+
+## `docs`
+
+Contains the project's **UML** documentation, including:
+
+* Use Case Diagrams
+* Class Diagrams
+* Sequence Diagrams
+* Activity Diagrams
+
+These diagrams document the system's architecture, workflows, and functional requirements.
+
+## `ApplicationProject`
+
+Contains the complete implementation of the application along with its documentation and testing artifacts.
+
+### Source Code
+
+`ApplicationProject/app/src/main/java/gr/softeng/team09`
+
+Contains the full implementation of the application.
+
+### Unit Tests
+
+`ApplicationProject/app/src/test/java/gr/softeng/team09`
+
+Includes the JUnit test suite used to verify the application's functionality.
+
+### UML Documentation
+
+`ApplicationProject/docs/uml/requirements`
+
+Contains the project's software design documentation, including:
+
+* Domain Model
+* Class Diagrams
+* Sequence Diagrams
+* Activity Diagrams
+
+### Application Diagrams
+
+`ApplicationProject/docs/uml/requirements/app_diagrams`
+
+Contains additional UML diagrams illustrating key application functionalities and user interaction flows.
+
+### Test Coverage Report
+
+`ApplicationProject/htmlreport`
+
+Provides the generated code coverage report, including coverage statistics for the project's JUnit test suite.
+
 
 ## Summary
 
