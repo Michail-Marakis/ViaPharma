@@ -4,8 +4,8 @@
 **Software Engineering**
 
 ## Team
-- Michail Marakis  
-- Prodromos-Aris Makarounas  
+- [Michail Marakis](https://github.com/Michail-Marakis)  
+- [Prodromos-Aris Makarounas](https://github.com/pr0mak)  
 
 ---
 
